@@ -1,0 +1,47 @@
+<style type="text/css">
+				table.dBug_array,table.dBug_object,table.dBug_resource,table.dBug_resourceC,table.dBug_xml {
+					font-family:Verdana, Arial, Helvetica, sans-serif; color:#000000; font-size:12px;
+				}
+				
+				.dBug_arrayHeader,
+				.dBug_objectHeader,
+				.dBug_resourceHeader,
+				.dBug_resourceCHeader,
+				.dBug_xmlHeader 
+					{ font-weight:bold; color:#FFFFFF; cursor:pointer;  font-size:16px;}
+				
+				.dBug_arrayKey,
+				.dBug_objectKey,
+				.dBug_xmlKey 
+					{ cursor:pointer;  font-size:12px;}
+					
+				/* array */
+				table.dBug_array { background-color:#006600; }
+				table.dBug_array td { background-color:#FFFFFF;  font-size:12px;}
+				table.dBug_array td.dBug_arrayHeader { background-color:#009900; }
+				table.dBug_array td.dBug_arrayKey { background-color:#CCFFCC; }
+				
+				/* object */
+				table.dBug_object { background-color:#0000CC; }
+				table.dBug_object td { background-color:#FFFFFF;  font-size:12px;}
+				table.dBug_object td.dBug_objectHeader { background-color:#4444CC; }
+				table.dBug_object td.dBug_objectKey { background-color:#CCDDFF; }
+				
+				/* resource */
+				table.dBug_resourceC { background-color:#884488; }
+				table.dBug_resourceC td { background-color:#FFFFFF;  font-size:12px;}
+				table.dBug_resourceC td.dBug_resourceCHeader { background-color:#AA66AA; }
+				table.dBug_resourceC td.dBug_resourceCKey { background-color:#FFDDFF; }
+				
+				/* resource */
+				table.dBug_resource { background-color:#884488; }
+				table.dBug_resource td { background-color:#FFFFFF;  font-size:12px;}
+				table.dBug_resource td.dBug_resourceHeader { background-color:#AA66AA; }
+				table.dBug_resource td.dBug_resourceKey { background-color:#FFDDFF; }
+				
+				/* xml */
+				table.dBug_xml { background-color:#888888; }
+				table.dBug_xml td { background-color:#FFFFFF;  font-size:12px;}
+				table.dBug_xml td.dBug_xmlHeader { background-color:#AAAAAA; }
+				table.dBug_xml td.dBug_xmlKey { background-color:#DDDDDD; }
+</style>

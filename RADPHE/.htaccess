@@ -1,0 +1,82 @@
+#Enable ReWrite Engine
+RewriteEngine on
+
+#Custom Error Documents.
+ErrorDocument 400 /Error404.php
+ErrorDocument 401 /Error404.php
+ErrorDocument 403 /Error404.php
+ErrorDocument 404 /Error404.php
+ErrorDocument 500 /Error404.php
+ErrorDocument 503 /Error404.php
+##to prevent shared hosting error jacking set all to a real file and reset headers and ststus to 200 if nessesary. though setting these jsut might take back your errors from the jacker.
+
+#Do not show directory indexes!
+	Options -Indexes
+
+##PHP Paramiters
+#Use of short tags - <?=$Var?>
+#	php_flag short_open_tag off
+#Register Globals
+#	php_value register_globals 0
+#	php_flag register_globals off
+#Use of Magic Quotes - When 'on' may complicate incomming data.
+#	php_value magic_quotes 0
+#	php_flag magic_quotes off
+#	php_value magic_quotes_gpc 0
+#	php_flag magic_quotes_gpc off
+
+##Forbid Private Resources
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+#Forbid files with ".inc.", ".sql.", or ".SEO." in the file name.
+	<Files ~ "\.(inc|sql|SEO)\.">
+		order allow,deny
+		deny from all
+	</Files>
+#Forbid files that begin with "_" (a underscore character).
+	<Files ~ "^_.+$">
+		order allow,deny
+		deny from all
+	</Files>
+#Forbid folders that begin with "_" (a underscore character) in the request path.
+	## BROKEN
+#	RewriteRule ^_KAS.*$ - [F]
+	RewriteRule /?_.*/$ - [F]
+#Make Site Map findable.
+	RewriteRule   ^sitemap\.xml$  Sitemap.xml
+#Allow Old URLS to map to new urls.
+RewriteRule   ^request\.html$  request.php
+#Protect from LIB WWW CGI attacks.
+	RewriteCond %{HTTP_USER_AGENT} libwww [NC,OR]
+	RewriteCond %{QUERY_STRING} ^(.*)=http: [NC]
+	RewriteRule ^(.*)$ - [F,L]
+#Dynamic Imgage Name for SEO.
+####Image in directory begins with 'IMG####-_-' and may end with anything prior to the extension.
+#RewriteRule ^Resources/(.*?)/(IMG[0-9]{1,4})\-\_\-(.*?)\.(.*)$ /Resources/$1/$2.$4 [L]
+#RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
+
+#Skins and protected resources.
+RewriteCond     %{REQUEST_FILENAME}     !-f
+RewriteCond     %{REQUEST_FILENAME}     !-d
+RewriteRule ^([a-zA-Z0-9\_\-\.\ \#\%\$\^\&\(\)\+\/]*)$ /Error404.php?Resource=$1 [QSA]
+
+#No useing the _system folder
+RewriteRule ^_system/.*$ /
+
+
+
+###Make php do htm too
+AddType application/x-httpd-php .html .htm
+
+###Hide php ini files
+<Files ".user.ini"> 
+    Require all denied
+</Files>
+<Files "php.ini"> 
+    Require all denied
+</Files>
+
+##Prepend Site Engine to request.
+#	#Production
+#		php_value auto_prepend_file "/home/vol12_1/epizy.com/epiz_27737017/htdocs/_system/_PrePend_Hook.htaccess.prefered.php"
+#	#Development Shared
+		php_value auto_prepend_file "/var/www/_system/_PrePend_Hook.htaccess.prefered.php"

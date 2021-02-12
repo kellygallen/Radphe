@@ -1,14 +1,46 @@
 <?php
-//FOR DEV ONLY - TO HELP YOU IN BEGINING.
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-//FOR DEV ONLY - TO HELP YOU IN BEGINING.
-ob_start();
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');
+
 //Set Locality if hosting isnt configured and becasue it is needed by time functions.
 date_default_timezone_set('America/Los_Angeles');
-include($_SERVER['DOCUMENT_ROOT'].'/_system/function/bench.php');
+
+// Buffer Output for last minute headers
+//ob_start();
+
+// Memory Presence pre namespace.
+//TODO Namespace and Namespace browsing enabled dump.
+global $_INTIN;
+
+@include($_SERVER['DOCUMENT_ROOT'].'/_system/function/bench.php');
 bench('BEGIN'); //bench('MAJOR'); bench('Minor');
+
+// Cross Server Compatibility - For Unifying Distributions.
+@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Cross_Server_Compatibility.php';
+
+// Site Config override for DEV env.
+@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_CheckForRequirements.php';
+
+// Site Config
+@require_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Config.php';
+
+//DB Settings and Connection Init.
+//@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
+//Database Settings - you can use ofuscation.
+include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
+
+// Site Config override for DEV env.
+//Allowing for Dev or Production Server Configurations.
+@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php';
+if (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php')) {
+    bench('Dev.Production');
+    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php');
+} else {
+    bench('Production');
+    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php');
+}
+
+//Register initial request. So it may be modified or examined by other pre request code.
+$_INTIN['Load Status']['Request']['URL'] = strtr($_SERVER["SCRIPT_FILENAME"], array($_SERVER['DOCUMENT_ROOT'] => ""));
 
 //Init Core Variables
 $_QUERY=array();
@@ -17,21 +49,10 @@ $_QUERY=array();
 bench('Configuration');
 //Sitewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
-//Database Settings - you can use ofuscation.
-//include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
 //When not to run site engine and where to direct root control.
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine_Exceptions.php');
 /* For Example: api-server for example, or a ajax/json request responce.
 	whould have its hooks added in here. */
-
-//Allowing for Dev or Production Server Configurations.
-if (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php')) {
-	bench('Dev.Production');
-//	include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php');
-} else {
-	bench('Production');
-//	include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php');
-}
 
 //Lay Sitewide or default Foundation
 bench('Init Enviornment');
@@ -39,6 +60,15 @@ bench('Init Enviornment');
 include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/DBConn.php');
 //Default Database: 'pubic permittable db user access by db server.
 //include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DB_Connector.php');
+//Build DB_Struct or get it from cache (PreCore)
+if (is_file($_SERVER['DOCUMENT_ROOT'].'_system/_cache/_DB_SERVER_CACHE.php') && ($_INTIN['Config']['Cache']['_DB_SERVER'])) {
+    include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_cache/_DB_SERVER_CACHE.php';
+} elseif ($_INTIN['Config']['Cache']['_DB_SERVER']) {
+//    include_once $_SERVER['DOCUMENT_ROOT'].'/_system/DBComBuildArray.php';
+} else {
+//    include_once $_SERVER['DOCUMENT_ROOT'].'/_system/DBComBuildArray.php';
+}
+
 bench('DB Layor');
 
 //Init Sessions leave it to things that work with sessions once started cant go back.

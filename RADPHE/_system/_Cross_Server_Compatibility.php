@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 //CROSS SERVER COMPATIBILITY
 
 /*	echo '<br><h1>Unmodified $_SERVER[\'DOCUMENT_ROOT\']  : '.$_SERVER['DOCUMENT_ROOT'].'</h1><br>';

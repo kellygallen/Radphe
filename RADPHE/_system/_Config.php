@@ -1,4 +1,5 @@
 <?php //ALSO CHECK SETTINGS IN _DEV_Config.php as they over write these settings.
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 
 ////	Internal Config
 ////			Site Wide Config

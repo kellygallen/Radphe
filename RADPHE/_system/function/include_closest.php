@@ -1,4 +1,6 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+
 function include_closest($Filename, $IncludeFn=NULL, $Direction='<',$Steps=10) {
 	global $_INTIN;
 	$Level=0;

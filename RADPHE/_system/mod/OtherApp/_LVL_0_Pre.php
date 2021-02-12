@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 //Signal Catcher to make this modual work in later run levels or to take over.
 if (
 		(1)&&

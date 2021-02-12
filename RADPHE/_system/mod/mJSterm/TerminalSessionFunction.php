@@ -1,4 +1,6 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+
 /*if(extension_loaded('gd')) {
     print_r(gd_info());
 }

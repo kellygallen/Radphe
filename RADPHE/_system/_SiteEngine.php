@@ -1,11 +1,11 @@
 <?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');
+//@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 
 //Set Locality if hosting isnt configured and becasue it is needed by time functions.
 date_default_timezone_set('America/Los_Angeles');
 
 // Buffer Output for last minute headers
-//ob_start();
+ob_start();
 
 // Memory Presence pre namespace.
 //TODO Namespace and Namespace browsing enabled dump.
@@ -31,7 +31,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
 // Site Config override for DEV env.
 //Allowing for Dev or Production Server Configurations.
 @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php';
-if (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php')) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php')) {
     bench('Dev.Production');
     @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php');
 } else {

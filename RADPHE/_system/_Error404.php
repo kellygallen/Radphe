@@ -1,4 +1,6 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+
 //	ob_clean();
 	//Error Hook to recover misrouted or unroutable modual resources.
 	//To optimize one could just copy resources to be accessable as a regualr request.

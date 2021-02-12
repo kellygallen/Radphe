@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 
 //AJAX Request.
 if((isset($_GET['AjaxGetPart']))||(isset($_POST['AjaxGetPart']))) {

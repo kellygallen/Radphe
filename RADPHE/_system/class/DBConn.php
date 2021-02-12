@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 class DBConn{
 	public static $DefaultConnection=NULL;
 	public static $LastInsertID=array();

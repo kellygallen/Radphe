@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 //Check core php.ini settings, check folder settings, check database for conditions that can make this code malfunction and die with a nice error if there are known problems.
 //mod_php
 //mod_rewrite

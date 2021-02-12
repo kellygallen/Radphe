@@ -1,4 +1,6 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+
 if (session_status() == PHP_SESSION_NONE) session_start();
 session_write_close();
 $link = @mysqli_connect("localhost","mod_mJSterm","","radphe");

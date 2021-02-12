@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS.php');
 
 class SEO{

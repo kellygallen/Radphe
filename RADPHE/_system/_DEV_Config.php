@@ -1,4 +1,6 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+
 	//Toggle DEV Env Mode, remove this file on production.
 	@include $_SERVER['DOCUMENT_ROOT'].'/_system/_GET_Param_Opt_Dev_Info.php';
 

@@ -1,4 +1,5 @@
 <?php
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 /* thats not good
 on free production server...
 Warning: set_time_limit() has been disabled for security reasons in /home/vol12_1/epizy.com/epiz_27737017/htdocs/_system/mod/mJSterm/frameServer.php on line 18

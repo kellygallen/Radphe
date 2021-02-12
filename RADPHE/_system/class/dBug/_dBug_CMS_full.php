@@ -1,5 +1,5 @@
 <?php
-//include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
+include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
 
 /*********************************************************************************************************************\
  * LAST UPDATE

@@ -95,7 +95,7 @@ CMS_Blocks::startAppendBlock('PageNavigation1');
 	echo ' <a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup> |';
 	echo ' <a href="/DevInfo.php?DevInfo=phpinfo">PHP Info</a> <sup>Virtual</sup> |';
 	echo ' <a href="/mJSterm.php">mJPEG JS Terminal</a> |';
-
+	echo ' <a href="#DevDebugPreKurser">Footer</a> |';
 	echo '<hr>';
 	echo ' Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup> |';
 	echo ' <a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub> |';
@@ -189,6 +189,7 @@ function toggleDiv(divId,alttriggerid,triggerid) {
   var x = document.getElementById(divId);
   var y = document.getElementById(alttriggerid);
   var z = document.getElementById(triggerid);
+  var zend = document.getElementById("bottom");
     x.blur();
     y.blur();
     z.blur();
@@ -203,10 +204,13 @@ function toggleDiv(divId,alttriggerid,triggerid) {
     y.style.display = "block";
 //    z.style.display = "block";
   }
+zend = document.getElementById("bottom");
+zend.scrollIntoView();
+zend.focus();
   return false;
 }
 </script>
-<center><a href='javascript: ;' id="Trigger" accesskey="K" name="Dev Debug PreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:block;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
+<center><a href='javascript: ;' id="Trigger" accesskey="K" name="DevDebugPreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:block;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
 <div id='dBug' name='dBug' style=" background-color:#FFF; width:100%; display:none;">
 <?php
 //$_INTIN['Dump'][]='GLOBALS';
@@ -330,7 +334,7 @@ if(((!empty($_INTIN['Debug']))||(!empty($_INTIN['Dump']))||(in_array($_SERVER['R
 	echo $_INTIN['Init']['Stats']['Time Report']['Report'];
 //	echo 'Total: ' .$_INTIN['Init']['Stats']['Time']['Length']['Execution']. " ";
 //	echo '</center>';
-echo '</div>';
+echo '</div><br><a id="bottom" name="bottom"></a>';
 
 
 

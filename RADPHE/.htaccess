@@ -74,7 +74,7 @@ AddType application/x-httpd-php .html .htm
 <Files "php.ini"> 
     Require all denied
 </Files>
-
+FallbackResource /Error404.php
 ##Prepend Site Engine to request.
 #	#Production
 #		php_value auto_prepend_file "/home/vol12_1/epizy.com/epiz_27737017/htdocs/_system/_PrePend_Hook.htaccess.prefered.php"

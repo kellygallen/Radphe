@@ -1,6 +1,6 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
-$_INTIN['Dump'][]='GLOBALS';
+//$_INTIN['Dump'][]='GLOBALS';
 
 if (
     ($_SERVER['PHP_SELF']==='/Error404.php')&&

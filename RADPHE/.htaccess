@@ -1,13 +1,14 @@
-#Enable ReWrite Engine
-RewriteEngine on
+#No ModReWrite reles above here.
+#Mod Re_Write stuff is FAR below.
 
 #Custom Error Documents.
-ErrorDocument 400 /Error404.php
-ErrorDocument 401 /Error404.php
-ErrorDocument 403 /Error404.php
-ErrorDocument 404 /Error404.php
-ErrorDocument 500 /Error404.php
-ErrorDocument 503 /Error404.php
+	ErrorDocument 400 /Error404.php
+	ErrorDocument 401 /Error404.php
+	ErrorDocument 403 /Error404.php
+	ErrorDocument 404 /Error404.php
+	ErrorDocument 500 /Error404.php
+	ErrorDocument 503 /Error404.php
+	FallbackResource /Error404.php
 ##to prevent shared hosting error jacking set all to a real file and reset headers and ststus to 200 if nessesary. though setting these jsut might take back your errors from the jacker.
 
 #Do not show directory indexes!
@@ -26,7 +27,8 @@ ErrorDocument 503 /Error404.php
 #	php_flag magic_quotes_gpc off
 
 ##Forbid Private Resources
-IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+	IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
 #Forbid files with ".inc.", ".sql.", or ".SEO." in the file name.
 	<Files ~ "\.(inc|sql|SEO)\.">
 		order allow,deny
@@ -37,44 +39,58 @@ IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
 		order allow,deny
 		deny from all
 	</Files>
-#Forbid folders that begin with "_" (a underscore character) in the request path.
-	## BROKEN
-#	RewriteRule ^_KAS.*$ - [F]
-	RewriteRule /?_.*/$ - [F]
-#Make Site Map findable.
-	RewriteRule   ^sitemap\.xml$  Sitemap.xml
-#Allow Old URLS to map to new urls.
-RewriteRule   ^request\.html$  request.php
+###Hide php ini files
+	<Files ".user.ini"> 
+	    Require all denied
+	</Files>
+	<Files "php.ini"> 
+	    Require all denied
+	</Files>
+
+###Make php do htm too
+	AddType application/x-httpd-php .html .htm
+
+#Enable ReWrite Engine
+<IfModule mod_rewrite.c>
+#	Have To Turn It on.
+	RewriteEngine on
+#No ModReWrite reles above here.
+
+#	No Underscore Requests.
+#	RewriteRule /?_.*/$ - [F]
+	RewriteRule /?_.*/$ /
+
+#	Make Site Map findable.
+#	RewriteRule   ^sitemap\.xml$  Sitemap.xml [NC]
+
+#	Allow Old URLS to map to new urls.
+#	RewriteRule   ^request\.html$  request.php [NC]
+
 #Protect from LIB WWW CGI attacks.
 	RewriteCond %{HTTP_USER_AGENT} libwww [NC,OR]
 	RewriteCond %{QUERY_STRING} ^(.*)=http: [NC]
 	RewriteRule ^(.*)$ - [F,L]
-#Dynamic Imgage Name for SEO.
-####Image in directory begins with 'IMG####-_-' and may end with anything prior to the extension.
-#RewriteRule ^Resources/(.*?)/(IMG[0-9]{1,4})\-\_\-(.*?)\.(.*)$ /Resources/$1/$2.$4 [L]
-#RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
 
-#Skins and protected resources.
-RewriteCond     %{REQUEST_FILENAME}     !-f
-RewriteCond     %{REQUEST_FILENAME}     !-d
-RewriteRule ^([a-zA-Z0-9\_\-\.\ \#\%\$\^\&\(\)\+\/]*)$ /Error404.php?Resource=$1 [QSA]
+#Dynamic Imgage Name for SEO.
+#	###Image in directory begins with 'IMG####-_-' and may end with anything prior to the extension.
+#	RewriteRule ^Resources/(.*?)/(IMG[0-9]{1,4})\-\_\-(.*?)\.(.*)$ /Resources/$1/$2.$4 [L]
+#	RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
 
 #No useing the _system folder
-RewriteRule ^_system/.*$ /
+	RewriteRule ^_system/.*$ /
 
+#Skins and protected resources and virual resources.
+	RewriteCond     %{REQUEST_FILENAME}     !-f
+	RewriteCond     %{REQUEST_FILENAME}     !-d
+	RewriteRule ^([a-zA-Z0-9\_\-\.\ \#\%\$\^\&\(\)\+\/]*)$ /Error404.php?Resource=$1 [QSA]
 
+#Your Mod_ReWrite Stuff Here.
 
-###Make php do htm too
-AddType application/x-httpd-php .html .htm
+#Your Mod_ReWrite Stuff Here.
 
-###Hide php ini files
-<Files ".user.ini"> 
-    Require all denied
-</Files>
-<Files "php.ini"> 
-    Require all denied
-</Files>
-FallbackResource /Error404.php
+#No ModReWrite below here.
+</IfModule>
+
 ##Prepend Site Engine to request.
 #	#Production
 #		php_value auto_prepend_file "/home/vol12_1/epizy.com/epiz_27737017/htdocs/_system/_PrePend_Hook.htaccess.prefered.php"

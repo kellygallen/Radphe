@@ -1,7 +1,7 @@
 <?php
 	unset($_INTIN['DB']);
 	unset($_INTIN['DevConfig']);
-	unset($_INTIN['MainConfig']);
+	unset($_INTIN['Config']);
 	unset($_INTIN['Webs']);
 	unset($_INTIN['Domains']);
 	unset($_INTIN['Design']);
@@ -29,7 +29,7 @@
 	unset($_INTIN['MOD']['SEO']['Keywords']);
 //	unset($_SESSION);
 //	$_SERVER = NULL;
-	$_SERVER = array('DOCUMENT_ROOT'=>$_SERVER['DOCUMENT_ROOT']);
+//	$_SERVER = array('DOCUMENT_ROOT'=>$_SERVER['DOCUMENT_ROOT']);
 	unset($_Template);
 	unset($endOB);
 	unset($php_errormsg);

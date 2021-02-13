@@ -1,22 +1,43 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+$_INTIN['Dump'][]='GLOBALS';
 
+if (
+    ($_SERVER['PHP_SELF']==='/Error404.php')&&
+    (1)
+    ) {
+        if (!empty($_SERVER['REDIRECT_QUERY_STRING'])) parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
+        if (!empty($_SERVER['REDIRECT_URL'])) {
+            
+            $_GET['Resource'] = $_SERVER['REDIRECT_URL'];
+            $_SERVER['PHP_SELF'] = $_SERVER['REDIRECT_URL'];
+        }
+    }
 //	ob_clean();
 	//Error Hook to recover misrouted or unroutable modual resources.
 	//To optimize one could just copy resources to be accessable as a regualr request.
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ModualResourceFinder.php');
-$code = http_response_code();
-if ($code==200) {
-	return;
-}
 
+	$code = http_response_code();
+    if (($code==200)) {
+        return;
+    }
+    if ((!empty($_INTIN['MOD']['CMS']['Blocks']['Request']))||(!empty($_INTIN['MOD']['CMS']['Blocks']['SEOSupplementryContent']))) {
+        if (($code!==200)) {
+            http_response_code(200);
+            return;
+        }
+    }
+    
 	//Error Message Construction
 	$Err404 = <<<ENDOFSTRING
 <hr>
 <center><h1 style="background: rgb(255, 255, 255) none repeat scroll 0%; margin-top: 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: rgb(0, 0, 0);">Not Found</h1>
 <div>The requested URL was not found on this server.</div>
 <hr>
-<address><b>Apache</b> Server</address></center>
+<address><b>Apache</b> Server</address><br>
+Nothing agaist NGINX, its great at all it does, but if you want php done great you best use nginx to front an actual Apache+MOD_PHP stack.
+</center>
 <hr>
 ENDOFSTRING;
 

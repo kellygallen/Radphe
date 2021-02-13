@@ -93,7 +93,7 @@ CMS_Blocks::SetTopBlock('Layout');
 CMS_Blocks::startAppendBlock('PageNavigation1');
 	echo '| ';
 	echo ' <a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup> |';
-	echo ' <a href="/DevInfo.php?DevInfo=phpinfo">PHP Info</a> <sup>Virtual</sup> |';
+	echo ' <a href="/?DevInfo=phpinfo" title="Non Request">PHP Info</a> <sup><a href="/DevInfo.php?DevInfo=phpinfo" title="Virtually Routed and Non Request Content.">Virtual</a></sup> |';
 	echo ' <a href="/mJSterm.php">mJPEG JS Terminal</a> |';
 	echo ' <a href="#DevDebugPreKurser">Footer</a> |';
 	echo '<hr>';

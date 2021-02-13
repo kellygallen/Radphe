@@ -93,12 +93,12 @@ CMS_Blocks::SetTopBlock('Layout');
 CMS_Blocks::startAppendBlock('PageNavigation1');
 	echo '| ';
 	echo ' <a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup> |';
-	echo ' <a href="/phpinfo.php">PHP Info</a> <sup>Virtual</sup> |';
+	echo ' <a href="/DevInfo.php?DevInfo=phpinfo">PHP Info</a> <sup>Virtual</sup> |';
 	echo ' <a href="/mJSterm.php">mJPEG JS Terminal</a> |';
 
 	echo '<hr>';
 	echo ' Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup> |';
-	echo ' Remote: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub> |';
+	echo ' <a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub> |';
 
 CMS_Blocks::endAppendBlock();
 CMS_Blocks::startAppendBlock('PageNavigation3');
@@ -118,7 +118,14 @@ CMS_Blocks::endAppendBlock();
 
 //Application Area Code - Code that is run before any other code in an area.
 bench('APP START');
-include_closest(dirname($_SERVER['PHP_SELF']).'/_application.php');//Custom Function.
+if (file_exists(dirname($_SERVER['PHP_SELF']).'/_Application.php')) {
+    bench('Application Overide');
+    include dirname($_SERVER['PHP_SELF']).'/_Application.php';
+} elseif (include_closest(dirname($_SERVER['PHP_SELF']).'/_application.php')) {
+    bench('Application Stackable');
+} else {
+    bench('Application not present');
+}
 bench('APP DONE');
 
 //Proceed into Request.
@@ -177,10 +184,32 @@ while (@ob_end_flush()) $endOB++;
 bench('DEBUG');
 //Auto Dev Debug
 ?>
-<a href='javascript: ;' accesskey="K" name="Dev Debug PreKurser" onfocus='javascript: toggleDiv(this,null,"dBug","AltDisplayTriggerFocus",null,"AltTriggerFocus");'><input id="AltTriggerFocus" type="button" style="display:none;" value="trigger"></a><br>
-<div id='dBug' style=" background-color:#FFF; width:100%; display:block;">
+<script type="text/javascript">
+function toggleDiv(divId,alttriggerid,triggerid) {
+  var x = document.getElementById(divId);
+  var y = document.getElementById(alttriggerid);
+  var z = document.getElementById(triggerid);
+    x.blur();
+    y.blur();
+    z.blur();
+    x.focus();
+    x.blur();
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+//    z.style.display = "none";
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+//    z.style.display = "block";
+  }
+  return false;
+}
+</script>
+<center><a href='javascript: ;' id="Trigger" accesskey="K" name="Dev Debug PreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:block;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
+<div id='dBug' name='dBug' style=" background-color:#FFF; width:100%; display:none;">
 <?php
-$_INTIN['Dump'][]='GLOBALS';
+//$_INTIN['Dump'][]='GLOBALS';
 //$_INTIN['Dump'][]='_INTIN';
 //Dump a resource like 
 /*$_INTIN['Dump'][]='namespace';

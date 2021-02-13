@@ -72,7 +72,7 @@ class CMS_Blocks{
 			echo "\r\n",'<div name=\'CMS_RecursiveOutputBlocks','__INIT','\' id=\'CMS_RecursiveOutputBlocks','__INIT','\' style=\'',self::DEBUG_DIV_INIT_STYLE,'\'>',"\r\n";
 		} else {
 			global $_INTIN;
-			//Init NameSpace Used.
+			//Init  Used.
 			if (!isset($_INTIN['MOD']['CMS']['Blocks'])) $_INTIN['MOD']['CMS']['Blocks'] = array();
 			$_INTIN['MOD']['CMS']['Blocks']['NULL'] = '';
 			//Main Outpput Buffer with callback to Block Replacement
@@ -296,7 +296,9 @@ class CMS_Blocks{
 		} else {
 			if ((self::$BlockCurrentLevel+1) < ob_get_level()) self::closeBuffers(NULL);
 			//enforce ob buld level with closeBlocks(ob buld level)
-			$_INTIN['MOD']['CMS']['Blocks'][$Resource] = ob_get_clean();
+			if (!isset($_INTIN['MOD']['CMS']['Blocks'][$Resource] )){
+			    $_INTIN['MOD']['CMS']['Blocks'][$Resource] = $_INTIN['MOD']['CMS']['Blocks'][$Resource] .'ggg'. ob_get_clean();
+			} else $_INTIN['MOD']['CMS']['Blocks'][$Resource] = ob_get_clean();
 			self::$BlockCurrentLevel = (ob_get_level()-self::$OBLevel);//get ob build level
 			self::$BlockCurrentResource = NULL;
 		}

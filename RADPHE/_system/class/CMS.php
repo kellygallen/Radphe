@@ -296,7 +296,10 @@ class CMS_Blocks{
 		} else {
 			if ((self::$BlockCurrentLevel+1) < ob_get_level()) self::closeBuffers(NULL);
 			//enforce ob buld level with closeBlocks(ob buld level)
-			$_INTIN['MOD']['CMS']['Blocks'][$Resource] = ob_get_clean();
+//			if (!empty($_INTIN['MOD']['CMS']['Blocks'][$Resource] )){
+//			    $_INTIN['MOD']['CMS']['Blocks'][$Resource] = $_INTIN['MOD']['CMS']['Blocks'][$Resource] . ob_get_clean();
+//			} else
+			     $_INTIN['MOD']['CMS']['Blocks'][$Resource] = ob_get_clean();
 			self::$BlockCurrentLevel = (ob_get_level()-self::$OBLevel);//get ob build level
 			self::$BlockCurrentResource = NULL;
 		}

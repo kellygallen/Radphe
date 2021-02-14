@@ -2,8 +2,9 @@
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 
 	//Toggle DEV Env Mode, remove this file on production.
-	@include $_SERVER['DOCUMENT_ROOT'].'/_system/_GET_Param_Opt_Dev_Info.php';
-
+//	@include $_SERVER['DOCUMENT_ROOT'].'/_system/_GET_Param_Opt_Dev_Info.php';
+//DEPRECIATED BY PRESENCE OF _DEV_Config.php
+P
 /*	$__IntIn['Awareness']['URL']['RequireSSL'] stores a 's' or ''
 		Is literaly placed after 'http' and before '://' in urls. */
 	$_INTIN['Awareness']['URL']['RequireSSL'] = '';
@@ -16,12 +17,12 @@
 	$_INTIN['Awareness']['URL']['RequireWWW'] = '';
 
 /*	$_IntIn['Load Status']['Request']['Show Debug'] stores a '1' or '0'
-		Marks to display debug info in hidden div 
+		Marks to display debug info in hidden div
 		Alt+Shift+D Enter ~ to unhide debug info */
 	$_INTIN['Load Status']['Request']['Show Debug'] = '1';
 
 /*	$_IntIn['Load Status']['Request']['Micro Debug'] stores a '1' or '0'
-		Marks to display debug info within request 
+		Marks to display debug info within request
 		?debugme=someflag[,someflag[,...]] appended to a rul request to set flags */
 	$_INTIN['Load Status']['Request']['Micro Debug'] = '1';
 

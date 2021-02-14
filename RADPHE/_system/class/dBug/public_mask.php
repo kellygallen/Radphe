@@ -1,5 +1,5 @@
 <?php
-if (1){
+if (0){
 } else {
     unset($_INTIN['DB']);
     unset($_INTIN['DevConfig']);

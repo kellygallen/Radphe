@@ -1,7 +1,7 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 //start block begins ob buffer capture with callback to end block.
-//start block of all types may replace,pre,post,insert default post. 
+//start block of all types may replace,pre,post,insert default post.
 //	mode if a and b measure the block. a=before, default *b=after, c=drop for now but version cancel sooner or later., or insert with preg_replace pattern on end ob level callback.
 //start default top block to request.
 //fallback block dump featuring assembles template with request on the stream side. and debug bench
@@ -17,7 +17,7 @@ class CMS_Blocks{
 	private static
 		$SEOcompile = 1,//Use SEO class intervention.
 		$SKINcompile = 1,//Use Automatic Skinner class compile.
-		$DEBUG_DIV=0,//Debug Blocks 
+		$DEBUG_DIV=0,//Debug Blocks
 		$DEBUG_DIE=0,//Debug Blocks and Die
 		$BlockCurrentResource=NULL,//Name of current Block being built.
 		$BlockCurrentLevel = 0,//ob_get_level of current Block being built.
@@ -228,7 +228,7 @@ class CMS_Blocks{
 //		self::closeBuffers(self::$SubBufferCMSLevel);
 		while (self::$SubBufferCMSLevel < ob_get_level()) ob_end_flush();
 	}
-	
+
 	public static function startTangentBlock($Resource=NULL){
 //		echo '#mem:'.$Resource.';#';
 		self::$OBTangentBlockName = $Resource;
@@ -267,7 +267,7 @@ class CMS_Blocks{
 			//Break or DIE?
 			exit($msg);
 		}
-		
+
 		if (self::$BlockCurrentResource === NULL) {
 			self::$BlockCurrentResource = $Resource;
 			ob_start();
@@ -288,7 +288,7 @@ class CMS_Blocks{
 
 		global $_INTIN;
 
-		if (($Resource === NULL) && (self::$BlockCurrentResource != NULL)) $Resource =self::$BlockCurrentResource; 
+		if (($Resource === NULL) && (self::$BlockCurrentResource != NULL)) $Resource =self::$BlockCurrentResource;
 
 		if (($Resource === NULL) && (self::$BlockCurrentResource === NULL)) {
 			$_INTIN['MOD']['CMS']['OrfanBlocks']['Content'][] = ob_get_clean();
@@ -296,9 +296,9 @@ class CMS_Blocks{
 		} else {
 			if ((self::$BlockCurrentLevel+1) < ob_get_level()) self::closeBuffers(NULL);
 			//enforce ob buld level with closeBlocks(ob buld level)
-//			if (!empty($_INTIN['MOD']['CMS']['Blocks'][$Resource] )){
-//			    $_INTIN['MOD']['CMS']['Blocks'][$Resource] = $_INTIN['MOD']['CMS']['Blocks'][$Resource] . ob_get_clean();
-//			} else
+			if (!empty($_INTIN['MOD']['CMS']['Blocks'][$Resource] )){
+			    @$_INTIN['MOD']['CMS']['Blocks'][$Resource] .= ob_get_clean();
+			} else
 			     $_INTIN['MOD']['CMS']['Blocks'][$Resource] = ob_get_clean();
 			self::$BlockCurrentLevel = (ob_get_level()-self::$OBLevel);//get ob build level
 			self::$BlockCurrentResource = NULL;
@@ -323,7 +323,7 @@ class CMS_Blocks{
 			//require session class to start session.
 		} else $SessionID = session_id();
 //disect filename parts.
-//		$ext = 
+//		$ext =
 //		$filenameParts
 		self::$LinkedCurrentRequest[$ext][$path.$SessionID.$filename] = '';
 //		$URL = $;

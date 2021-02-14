@@ -4,7 +4,7 @@
 #mem:SEOMeta;#
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>#mem:SEOPageTitle;#</title>
-		
+
 		<link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 #mem:PageHead;#
@@ -24,9 +24,12 @@
 #mem:Request;#
 
 <hr />
+<h3>Optional Suplimental Content</h3>
+#mem:SupplementryContent;#
 <hr />
+<h3>Optional SEO Content</h3>
 #mem:SEOSupplementryContent;#
-						<!--end entry-->	
+						<!--end entry-->
 						</div>
 					</div><!-- end content -->
 				</div><!--end main-->

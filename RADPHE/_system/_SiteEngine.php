@@ -43,13 +43,14 @@ if (1) {
     @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php';
     if (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php')) {
         bench('Dev.Production');
-        @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php'; //what makes it dev by being present
-        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //kinda for staging.
+        @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php'; //config changes for dev server and code,cache,config,jogging
+        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //HOOKS, Responces. what dev stuff should be production //kinda for staging.
+        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //HOOKS, Responces.production stuff gets last say. besides cache...
     } else {
         bench('Production');
-    //    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //included that way if you uncomment it
-        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache...
+//        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //included that way if you uncomment it
     }
+    @include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache...
 //TODO: cache script jogging... stateful cache jogging if it can carry loads possibly with noise filter. and installer.
 //only for now is some stuff in rescued cache working.
 //will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.
@@ -171,10 +172,7 @@ if (!empty($_POST)) {
 //DO THE ACTUAL REQUEST,
 //	it may take over and die or preferably exit for callback purposes unless you want to stop them.
 //------------------------------------------------------
-try {
-	include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'];
-} catch (Exception $e) {
-}
+include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'];
 //------------------------------------------------------
 bench('REQUEST LOADED');
 CMS_Blocks::endBlock();

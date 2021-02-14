@@ -45,12 +45,12 @@ if (1) {
         bench('Dev.Production');
         @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php'; //config changes for dev server and code,cache,config,jogging
         @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //HOOKS, Responces. what dev stuff should be production //kinda for staging.
-        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //HOOKS, Responces.production stuff gets last say. besides cache...
+//        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //HOOKS, Responces.production stuff gets last say. besides cache...
     } else {
         bench('Production');
 //        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //included that way if you uncomment it
+        @include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache...
     }
-    @include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache...
 //TODO: cache script jogging... stateful cache jogging if it can carry loads possibly with noise filter. and installer.
 //only for now is some stuff in rescued cache working.
 //will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.

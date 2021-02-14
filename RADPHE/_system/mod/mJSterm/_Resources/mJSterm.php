@@ -112,7 +112,7 @@ if (!empty($_POST)) {
 //	$_INTIN['Dump'][]='_Globals';
 die();
 }
-$_POST['LINK']=1;
+//$_POST['LINK']=1;
 
 //Model
 ?>

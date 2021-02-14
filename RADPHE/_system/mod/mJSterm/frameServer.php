@@ -24,6 +24,7 @@ header("Content-type: multipart/x-mixed-replace; boundary=$boundary");
 print "--$boundary\n";
 
 # Set this so PHP doesn't timeout during a long stream
+//@set_time_limit(0);
 @set_time_limit(20);
 
 # Disable Apache and PHP's compression of output to the client

@@ -46,8 +46,8 @@ $colorArray[]='blue';
             $b = imagecreatefrompng(__DIR__.'/2.png');
 $bwidth  = imagesx($b);
 $bheight = imagesy($b);
-$bCenterW = ($bwidth/2);
-$bCenterh = ($bheight/2);
+$bCenterW = floor($bwidth/2);
+$bCenterh = floor($bheight/2);
             $c = imagecreatefrompng(__DIR__.'/3.png');
 	$controlledx = rand(0,$width);
 	$controlledy = rand(0,$height);
@@ -59,12 +59,22 @@ if (!empty($_SESSIONthread['mJSterm']['TermClicks'])) {
 	$ClickOrden = key($_SESSIONthread['mJSterm']['TermClicks']);
 	reset($_SESSIONthread['mJSterm']['TermClicks']);
 	$Click = $_SESSIONthread['mJSterm']['TermClicks'][$ClickOrden];
+	if (empty($Click['Click']['_x'])) {//Trying to make last position stay just for the ball exmple game.//but if it dont know then it is random... not good for poll kiosk either way.
+	    prev($_SESSIONthread['mJSterm']['TermClicks']);
+	    $ClickOrdenPrevious = key($_SESSIONthread['mJSterm']['TermClicks']);
+	    if (empty( $_SESSIONthread['mJSterm']['TermClicks'][$ClickOrdenPrevious]['Click']['_x'])) {
+	        prev($_SESSIONthread['mJSterm']['TermClicks']);
+	        $ClickOrdenPrevious = key($_SESSIONthread['mJSterm']['TermClicks']);
+	    }
+	    @$_SESSIONthread['mJSterm']['TermClicks'][$ClickOrden]['Click'] = $_SESSIONthread['mJSterm']['TermClicks'][$ClickOrdenPrevious]['Click'];
+	}
 	if ($Click['HandledTS']===0) {
 //	$_SESSIONthread['mJSterm']['TermClicks'][] = array('Click'=>$_POST['Term'],'TS'=>time(),'HandledTS'=>0,'FrameSerial'=>'');
 		$_SESSIONthread['mJSterm']['TermClicks'][$ClickOrden]['HandledTS']=time();
 		$DateTime = date('Y-m-d H:i:s');
 		$NewDateTime = date('Y-m-d H:i:s',strtotime($DateTime.' + 1 hour'));
 		$result = mysqli_query($link,"REPLACE INTO Session SET Session_Id = '".session_id()."', Session_Expires = '".$NewDateTime."', Session_Data = '".serialize($_SESSIONthread)."'");
+		if (isset($_SESSIONthread['mJSterm']['Running'])) if ($_SESSIONthread['mJSterm']['Running']==0) die();
 	}
 	if (!isset($Click['Click']['_x'])) {
 		$controlledx = $Click['Click']['_x']-$bCenterW;
@@ -74,6 +84,11 @@ if (!empty($_SESSIONthread['mJSterm']['TermClicks'])) {
 		@$controlledy = $Click['Click']['_y']-$bCenterh;
 	}
 }
+if (empty($Click['Click']['_x'])) {
+    $controlledx = rand(0,$width);
+    $controlledy = rand(0,$height);
+}
+
             //copy each png file on top of the destination (result) png
             imagecopy($dest_image, $a, rand(0,$width), rand(0,$height), 0, 0, imagesx($a), imagesy($a));
             imagecopy($dest_image, $b, $controlledx, $controlledy, 0, 0, $bwidth, $bheight);

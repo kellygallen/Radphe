@@ -113,6 +113,7 @@ if (!empty($_POST)) {
 die();
 }
 $_POST['LINK']=1;
+
 //Model
 ?>
 <style>
@@ -155,7 +156,9 @@ function attachFormSubmitEvent(formId){
 }
 </script>
 <h3>For now just 20 frames.</h3>
-<pre>Work aroound needded for free hosting. it allows no sleep() and no set_time_limit(). So i will have to be tricky telling time and juggleing living handlers. ... or say forget free hosting!</pre>
+<pre>Work aroound needded for free hosting. it allows no sleep() and no set_time_limit(). So i will have to be tricky telling time and juggleing living handlers. ... or say forget free hosting!
+Its currently Dumb. Please disconnect before you leave... and I am setting to run for 20 seconds max.
+So you may need to press connect to get it going even though it shows connected.</pre>
 <form id="Term" target="TermResponce" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
 	<fieldset>
 		<legend>
@@ -163,11 +166,11 @@ function attachFormSubmitEvent(formId){
 			<h2 class="OneInLiners"><label><b>State:</b></label></h2>
 			<h3 class="OneInLiners">
 				<label>
-					<input type="radio" name="LINK" value="1" onclick="document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit();" <?php if (@$_POST['LINK']==1) echo 'checked'; ?>>Connect
+					<input type="radio" name="LINK" value="1" onclick="document.getElementById('Terminal').src='mJSterm.php?GUI=1';document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit()" <?php if (@$_POST['LINK']==1) echo 'checked'; ?>>Connect
 				</label>
 				&emsp;
 				<label>
-					<input type="radio" name="LINK" value="0" onclick="document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit();" <?php if (@$_POST['LINK']!=1) echo 'checked'; ?>>Disconnect
+					<input type="radio" name="LINK" value="0" onclick="document.getElementById('Terminal').src='/img/TermOff.jpg';document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit()" <?php if (@$_POST['LINK']!=1) echo 'checked'; ?>>Disconnect
 				</label>
 				&emsp;&emsp;&emsp;
 				<label>The Last X,Y

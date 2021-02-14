@@ -30,8 +30,8 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 
 /*	$_IntIn['Load Status']['Request']['Show Debug'] stores a '1' or '0'
 		Marks to display debug info in hidden div 
-		Alt+Shift+D Enter ~ to unhide debug info */
-	$_INTIN['Load Status']['Request']['Show Debug'] = '0';
+		Alt+Shift+K Enter ~ to unhide debug info */
+	$_INTIN['Load Status']['Request']['Show Debug'] = '1';
 
 /*	$_IntIn['Load Status']['Request']['Micro Debug'] stores a '1' or '0'
 		Marks to display debug info within request 

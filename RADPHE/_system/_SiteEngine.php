@@ -10,6 +10,8 @@ ob_start();
 // Memory Presence pre namespace.
 //TODO Namespace and Namespace browsing enabled dump.
 global $_INTIN;
+//Init Core Variables
+$_QUERY=array();
 
 @include($_SERVER['DOCUMENT_ROOT'].'/_system/function/bench.php');
 bench('BEGIN'); //bench('MAJOR'); bench('Minor');
@@ -20,35 +22,45 @@ bench('BEGIN'); //bench('MAJOR'); bench('Minor');
 // Site Config override for DEV env.
 @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_CheckForRequirements.php';
 
-// Site Config
-@require_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Config.php';
-
-//DB Settings and Connection Init.
-//@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
-//Database Settings - you can use ofuscation.
-include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
-
-// Site Config override for DEV env.
-//Allowing for Dev or Production Server Configurations.
-@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php';
+//Service Configuration
+//Consider array building as stacking.
+//its not a solid array that gets added in. for cache and if it was some values would be specified for last or carry thorugh if it is traverse merged.
+//stacking the final state of setting things.
+//it could be simpler... indeed.
+//it could also get a lot more crazy
+bench('Configuration');
+if (1) {
+    // Site Config
+    @require_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Config.php';
+    
+    //DB Settings and Connection Init.
+    //@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
+    //Database Settings - you can use ofuscation.
+    include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
+    
+    // Site Config override for DEV env.
+    //Allowing for Dev or Production Server Configurations.
+    @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php';
     if (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php')) {
-    bench('Dev.Production');
-    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php');
-} else {
-    bench('Production');
-    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php');
-}
+        bench('Dev.Production');
+        @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php'; //what makes it dev by being present
+        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //kinda for staging.
+    } else {
+        bench('Production');
+    //    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //included that way if you uncomment it
+        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache... 
+    }
+//TODO: cache script jogging... stateful cache jogging if it can carry loads possibly with noise filter. and installer.
+//only for now is some stuff in rescued cache working.
+//will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.    
+    require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
+} else //Sitewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
+    require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
 
 //Register initial request. So it may be modified or examined by other pre request code.
 $_INTIN['Load Status']['Request']['URL'] = strtr($_SERVER["SCRIPT_FILENAME"], array($_SERVER['DOCUMENT_ROOT'] => ""));
 
-//Init Core Variables
-$_QUERY=array();
-
-//Service Configuration
-bench('Configuration');
-//Sitewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
-require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
+bench('EXCEPTIONS');
 //When not to run site engine and where to direct root control.
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine_Exceptions.php');
 /* For Example: api-server for example, or a ajax/json request responce.
@@ -236,18 +248,36 @@ $_INTIN['Debug']=1; //	force debug. i want yu to see this.
 //add your ip or wildIP to the list that cache\intin jogs prior to run
 //$_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.2';
 //uhh no that is primative down there.. its just in array so add exact ip to above, just copy lines and change the ip number that is all; it will build a list.
-
+*/
 //you might consider just dieing here... go ahead its probably better that way for production.
 //die();
 
-*/
-include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
-$_SERVER["REMOTE_ADDR"] = isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : '127.0.0.1';
-$_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.2';
-if(((!empty($_INTIN['Debug']))||(!empty($_INTIN['Dump']))||(in_array($_SERVER['REMOTE_ADDR'], $_INTIN['DevConfig']['RestrictAccess']['IP List'])))){
+//TODO: so you can have your address in the access list array.
+//$_SERVER["REMOTE_ADDR"] = isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : '127.0.0.1';
+//once you realize what your doing... then not above line... comment it out. might be a fake php hosting thing... 
+$_INTIN['DevConfig']['RestrictAccess']['IP List'][] = $_SERVER["REMOTE_ADDR"]; //lets call that a temporary go as well.
+//$_INTIN['Debug'][]='_POST';
+//$_INTIN['Debug'][]='_GET';
+//$_INTIN['Dump'][]='_FILES';
+
+//For internal loopback or application firewalling if you so choose.
+$_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.1';
+if(
+    (
+        (
+            (!empty($_INTIN['Debug']))||
+            (!empty($_INTIN['Dump']))
+        )&&
+        (
+            (@$_INTIN['Load Status']['Request']['Show Debug']==1)
+        )&&
+        (in_array($_SERVER['REMOTE_ADDR'], $_INTIN['DevConfig']['RestrictAccess']['IP List']))&&
+        (1)
+    )
+  ){
 	bench('Debug Approved');
-//	include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
 	//redundant but stopes privicy config concernes. built into cms mod. later session or debug ip bound.
+	include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
 	//for now 'regular' in place function runs without public mask.
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/dBug.php');	//cms modual
 //	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/_dBug.regular.php');	//patched/upgraded original unmasked

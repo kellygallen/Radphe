@@ -47,45 +47,9 @@ die();
 
 //Model
 ?>
-<style>
-.OneInLiners {
-	display:inline;
-}
-</style>
-<script>
-function formSubmit(event) {
-  event.preventDefault();
-  var url = "mJSterm.php";
-  var request = new XMLHttpRequest();
-  var imgMAPInputEle = document.getElementById('Terminal');
-  var FormTargetEle = document.getElementById('TermResponce');
-  request.open('POST', url, true);
-  request.onload = function() { // request successful
-  // we can use server response to our request now
-//    console.log(request.responseText);
-    FormTargetEle.srcdoc = request.responseText;
-  };
+<script src="/js/mJStermFunct.js"></script>
+<link rel="stylesheet" href="/css/mJStermStyle.css" type="text/css" />
 
-  request.onerror = function() {
-    // request failed
-	alert('POST FAILED, TERMINAL BROKEN.');
-	return false;
-  };
-
-  request.send(new FormData(document.forms.mJSterm)); // create FormData from form that triggered event
- // document.getElementById('Terminal').value
-  console.log("Terminal Interaction");
-//  FormTargetEle.srcdoc = request.responseText;
-//	alert('POST SENT.');
-
-  return false;
-}
-
-// and you can attach form submit event like this for example
-function attachFormSubmitEvent(formId){
-  document.getElementById(formId).addEventListener("submit", formSubmit);
-}
-</script>
 <h3>For now just 20 frames.</h3>
 <pre>I am setting to run for 20 seconds max.
 So you may need to press connect to get it going even though it shows connected.</pre>
@@ -115,31 +79,4 @@ So you may need to press connect to get it going even though it shows connected.
 		<input type="image" name="Terminal" id="Terminal" src="mJSterm.php?GUI=<?php if (!empty($_POST['LINK'])) echo $_POST['LINK']; else echo '0'; ?>" style="border:6px solid red;" />
 	</fieldset>
 </form>
-<script>
- // https://stackoverflow.com/questions/34867066/javascript-mouse-click-coordinates-for-image
-  document.getElementById("Terminal").addEventListener('click', function (event) {
-	var ImageDOM = document.getElementById("Terminal");
-	var ImageFieldFridgeX = document.getElementById("TermClickX");
-	var ImageFieldFridgeY = document.getElementById("TermClickY");
-
-    // https://stackoverflow.com/a/288731/1497139
-    bounds=this.getBoundingClientRect();
-    var left=bounds.left;
-    var top=bounds.top;
-    var x = event.pageX - left;
-    var y = event.pageY - top;
-    var cw = this.clientWidth;
-    var ch = this.clientHeight;
-//    var iw = ImageDOM.naturalWidth;
-//    var ih = ImageDOM.naturalHeight;
-    var iw = ImageDOM.width;
-    var ih = ImageDOM.height;
-    var px = x/cw*iw;
-    var py = y/ch*ih;
-	ImageFieldFridgeX.value = Math.round(px);
-	ImageFieldFridgeY.value = Math.round(py);
-
-//    alert("click on "+this.tagName+" at pixel ("+px+","+py+") mouse pos ("+x+"," + y+ ") relative to boundingClientRect at ("+left+","+top+") client image size: "+cw+" x "+ch+" natural image size: "+iw+" x "+ih );
-  });
-
-</script>
+<script src="/js/mJStermPostLoad.js"></script>

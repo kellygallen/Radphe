@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>#mem:SEOPageTitle;#</title>
 		<link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
-		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 #mem:PageHead;#
 <script type="text/javascript">
 #mem:PagePreRunJS;#

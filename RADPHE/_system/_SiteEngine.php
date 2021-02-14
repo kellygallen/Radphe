@@ -32,12 +32,12 @@ bench('Configuration');
 if (1) {
     // Site Config
     @require_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Config.php';
-    
+
     //DB Settings and Connection Init.
     //@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
     //Database Settings - you can use ofuscation.
     include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
-    
+
     // Site Config override for DEV env.
     //Allowing for Dev or Production Server Configurations.
     @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_DEV_Config.php';
@@ -48,11 +48,11 @@ if (1) {
     } else {
         bench('Production');
     //    @include($_SERVER['DOCUMENT_ROOT'].'/_system/_DevServer.php'); //what dev stuff should be production //included that way if you uncomment it
-        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache... 
+        @include($_SERVER['DOCUMENT_ROOT'].'/_system/_ProServer.php'); //production stuff gets last say. besides cache...
     }
 //TODO: cache script jogging... stateful cache jogging if it can carry loads possibly with noise filter. and installer.
 //only for now is some stuff in rescued cache working.
-//will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.    
+//will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.
     require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
 } else //Sitewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
     require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
@@ -97,7 +97,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/_system/function/include_closest.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS.php');
 //CMS-SEO - Seemingly pointless but through alteration of the html metadata per responce.
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SEO.php');
-//CMS-Skinner - 
+//CMS-Skinner -
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SKINNER.php');
 CMS_Skinner::Init();
 CMS_Blocks::SetTopBlock('Layout');
@@ -170,7 +170,10 @@ if (!empty($_POST)) {
 //DO THE ACTUAL REQUEST,
 //	it may take over and die or preferably exit for callback purposes unless you want to stop them.
 //------------------------------------------------------
-include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'];
+try {
+	include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'];
+} catch (Exception $e) {
+}
 //------------------------------------------------------
 bench('REQUEST LOADED');
 CMS_Blocks::endBlock();
@@ -227,7 +230,7 @@ zend.focus();
 <?php
 //$_INTIN['Dump'][]='GLOBALS';
 //$_INTIN['Dump'][]='_INTIN';
-//Dump a resource like 
+//Dump a resource like
 /*$_INTIN['Dump'][]='namespace';
 $_INTIN['Dump'][]='namespaces';
 $_INTIN['Dump'][]='style';
@@ -254,7 +257,7 @@ $_INTIN['Debug']=1; //	force debug. i want yu to see this.
 
 //TODO: so you can have your address in the access list array.
 //$_SERVER["REMOTE_ADDR"] = isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : '127.0.0.1';
-//once you realize what your doing... then not above line... comment it out. might be a fake php hosting thing... 
+//once you realize what your doing... then not above line... comment it out. might be a fake php hosting thing...
 $_INTIN['DevConfig']['RestrictAccess']['IP List'][] = $_SERVER["REMOTE_ADDR"]; //lets call that a temporary go as well.
 //$_INTIN['Debug'][]='_POST';
 //$_INTIN['Debug'][]='_GET';
@@ -322,10 +325,10 @@ if(
 
 	//Get system load factor.
 //TODO: Cash on disk and run if within timiing.
-	$os = strtolower(PHP_OS); 
+	$os = strtolower(PHP_OS);
 	if(strpos($os, "win") === false) {
-		if ( @file_exists('/proc/loadavg') ) { 
-			$data = file_get_contents('/proc/loadavg'); 
+		if ( @file_exists('/proc/loadavg') ) {
+			$data = file_get_contents('/proc/loadavg');
 			$loads = explode(' ', $data);
 			$EnvInfo['fs'] = $loads[0];
 		}

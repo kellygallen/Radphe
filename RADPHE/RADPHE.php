@@ -3,7 +3,5 @@
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');
 //How this page is differant in content.
 echo 'The Point to something.';
-//EXIT of request.
-exit('All Done.');
 //Thats it!
 ?>

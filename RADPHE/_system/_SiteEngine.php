@@ -105,9 +105,10 @@ CMS_Blocks::SetTopBlock('Layout');
 CMS_Blocks::startAppendBlock('PageNavigation1');
 	echo '| ';
 	echo ' <a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup> |';
-	echo ' <a href="/?DevInfo=phpinfo" title="Non Request">PHP Info</a> <sup><a href="/DevInfo.php?DevInfo=phpinfo" title="Virtually Routed and Non Request Content.">Virtual</a></sup> |';
+	echo ' <a href="?DevInfo=phpinfo" title="Non Request">PHP Info</a> <sup><a href="/DevInfo.php?DevInfo=phpinfo" title="Virtually Routed and Non Request Content.">Virtual</a></sup> |';
 	echo ' <a href="/mJSterm.php">mJPEG JS Terminal</a> |';
 	echo ' <a href="#DevDebugPreKurser">Footer</a> |';
+	echo ' <a href="RADPHE.php">Simple Direct</a> |';
 	echo '<hr>';
 	echo ' Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup> |';
 	echo ' <a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub> |';
@@ -225,7 +226,7 @@ zend.focus();
   return false;
 }
 </script>
-<center><a href='javascript: ;' id="Trigger" accesskey="K" name="DevDebugPreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:block;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
+<center><a href='javascript: ;' id="Trigger" accesskey="K" name="DevDebugPreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:none;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
 <div id='dBug' name='dBug' style=" background-color:#FFF; width:100%; display:none;">
 <?php
 //$_INTIN['Dump'][]='GLOBALS';

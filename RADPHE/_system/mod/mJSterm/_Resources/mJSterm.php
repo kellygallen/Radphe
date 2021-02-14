@@ -82,9 +82,9 @@ if (isset($_GET['GUI'])) {
 	if ($_GET['GUI']==0) {
 		CMS_Blocks::CancelOutput();
 		header_remove();
-		header('Content-Type: image/jpeg');
-		header('Content-Length: ' . filesize(__DIR__.'/img/TermOff.jpg'));
-		readfile(__DIR__.'/img/TermOff.jpg');
+		header('Content-Type: image/png');
+		header('Content-Length: ' . filesize(__DIR__.'/img/TermOff.png'));
+		readfile(__DIR__.'/img/TermOff.png');
 		die();
 	}
 //	if ($_GET['GUI']>=1) {
@@ -170,7 +170,7 @@ So you may need to press connect to get it going even though it shows connected.
 				</label>
 				&emsp;
 				<label>
-					<input type="radio" name="LINK" value="0" onclick="document.getElementById('Terminal').src='/img/TermOff.jpg';document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit()" <?php if (@$_POST['LINK']!=1) echo 'checked'; ?>>Disconnect
+					<input type="radio" name="LINK" value="0" onclick="document.getElementById('Terminal').src='/img/TermOff.png';document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit()" <?php if (@$_POST['LINK']!=1) echo 'checked'; ?>>Disconnect
 				</label>
 				&emsp;&emsp;&emsp;
 				<label>The Last X,Y

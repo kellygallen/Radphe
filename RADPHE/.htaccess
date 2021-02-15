@@ -89,14 +89,14 @@
 #Condition THEN Apache _ENV variable
 #Then Get in php and mash it into obfusc-paiste.
 #RewriteCond %{HTTP_HOST} ^example\.com$
-#RewriteRule (.*) $1 [E=Profiles-Pro-tmjs:645mie|PujtRX]
+#RewriteRule (.*) $1 [E=KEY:VAL]
 
 #Your Mod_ReWrite Stuff Here.
 
 #No ModReWrite below here.
 </IfModule>
-SetEnvIf Host ^kellygallen\.lovestoblog\.com$ DB-Profiles-Pro-term=645mie
-SetEnvIf Host ^kellygallen\.lovestoblog\.com$ DB-Profiles-Pro-mJS=PujtRX
+SetEnvIf Host ^kellygallen\.lovestoblog\.com$ term=645mie
+SetEnvIf Host ^kellygallen\.lovestoblog\.com$ mJS=PujtRX
 ##Prepend Site Engine to request.
 #	#Production
 #		php_value auto_prepend_file "/home/vol12_1/epizy.com/epiz_27737017/htdocs/_system/_PrePend_Hook.htaccess.prefered.php"

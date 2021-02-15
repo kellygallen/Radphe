@@ -54,9 +54,9 @@ if (1) {
 //TODO: cache script jogging... stateful cache jogging if it can carry loads possibly with noise filter. and installer.
 //only for now is some stuff in rescued cache working.
 //will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.
-    require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/_system/jogging/_INTIN.php');
 } else //Sitewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
-    require_once($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_INTIN.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/_system/jogging/_INTIN.php');
 
 //Register initial request. So it may be modified or examined by other pre request code.
 $_INTIN['Load Status']['Request']['URL'] = strtr($_SERVER["SCRIPT_FILENAME"], array($_SERVER['DOCUMENT_ROOT'] => ""));

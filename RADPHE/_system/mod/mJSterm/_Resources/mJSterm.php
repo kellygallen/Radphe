@@ -1,10 +1,10 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
-
+@$_INTIN['DB']['Profiles']['Pro']['Pass'] = danGit;
 if (session_status() == PHP_SESSION_NONE) session_start();
 session_write_close();
 $link = @mysqli_connect("localhost","mod_mJSterm","","radphe");
-if (!$link) $link = @mysqli_connect("dev.localhost","user","password","db");
+if (!$link) $link = @mysqli_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
 CMS_Skinner::$Page['LayoutFile']='WP';
 include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/mJSterm/functions.php');
 

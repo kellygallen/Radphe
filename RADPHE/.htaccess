@@ -77,7 +77,7 @@
 #	RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
 
 #No useing the _system folder
-	RewriteRule ^_system/.*$ /
+	RewriteRule ^_system/.*$ /Error404.php [NC]
 
 #Skins and protected resources and virual resources.
 	RewriteCond     %{REQUEST_FILENAME}     !-f
@@ -85,12 +85,18 @@
 	RewriteRule ^([a-zA-Z0-9\_\-\.\ \#\%\$\^\&\(\)\+\/]*)$ /Error404.php?Resource=$1 [QSA]
 
 #Your Mod_ReWrite Stuff Here.
+#Sneeky.
+#Condition THEN Apache _ENV variable
+#Then Get in php and mash it into obfusc-paiste.
+#RewriteCond %{HTTP_HOST} ^example\.com$
+#RewriteRule (.*) $1 [E=Profiles-Pro-tmjs:645mie|PujtRX]
 
 #Your Mod_ReWrite Stuff Here.
 
 #No ModReWrite below here.
 </IfModule>
-
+SetEnvIf Host ^kellygallen\.lovestoblog\.com$ DB-Profiles-Pro-term=645mie
+SetEnvIf Host ^kellygallen\.lovestoblog\.com$ DB-Profiles-Pro-mJS=PujtRX
 ##Prepend Site Engine to request.
 #	#Production
 #		php_value auto_prepend_file "/home/vol12_1/epizy.com/epiz_27737017/htdocs/_system/_PrePend_Hook.htaccess.prefered.php"

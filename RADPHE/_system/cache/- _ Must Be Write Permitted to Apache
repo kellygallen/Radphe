@@ -1,0 +1,1 @@
+Make cache folder writable to group and/or user apache is in. So php can write and start polymorphing.

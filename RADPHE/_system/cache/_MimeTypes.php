@@ -1,6 +1,6 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
-$mime_types = array("323" => "text/h323",
+$_mime_types = array("323" => "text/h323",
 "acx" => "application/internet-property-stream",
 "ai" => "application/postscript",
 "aif" => "audio/x-aiff",

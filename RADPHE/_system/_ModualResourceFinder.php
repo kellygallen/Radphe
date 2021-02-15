@@ -77,7 +77,7 @@
 	//echo '<pre>'; echo var_dump($ModualInstances); echo '</pre><hr>';
 			if ($ModualInstances === FALSE) {
 				//continue;
-			} else foreach ($ModualInstances as $MRLfI => $MRLfound) { 
+			} else foreach ($ModualInstances as $MRLfI => $MRLfound) {
 				$ModResourceLocationsPub[] = $MRLfound;
 			}
 		}
@@ -135,11 +135,12 @@ if($foundInMod){
 	// Specification says ETag should be specified within double quotes
 	$etag = '"' . $file_last_mod_time . '.' .$ModualRelativeLocation. '.' . $content_last_mod_time . '.'.filesize($LayoutsPath).'"';
 	//rEMOVE HEADERS AND START BUILDING THEM OVER.
-	header_remove(); 
+	header_remove();
 	//should be useing set'top'block
 	switch( $file_extension ) {
 		case  "php":
-			http_response_code(200);
+//			http_response_code(200);
+			header('HTTP/1.1 200 OK',true,200);
 			if (0) {//To run
 				@ob_clean();
 				include($LayoutsPath);
@@ -150,7 +151,8 @@ if($foundInMod){
 			}
 		case  "htm":
 		case  "html":
-			http_response_code(200);
+//			http_response_code(200);
+			header('HTTP/1.1 200 OK',true,200);
 			if (0) {//To run
 				@ob_clean();
 				echo file_get_contents ( $LayoutsPath , false);

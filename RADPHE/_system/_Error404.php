@@ -8,7 +8,7 @@ if (
     ) {
         if (!empty($_SERVER['REDIRECT_QUERY_STRING'])) parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
         if (!empty($_SERVER['REDIRECT_URL'])) {
-            
+
             $_GET['Resource'] = $_SERVER['REDIRECT_URL'];
             $_SERVER['PHP_SELF'] = $_SERVER['REDIRECT_URL'];
         }
@@ -18,17 +18,24 @@ if (
 	//To optimize one could just copy resources to be accessable as a regualr request.
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ModualResourceFinder.php');
 
-	$code = http_response_code();
+	$code = ($foundInMod) ? 200 : 404;
+//	$code = http_response_code();
     if (($code==200)) {
         return;
+    } else {
     }
-    if ((!empty($_INTIN['MOD']['CMS']['Blocks']['Request']))||(!empty($_INTIN['MOD']['CMS']['Blocks']['SEOSupplementryContent']))) {
+    if (
+    		(!empty($_INTIN['MOD']['CMS']['Blocks']['Request']))||
+    		(!empty($_INTIN['MOD']['CMS']['Blocks']['SupplementryContent']))||
+    		(!empty($_INTIN['MOD']['CMS']['Blocks']['SEOSupplementryContent']))
+    ) {
         if (($code!==200)) {
-            http_response_code(200);
-            return;
-        }
+//            http_response_code(200);
+        	header('HTTP/1.1 200 OK',true,200);
+        	return;
+        } else header('HTTP/1.1 404 Not Found',true,404);
     }
-    
+
 	//Error Message Construction
 	$Err404 = <<<ENDOFSTRING
 <hr>
@@ -42,8 +49,8 @@ Nothing agaist NGINX, its great at all it does, but if you want php done great y
 ENDOFSTRING;
 
 //what it should be.
-	http_response_code(404);
-	header ("HTTP/1.0 404 Page Not Found",true,404);
+//	http_response_code(404);
+	header('HTTP/1.1 404 Not Found',true,404);
 
 //if your host hijacks your error pages.
 //	header ("HTTP/1.0 200 Not Found",true,200);

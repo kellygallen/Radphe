@@ -11,7 +11,7 @@ if (
 		)
 ) {
 	CMS_Skinner::$Page['LayoutFile']='WP';
-	echo '<h1 class="text-dark">Wordpress Works - In Output Buffer</h1><h2 class="text-dark">Post is passthrough! It WILL WORK ALL THE WAY!</h2><h3 class="text-dark">This is becasue it is assumed to be already in output uncaptured by a block.</h3>';
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .=  '<h1 class="text-dark">Wordpress Works - In Output Buffer</h1><h2 class="text-dark">Post is passthrough! It WILL WORK ALL THE WAY!</h2><h3 class="text-dark">This is becasue it is assumed to be already in output uncaptured by a block.</h3>';
 	return;
 }
 
@@ -21,13 +21,13 @@ if (
 		(!empty($_INTIN['MOD']['CMS']['Blocks']['Request']))
 ) {
 	CMS_Skinner::$Page['LayoutFile']='WP';
-	if (false !== stripos(dirname($_SERVER["PHP_SELF"]),'wp-admin')) { 
+	if ((1)&&((false !== stripos(dirname($_SERVER["PHP_SELF"]),'wp-admin'))||(false !== stripos($_SERVER["REQUEST_URI"],'wp-login')))) {
 		CMS_Blocks::CancelOutput();
-		echo '<h1 class="text-dark">Wordpress Works - In block</h1><h2 class="text-dark">Post is passthrough! It WILL WORK ALL THE WAY!</h2><h3 class="text-dark">This is becasue it was captured by a block and hooked in.</h3>';
+		@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .=  '<h1 class="text-dark">Wordpress Works - In block</h1><h2 class="text-dark">Post is passthrough! It WILL WORK ALL THE WAY!</h2><h3 class="text-dark">This is becasue it was captured by a block and hooked in.</h3>';
 		echo $_INTIN['MOD']['CMS']['Blocks']['Request'];
 		die();
 	}
-	echo '<h1 class="text-dark">Wordpress Works - In block</h1><h2 class="text-dark">Post is passthrough! It WILL WORK ALL THE WAY!</h2><h3 class="text-dark">This is becasue it was captured by a block and hooked in.</h3>';
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .=  '<h1 class="text-dark">Wordpress Works - In block</h1><h2 class="text-dark">Post is passthrough! It WILL WORK ALL THE WAY!</h2><h3 class="text-dark">This is becasue it was captured by a block and hooked in.</h3>';
 	CMS_Blocks::startBlock('Request3');
 	//$_INTIN['MOD']['CMS']['Blocks']['Request']
 	//get html head from first, later get script and style tages and apply them to nearest CMS Skinner Anchor point.
@@ -42,7 +42,7 @@ if (
 	$dom->loadHTML($_INTIN['MOD']['CMS']['Blocks']['Request']);
 	libxml_use_internal_errors(false);
 
-//$fragment = $dom->createDocumentFragment(); 
+//$fragment = $dom->createDocumentFragment();
 //	$_INTIN['MOD']['CMS']['Blocks']['Request'] = $dom->getElementById("primary")->textContent;
 	$remove_other = $dom->getElementById('comments');
 //	if (isset($remove_other)) $dom->removeChild($remove_other);
@@ -58,7 +58,7 @@ if (
 //its a straight pointer get address without sessions.
 if ((1)&&(false !== strpos(dirname($_SERVER["PHP_SELF"]),'WordPress'))) {
 	CMS_Skinner::$Page['LayoutFile']='WP';
-	echo '<h1 class="text-dark">Wordpress Works - by proxy</h1><h2 class="text-dark">Post is currently dropped! It WILL WORK up until interaction!</h2><h3 class="text-dark">This is becasue it a block captured by proxy and post passthrough is not implemented... yet.</h3><pre class="text-dark">You should try the local word press link... its either a manual install or a MOVE or COPY of the one alisously installed in a integrated directory sub site where .htaccess dosent have all.
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= '<h1 class="text-dark">Wordpress Works - by proxy</h1><h2 class="text-dark">Post is currently dropped! It WILL WORK up until interaction!</h2><h3 class="text-dark">This is becasue it a block captured by proxy and post passthrough is not implemented... yet.</h3><pre class="text-dark">You should try the local word press link... its either a manual install or a MOVE or COPY of the one alisously installed in a integrated directory sub site where .htaccess dosent have all.
 the goal is no mod wordpress, though an include line will do it too.</pre><h2 class="text-dark">I could be wrong, I was able to login!</h2><pre class="text-dark">Post works becasue it it tried to run content.
 this file needs to be tested outside of contect of running in a worpress request for its proxy function.
 I could be double running proxy on a condition after block is detected.</pre>';
@@ -81,9 +81,9 @@ I could be double running proxy on a condition after block is detected.</pre>';
 //    $_INTIN['MOD']['CMS']['Blocks']['Request']=  $doc->saveHTML($specialdiv); //just div area
     $_INTIN['MOD']['CMS']['Blocks']['Request']=  $doc->saveHTML(); //whole page
 	$WordpressFound=1;
-if ((false !== stripos(dirname($_SERVER["PHP_SELF"]),'wp-admin'))||(false !== stripos($_SERVER["REQUEST_URI"],'wp-login'))) { 
+if ((1)&&((false !== stripos(dirname($_SERVER["PHP_SELF"]),'wp-admin'))||(false !== stripos($_SERVER["REQUEST_URI"],'wp-login')))) {
 		CMS_Blocks::CancelOutput();
-	echo '<h1 class="text-dark">Wordpress Works - by proxy</h1><h2 class="text-dark">Post is currently dropped! It WILL WORK up until interaction!</h2><h3 class="text-dark">This is becasue it a block captured by proxy and post passthrough is not implemented... yet.</h3><pre class="text-dark">You should try the local word press link... its either a manual install or a MOVE or COPY of the one alisously installed in a integrated directory sub site where .htaccess dosent have all.
+		@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= '<h1 class="text-dark">Wordpress Works - by proxy</h1><h2 class="text-dark">Post is currently dropped! It WILL WORK up until interaction!</h2><h3 class="text-dark">This is becasue it a block captured by proxy and post passthrough is not implemented... yet.</h3><pre class="text-dark">You should try the local word press link... its either a manual install or a MOVE or COPY of the one alisously installed in a integrated directory sub site where .htaccess dosent have all.
 the goal is no mod wordpress, though an include line will do it too.</pre><h2 class="text-dark">I could be wrong, I was able to login!</h2>';
 		echo $_INTIN['MOD']['CMS']['Blocks']['Request'];
 		die();
@@ -143,7 +143,7 @@ if 	(
 
 
 	//cleanup
-	//$content = preg_replace('#<script(.*?)</script>#is', '', $content); 
+	//$content = preg_replace('#<script(.*?)</script>#is', '', $content);
 
 
 	preg_match_all('#<body(.*?)>#is', $content, $matchesbody);

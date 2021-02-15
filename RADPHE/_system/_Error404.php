@@ -17,7 +17,7 @@ if (
 	//Error Hook to recover misrouted or unroutable modual resources.
 	//To optimize one could just copy resources to be accessable as a regualr request.
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ModualResourceFinder.php');
-
+	if(!isset($foundInMod)) $foundInMod=0;
 	$code = ($foundInMod) ? 200 : 404;
 //	$code = http_response_code();
     if (($code==200)) {

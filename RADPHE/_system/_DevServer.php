@@ -1,6 +1,5 @@
 <?php //Spechal Hooks or Exceptions Just For Dev
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
-
 //FOR DEV ONLY - TO HELP YOU IN BEGINING.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -9,7 +8,7 @@ error_reporting(E_ALL);
 
 if (isset($_GET['Info'])) {
 	switch ($_GET['Info']) {
-		case 'HookInfo':
+		case 'Info':
 			ob_start();
 			echo '<h2>_GET Info</h2>';
 			echo 'Server is Development<br>';
@@ -17,7 +16,7 @@ if (isset($_GET['Info'])) {
 			@ob_end_flush();
 			break;
 	}
-	return;
+//	return;
 }
 
 if (isset($_GET['DevInfo'])) {
@@ -30,6 +29,6 @@ if (isset($_GET['DevInfo'])) {
 			@ob_end_flush();
 			break;
 	}
-	return;
+//	return;
 }
 ?>

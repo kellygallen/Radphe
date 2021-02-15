@@ -1,8 +1,15 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 @$_INTIN['DB']['Profiles']['Pro']['Pass'] = danGit;
-if (session_status() == PHP_SESSION_NONE) session_start();
-session_write_close();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start(); //because it needs a session id and i dont get it from cookies.
+	//session_write_close();
+	// if history diffs change write. might be an anywhere login of a stream. this should be managed better as a blanket.
+	// also disabled to maximize timing on shared hosting with kernel microtime hack.
+	session_abort();
+} else @session_abort();
+
+//needs a session id.... or a sticky unique cookie.
 $link = @mysqli_connect("localhost","mod_mJSterm","","radphe");
 if (!$link) $link = @mysqli_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
 CMS_Skinner::$Page['LayoutFile']='WP';

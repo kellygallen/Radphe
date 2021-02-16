@@ -103,9 +103,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SKINNER.php');
 CMS_Skinner::Init();
 CMS_Blocks::SetTopBlock('Layout');
 
+//TODO: Shutdown Protocol and fuction to shutdown ahead of time still operating site functions after die.
+//but right now not ready. on some systems you may be able to overload die();
 //prevent die from cutting off engine.
 //register_shutdown_function(array('CMS_Blocks','obreplace')); //should call rendor.
-register_shutdown_function(array('CMS_Blocks','render'));
+//register_shutdown_function(array('CMS_Blocks','render'));
 
 //menu items
 CMS_Blocks::startAppendBlock('PageNavigation1');

@@ -1,5 +1,6 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+
 //register_shutdown_function(array('CMS_Blocks', 'render'));
 $BB3Found=0;
 //local

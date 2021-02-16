@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	// if history diffs change write. might be an anywhere login of a stream. this should be managed better as a blanket.
 	// also disabled to maximize timing on shared hosting with kernel microtime hack.
 	session_abort();
-} else @session_abort();
+}// else @session_abort();
 
 //needs a session id.... or a sticky unique cookie.
 $link = @mysqli_connect("localhost","mod_mJSterm","","radphe");

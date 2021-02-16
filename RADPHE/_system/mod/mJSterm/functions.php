@@ -19,12 +19,12 @@ function skippy_sleep($timeout=1) {
     $finishStart=$StartPart[0]+$timeout;
     $finishStart=$finishStart.'.'.$StartPart[1];
     $finishStart=$Start+$timeout;
-    
+
     $MEthod=false;
-    if ((1)&&(is_func_enabled('sleep'))) {
+    if ((0)&&(is_func_enabled('sleep'))) {
         $MEthod='sleep';
         @sleep($timeout);
-    } elseif ((1)&&(is_func_enabled('usleep'))) {
+    } elseif ((0)&&(is_func_enabled('usleep'))) {
         $MEthod='usleep';
         @usleep(1000000*$timeout);
     } elseif ((1)&&(is_func_enabled('curl_exec'))) {
@@ -62,7 +62,31 @@ function skippy_sleep($timeout=1) {
                 $diff=$end-$Start;
                 continue;
             }
+    } elseif (1) {
+    	//mysql not mysqli
+    	$MEthod='time';
+    	$end = time();
+    	//		$diff=round($end,2)-round($Start,2);
+    	$diff=$end-$Start;
+    	//		die('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart);
+    	//		if( floatval( (string) $a ) < floatval( (string) $b) ) { //do something }
+    	//		$diff=bcsub($end, $Start, 4); //nobcmath
+    	while(
+    			($diff < $timeout)
+    			) {
+    				//			error_log('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart,0);
+    				$end = time();
+    				//			$diff=round($end,2)-round($Start,2);
+    				$diff=$end-$Start;
+    				$linkSlow = @mysql_connect("localhost","mod_mJSterm","","radphe");
+    				if (!$linkSlow) $linkSlow = @mysql_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
+    				//query db for time. compare to real time. micro time and if php7 hwtime to detect and time timing issues.
+    				//but for now disconeect and reconnect should do it to lag some considerable microtime.
+    				mysql_close($$linkSlow);
+    				continue;
+    			}
     } else {//fail.
+    }
         return array('ME'=>false);
     }
     $end = time();

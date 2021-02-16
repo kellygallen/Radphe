@@ -48,8 +48,8 @@ while (true) {
 	print "Content-type: image/jpeg\n\n";
 
 	# Your function to get one jpeg image
-	$test = @skippy_sleep(1);
-	@sleep(1);
+	@sleep(1) or @skippy_sleep(1);
+
 //	error_log($test['ME'], 0);
 	print get_one_jpeg();
 

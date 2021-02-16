@@ -36,7 +36,9 @@ if (isset($_GET['GUI'])) {
 //Control,input
 if (!empty($_POST)) {
 	CMS_Blocks::CancelOutput();
-	var_dump($_POST);
+//	var_dump($_POST);
+	$runningtext = ($_POST['LINK']) ? '' : 'not ';
+	echo "<html><body style='margin: 0;padding: 0;'>OK: [".$_POST['Term']['_x'].','.$_POST['Term']['_y']."]<sup><sup<sub>xy</sub></sup></sup> ".'While '.$runningtext.'running <br>';
 	$_SESSIONthread['mJSterm']['Running'] = $_POST['LINK'];
 	$_SESSIONthread['mJSterm']['TermClicks'][] = array('Click'=>$_POST['Term'],'TS'=>time(),'HandledTS'=>0,'FrameSerial'=>'');
 		$DateTime = date('Y-m-d H:i:s');
@@ -76,13 +78,13 @@ whats weird is the timing reves up in that senerio and then becomes super fast l
 					<input type="radio" name="LINK" value="0" onclick="document.getElementById('Terminal').src='/img/TermOff.png';document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit()" <?php if (@$_POST['LINK']!=1) echo 'checked'; ?>>Disconnect
 				</label>
 				&emsp;&emsp;&emsp;
-				<label>The Last X,Y
-					<input type="text" value="" id="TermClickX" name="Term[_x]" size=3 />
+				<label style="display: none;">The Last X,Y
+					<input type="text" value="" id="TermClickX" name="Term[_x]" style="display: none;" size=5 />
 					x
-					<input type="text" value="" id="TermClickY" name="Term[_y]" size=3 />
+					<input type="text" value="" id="TermClickY" name="Term[_y]" style="display: none;" size=5 />
 				</label>
 				&emsp;&emsp;&emsp;
-				<iframe width=600 height=80 id="TermResponce" name="TermResponce"></iframe>
+				<iframe width=300 height=22; id="TermResponce" name="TermResponce" style="border:hidden;"></iframe>
 			</h3>
 		</legend>
 		<input type="image" name="Terminal" id="Terminal" src="mJSterm.php?GUI=<?php if (!empty($_POST['LINK'])) echo $_POST['LINK']; else echo '0'; ?>" style="border:6px solid red;" />

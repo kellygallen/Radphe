@@ -131,7 +131,7 @@ function skippy_sleep($timeout=1) {
 	    if (0) {//fail.
 	        return array('ME'=>false);
 	    }
-	    if ($finishStart>=time()) {
+	    if ($finishStart<=time()) {
 	    	$quit=1;
 //	    	return array('Begin'=>$Start,'End'=>$end,'ME'=>$MEthod,'Diff'=>$diff);
 	    }

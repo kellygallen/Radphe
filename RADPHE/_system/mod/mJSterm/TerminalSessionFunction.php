@@ -28,7 +28,7 @@ $colorArray[]='blue';
 	/* Set width and height in proportion of genuine PHP logo */
 	$width = 1120;
 	$height = 579;
-	
+
 
             $dest_image = imagecreatetruecolor($width, $height);
 
@@ -77,8 +77,11 @@ if (!empty($_SESSIONthread['mJSterm']['TermClicks'])) {
 		if (isset($_SESSIONthread['mJSterm']['Running'])) if ($_SESSIONthread['mJSterm']['Running']==0) die();
 	}
 	if (!isset($Click['Click']['_x'])) {
-		$controlledx = $Click['Click']['_x']-$bCenterW;
-		$controlledy = $Click['Click']['_y']-$bCenterh;
+//handled by root parent if later on.
+//		$controlledx = rand(0,$width);
+//		$controlledy = rand(0,$height);
+		//		$controlledx = $Click['Click']['_x']-$bCenterW;
+//		$controlledy = $Click['Click']['_y']-$bCenterh;
 	} else {
 		@$controlledx = $Click['Click']['_x']-$bCenterW;
 		@$controlledy = $Click['Click']['_y']-$bCenterh;
@@ -102,13 +105,13 @@ if (empty($Click['Click']['_x'])) {
             imagedestroy($a);
             imagedestroy($b);
             imagedestroy($c);
-            imagedestroy($dest_image);	
+            imagedestroy($dest_image);
 			return $dest_image;
 /*
 // Layer clipart over texture and convert black to transparent (works)
 $im = imagecreatetruecolor($width,$height);
 imagecopy($im, $texture, 0, 0, 0, 0, $width, $height);
-imagecopy($im, $clipart, 0, 0, 0, 0, $width, $height);    
+imagecopy($im, $clipart, 0, 0, 0, 0, $width, $height);
 imagecolortransparent($im, imagecolorclosest($clipart, 0, 0, 0));
 
 // Layer above image with transparency over background (non-working)

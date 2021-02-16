@@ -49,11 +49,12 @@ while (true) {
 
 	# Your function to get one jpeg image
 	$test = @skippy_sleep(1);
+	@sleep(1);
 //	error_log($test['ME'], 0);
 	print get_one_jpeg();
 
 	# The separator
 	print "--$boundary\n";
-	if ($count >=200 ) break;
+	if ($count >=65500 ) break;
 }
 ?>

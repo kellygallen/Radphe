@@ -57,8 +57,8 @@ die();
 <script src="/js/mJStermFunct.js"></script>
 <link rel="stylesheet" href="/css/mJStermStyle.css" type="text/css" />
 
-<h3>For now just 20 frames.</h3>
-<pre>I am setting to run for 20 seconds max.
+<h3>For now limited to QUOTA! YEAH GO FOR IT!</h3>
+<pre>I am setting to run for 20 seconds max. it might go longer it is time duffy. be nice and disconncet it when done.
 So you may need to press connect to get it going even though it shows connected.</pre>
 <form id="Term" target="TermResponce" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
 	<fieldset>

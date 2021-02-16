@@ -53,7 +53,23 @@ if (!empty($_POST)) {
 die();
 }
 //$_POST['LINK']=1;
-
+$schema = (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) ? $_INTIN['DB']['Profiles']['Pro']['Schema'] : 'DB';
+if (!$link) {
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= <<<THEREuGO
+<h2>How to set up database.</h2>
+Database Example DB SCHEMA.table currently set in config as {$schema}.Session<hr>
+<pre>
+CREATE TABLE `Session` (
+	`Session_Id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+	`Session_Expires` datetime NOT NULL,
+	`Session_Data` text COLLATE utf8_unicode_ci,
+	PRIMARY KEY (`Session_Id`)
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+</pre>
+THEREuGO;
+	if (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) @$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= 'for your config it is your '.$_INTIN['DB']['Profiles']['Pro']['Schema'].'.Session is your table.<br>';
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= 'This SQL command or a slight adjustment installes the table for threading with session individuality and threading updates on your db server if the site has your db credentials and _DB_Config.php.';
+}
 //Model
 ?>
 <script src="/js/mJStermFunct.js"></script>

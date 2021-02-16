@@ -93,13 +93,15 @@ whats weird is the timing reves up in that senerio and then becomes super fast l
 				<label>
 					<input type="radio" name="LINK" value="0" onclick="document.getElementById('Terminal').src='/img/TermOff.png';document.getElementById('TermClickX').value=null;document.getElementById('TermClickY').value=null;document.forms.mJSterm.submit()" <?php if (@$_POST['LINK']!=1) echo 'checked'; ?>>Disconnect
 				</label>
-				&emsp;&emsp;&emsp;
-				<label style="display: none;">The Last X,Y
+				&emsp;
+				<a href="?"><sup><sub>RESET</sub></sup></a>
+				&emsp;
+				<label style="display: none;">X,Y
 					<input type="text" value="" id="TermClickX" name="Term[_x]" style="display: none;" size=5 />
 					x
 					<input type="text" value="" id="TermClickY" name="Term[_y]" style="display: none;" size=5 />
 				</label>
-				&emsp;&emsp;&emsp;
+				&emsp;
 				<iframe width=300 height=22; id="TermResponce" name="TermResponce" style="border:hidden;"></iframe>
 			</h3>
 		</legend>

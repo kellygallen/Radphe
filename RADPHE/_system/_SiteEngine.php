@@ -102,6 +102,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SEO.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SKINNER.php');
 CMS_Skinner::Init();
 CMS_Blocks::SetTopBlock('Layout');
+
+//prevent die from cutting off engine.
+//register_shutdown_function(array('CMS_Blocks','obreplace')); //should call rendor.
+register_shutdown_function(array('CMS_Blocks','render'));
+
 //menu items
 CMS_Blocks::startAppendBlock('PageNavigation1');
 	echo '| ';

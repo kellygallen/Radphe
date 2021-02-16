@@ -52,12 +52,15 @@ if (!empty($_POST)) {
 //	$_INTIN['Dump'][]='_Globals';
 die();
 }
+
 //$_POST['LINK']=1;
 $schema = (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) ? $_INTIN['DB']['Profiles']['Pro']['Schema'] : 'DB';
-if (!$link) {
+if ((0)||(!$link)) {
 	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= <<<THEREuGO
 <h2>How to set up database.</h2>
 Database Example DB SCHEMA.table currently set in config as {$schema}.Session<hr>
+<h1>Install</h1>
+<h2>Database Table</h2>
 <pre>
 CREATE TABLE `Session` (
 	`Session_Id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -65,7 +68,21 @@ CREATE TABLE `Session` (
 	`Session_Data` text COLLATE utf8_unicode_ci,
 	PRIMARY KEY (`Session_Id`)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+and you will want /_system/_DBConn_Config.php
+to have something like this prevail (final referance ending)
+but with your values in the ' single quotes.<br>
+<br>
+<h2>Radphe DB Config. <siteroot>/System/_DBConn_Config.php</h2>
+This is for the DATABASE SERVER Credentials.<br> This reflects most of your current config. <br>
+THEREuGO;
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= <<<THEREuGO
+\$_INTIN['DB']['Profiles']['Pro']['Host']='{$_INTIN['DB']['Profiles']['Pro']['Host']}';
+\$_INTIN['DB']['Profiles']['Pro']['User']='{$_INTIN['DB']['Profiles']['Pro']['User']}';
+\$_INTIN['DB']['Profiles']['Pro']['Pass']='.NOT.SHOWN.';
+\$_INTIN['DB']['Profiles']['Pro']['Schema']='{$_INTIN['DB']['Profiles']['Pro']['Schema']}';
 </pre>
+
 THEREuGO;
 	if (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) @$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= 'for your config it is your '.$_INTIN['DB']['Profiles']['Pro']['Schema'].'.Session is your table.<br>';
 	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= 'This SQL command or a slight adjustment installes the table for threading with session individuality and threading updates on your db server if the site has your db credentials and _DB_Config.php.';

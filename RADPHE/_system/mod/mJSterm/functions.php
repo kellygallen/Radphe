@@ -86,7 +86,6 @@ function skippy_sleep($timeout=1) {
     				continue;
     			}
     } else {//fail.
-    }
         return array('ME'=>false);
     }
     $end = time();

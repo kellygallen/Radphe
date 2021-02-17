@@ -1,6 +1,4 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
-global $_INTIN;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 
 $_INTIN['DB']['Profiles']['Defaults']['Host']='';
 $_INTIN['DB']['Profiles']['Defaults']['User']='';

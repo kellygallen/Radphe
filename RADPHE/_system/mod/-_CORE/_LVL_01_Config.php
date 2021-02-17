@@ -14,7 +14,7 @@ if (1) {
     //DB Settings and Connection Init.
     //@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
     //Database Settings - you can use ofuscation.
-    include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
+    include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_01_DBLayer/_DBConn_Config.php');
 
     // Site Config override for DEV env.
     //Allowing for Dev or Production Server Configurations.

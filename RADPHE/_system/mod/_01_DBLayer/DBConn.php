@@ -1,5 +1,5 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+
 class DBConn{
 	public static $DefaultConnection=NULL;
 	public static $LastInsertID=array();
@@ -67,7 +67,7 @@ class DBConn{
 			or $_QUERY[$Name][$SubInstance]['ERROR'] = mysql_error();
 
 		if (!empty($_QUERY[$Name][$SubInstance]['ERROR'])) $ResultMode = 'error';
-		//ResultStructure Depends on Query Type 
+		//ResultStructure Depends on Query Type
 		switch($ResultMode){
 			case 'insert':
 				$LastInsertID = mysql_insert_id($DBConn);

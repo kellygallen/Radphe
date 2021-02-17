@@ -1,13 +1,14 @@
-<?php
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+
 //Lay Sitewide or default Foundation
 bench('Init Enviornment');
 //Init Database connection for older php.
-include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/DBConn.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_01_DBLayer/DBConn.php');
 //Default Database: 'pubic permittable db user access by db server.
 //include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DB_Connector.php');
 //Build DB_Struct or get it from cache (PreCore)
-if (is_file($_SERVER['DOCUMENT_ROOT'].'_system/_cache/_DB_SERVER_CACHE.php') && ($_INTIN['Config']['Cache']['_DB_SERVER'])) {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_cache/_DB_SERVER_CACHE.php';
+if (is_file($_SERVER['DOCUMENT_ROOT'].'/_system/cache/_01_DBLayer/_DB_SERVER_CACHE.php') && ($_INTIN['Config']['Cache']['_DB_SERVER'])) {
+    include_once $_SERVER['DOCUMENT_ROOT'].'/_system/cache/_01_DBLayer/_DB_SERVER_CACHE.php';
 } elseif ($_INTIN['Config']['Cache']['_DB_SERVER']) {
 //    include_once $_SERVER['DOCUMENT_ROOT'].'/_system/DBComBuildArray.php';
 } else {
@@ -27,11 +28,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/_system/function/include_closest.php');
 //_application happens much later for it's own zones.
 
 //CMS-Blocks - Stateless Managemnt at any time, of the building blocks of a responce.
-require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php');
 //CMS-SEO - Seemingly pointless but through alteration of the html metadata per responce.
-require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SEO.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS-SEO.php');
 //CMS-Skinner -
-require_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/CMS-SKINNER.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS-SKINNER.php');
 CMS_Skinner::Init();
 CMS_Blocks::SetTopBlock('Layout');
 //CMS_Blocks::Init();

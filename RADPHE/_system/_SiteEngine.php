@@ -19,7 +19,7 @@ bench('BEGIN compatibility');
 
 //CORE & RunLevel Manager
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/-_CORE/_MODE_Level_Manager.php');
-//die();
+die();
 
 
 

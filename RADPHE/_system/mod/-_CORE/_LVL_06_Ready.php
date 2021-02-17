@@ -1,4 +1,4 @@
 <?php
-/THE REQUEST
+//THE REQUEST
 bench('READY');
 ?>

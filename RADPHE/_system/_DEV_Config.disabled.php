@@ -1,4 +1,5 @@
-<?php
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+
 //FOR Production ONLY - 'No Help'.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -7,13 +8,9 @@ error_reporting(1);
 $_INTIN['DB']['Profiles']['Pro']['Host']='sql204.epizy.com';
 $_INTIN['DB']['Profiles']['Pro']['User']='epiz_27737017';
 $_INTIN['DB']['Profiles']['Pro']['Pass']=apache_getenv('term').chr(rand(32,126)).apache_getenv('mJS');
+//$_INTIN['DB']['Profiles']['Pro']['Pass']='';
 $_INTIN['DB']['Profiles']['Pro']['Schema']='epiz_27737017_mjsterm';
-//$_INTIN['DB']['Profiles']['Pro']['Pass']=();
 //other nested ofuscation methods.might make it try the md5 of a file outside webroot.
-
-//Toggle DEV Env Mode, remove this file on production.
-//	@include $_SERVER['DOCUMENT_ROOT'].'/_system/_GET_Param_Opt_Dev_Info.php';
-//DEPRECIATED BY PRESENCE OF _DEV_Config.php
 
 /*	$__IntIn['Awareness']['URL']['RequireSSL'] stores a 's' or ''
  Is literaly placed after 'http' and before '://' in urls. */
@@ -40,7 +37,7 @@ $_INTIN['Load Status']['Request']['Micro Debug'] = '1';
  /_system/layout/_/Header.php
  '' is Default Layout: /_system/layout/Header.php
  else /_system/layout/SUBFOLDER/Header.php is used. */
-$_INTIN['Load Status']['Request']['Layout'] = '';
+$_INTIN['Load Status']['Request']['Layout'] = 'Wide';
 
 //	$_IntIn['Config']['Cache']['_DB_SERVER'] To use cache or not on _DB_SERVER, can be changed before logic T.
 $_INTIN['Config']['Cache']['_DB_SERVER'] = '0';

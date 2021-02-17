@@ -1,5 +1,4 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php /* @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook; */
 
 function include_closest($Filename, $IncludeFn=NULL, $Direction='<',$Steps=10) {
 	global $_INTIN;
@@ -28,7 +27,7 @@ function include_closest($Filename, $IncludeFn=NULL, $Direction='<',$Steps=10) {
 		}
 	}elseif($Direction == '>'){
 	} else {
-		//backtrace 
+		//backtrace
 		error_log("include_closest() is lacking direction. > Deeper, < To Root. Called by:", 0);
 		return FALSE;
 	}

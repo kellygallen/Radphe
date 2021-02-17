@@ -1,5 +1,4 @@
-<?php //ALSO CHECK SETTINGS IN _DEV_Config.php as they over write these settings.
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 
 ////	Internal Config
 ////			Site Wide Config
@@ -29,12 +28,12 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 	$_INTIN['Awareness']['URL']['RequireWWW'] = 'www.';
 
 /*	$_IntIn['Load Status']['Request']['Show Debug'] stores a '1' or '0'
-		Marks to display debug info in hidden div 
+		Marks to display debug info in hidden div
 		Alt+Shift+K Enter ~ to unhide debug info */
 	$_INTIN['Load Status']['Request']['Show Debug'] = '1';
 
 /*	$_IntIn['Load Status']['Request']['Micro Debug'] stores a '1' or '0'
-		Marks to display debug info within request 
+		Marks to display debug info within request
 		?debugme=someflag[,someflag[,...]] appended to a rul request to set flags */
 	$_INTIN['Load Status']['Request']['Micro Debug'] = '0';
 
@@ -42,7 +41,7 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 		/_system/layout/_/Header.php
 		'' is Default Layout: /_system/layout/Header.php
 		else /_system/layout/SUBFOLDER/Header.php is used. */
-	$_INTIN['Load Status']['Request']['Layout'] = '';
+	$_INTIN['Load Status']['Request']['Layout'] = 'Wide';
 
 //	$_IntIn['Config']['History']['Items'] stores number of items to store in history.
 	$_INTIN['Config']['Contacts']['Webmaster'] =  &$_INTIN['Config']['Contacts']['Admin'];// or 'Webmaster@Email';

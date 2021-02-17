@@ -26,7 +26,7 @@ class CMS_Skinner{
 			self::$Page['HeaderFile'] = $_INTIN['MOD']['LAYOUT']['Page']['HeaderFile'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['Page']['FooterFile']))
 			self::$Page['FooterFile'] = $_INTIN['MOD']['LAYOUT']['Page']['FooterFile'];
-			if (!empty($_INTIN['Design']['Layout']))
+		if (!empty($_INTIN['Design']['Layout']))
 			self::$Page['LayoutFile'] = $_INTIN['Design']['Layout'];
 
 		$TargetLayout = self::$BaseFolder.self::$Selected.'/_BlockDump.php';

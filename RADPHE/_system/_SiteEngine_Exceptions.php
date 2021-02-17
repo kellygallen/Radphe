@@ -1,5 +1,4 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 
 //AJAX Request.
 if((isset($_GET['AjaxGetPart']))||(isset($_POST['AjaxGetPart']))) {
@@ -17,7 +16,7 @@ if((isset($_GET['AjaxGetPart']))||(isset($_POST['AjaxGetPart']))) {
 }
 
 if ($_SERVER['PHP_SELF']=='/Paypal-Instant-Payment-Notification.php') {
-	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/Paypal-Instant-Payment-Notification.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/Paypal/Paypal-Instant-Payment-Notification.php');
 	die();
 }
 

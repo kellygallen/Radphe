@@ -4,13 +4,14 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(1);
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 $_INTIN['DB']['Profiles']['Pro']['Host']='sql204.epizy.com';
 $_INTIN['DB']['Profiles']['Pro']['User']='epiz_27737017';
 $_INTIN['DB']['Profiles']['Pro']['Pass']=apache_getenv('term').chr(rand(32,126)).apache_getenv('mJS');
 //$_INTIN['DB']['Profiles']['Pro']['Pass']='';
 $_INTIN['DB']['Profiles']['Pro']['Schema']='epiz_27737017_mjsterm';
 //other nested ofuscation methods.might make it try the md5 of a file outside webroot.
+
+
 
 /*	$__IntIn['Awareness']['URL']['RequireSSL'] stores a 's' or ''
  Is literaly placed after 'http' and before '://' in urls. */
@@ -37,7 +38,7 @@ $_INTIN['Load Status']['Request']['Micro Debug'] = '1';
  /_system/layout/_/Header.php
  '' is Default Layout: /_system/layout/Header.php
  else /_system/layout/SUBFOLDER/Header.php is used. */
-$_INTIN['Load Status']['Request']['Layout'] = 'Wide';
+//$_INTIN['Load Status']['Request']['Layout'] = 'Wide';
 
 //	$_IntIn['Config']['Cache']['_DB_SERVER'] To use cache or not on _DB_SERVER, can be changed before logic T.
 $_INTIN['Config']['Cache']['_DB_SERVER'] = '0';
@@ -49,6 +50,8 @@ $_INTIN['Config']['LogInAnywhere']['Enable'] = '1';
 
 //	$_IntIn['Config']['Srtict'] Die instead of logging errors.
 //	$_IntIn['Config']['Srtict'] = '1';
+
+
 $_INTIN['DB']['Profiles']['Pro']['Pass']=substr($_INTIN['DB']['Profiles']['Pro']['Pass'], 0,floor(strlen($_INTIN['DB']['Profiles']['Pro']['Pass'])/2)).substr($_INTIN['DB']['Profiles']['Pro']['Pass'], 1+floor(strlen($_INTIN['DB']['Profiles']['Pro']['Pass'])/2),floor(strlen($_INTIN['DB']['Profiles']['Pro']['Pass'])));
 define('danGit',$_INTIN['DB']['Profiles']['Pro']['Pass']);
 $_INTIN['DB']['Profiles']['Pro']['Pass']='SomeBSDontWorryAboutIt';

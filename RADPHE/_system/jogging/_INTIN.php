@@ -14,8 +14,8 @@ $_INTIN['bannedIP'] = array(
 
 $_INTIN['Login']['IdleOut'] = '300';
 $_INTIN['Design']['Tempalte'] = '-DefaultCORE'; //You would change this to the sibling folder of your installed layout in stateless mod.
-$_INTIN['Design']['Layout'] = '__Layout.php'; //features a hook for index.php to have it's own layout.
-//$_INTIN['Design']['Layout'] = 'Wide.php'; //Think of file ['Design']['Layout'] as how your Purchased Template has many >PAGES<.
+$_INTIN['Design']['Layout'] = '__Layout'; //features a hook for index.php to have it's own layout.
+//$_INTIN['Design']['Layout'] = 'Wide'; //Think of file ['Design']['Layout'] as how your Purchased Template has many >PAGES<.
 
 ##Enter Full Web Paths
 $_INTIN['Domains'][0] = '192.168.1.26';
@@ -108,21 +108,17 @@ $_INTIN['MOD']['CMS']['Blocks']['SEOPageTitle'] = $_INTIN['MOD']['SEO']['Default
 $_INTIN['MOD']['SEO']['Defaults']['SupplementalContent'] = '';
 
 //menu items
-$_INTIN['MOD']['CMS']['Blocks']['PageNavigation1'] = <<<'PageNavigation1'
+@$_INTIN['MOD']['CMS']['Blocks']['PageNavigation1'] .= <<<'PageNavigation1'
 |
-<a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup> |
-<a href="?DevInfo=phpinfo" title="Non Request">PHP Info</a> <sup><a href="/DevInfo.php?DevInfo=phpinfo" title="Virtually Routed and Non Request Content.">Virtual</a></sup> |
-<a href="/mJSterm.php">mJPEG JS Terminal</a> |
-<a href="#DevDebugPreKurser">Footer</a> |
-<a href="RADPHE.php">Simple Direct</a> |
+<a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup>
+<a href="?DevInfo=phpinfo&Info=Info" title="Non Request">PHP Info</a> <sup><a href="/DevInfo.php?DevInfo=phpinfo&Info=Info" title="Virtually Routed and Non Request Content.">Virtual</a></sup>
+<a href="/mJSterm.php">mJPEG JS Terminal</a>
+<a href="#DevDebugPreKurser">Footer</a>
+<a href="/RADPHE.php">Simple Direct</a>
 <hr>
-Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup> |
-<a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub> |
+Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup>
+<a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub>
 PageNavigation1;
-$_INTIN['MOD']['CMS']['Blocks']['PageNavigation3'] = <<<'PageNavigation3'
-|
-<h3>the footer nav</h3>|
-|
-#mem:PageNavigation1;#
-PageNavigation3;
+@$_INTIN['MOD']['CMS']['Blocks']['PageNavigation3'] .= '#mem:PageNavigation1;#';
+
 ?>

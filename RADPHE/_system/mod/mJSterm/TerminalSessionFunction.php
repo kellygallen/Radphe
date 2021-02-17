@@ -1,22 +1,6 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 
-/*if(extension_loaded('gd')) {
-    print_r(gd_info());
-}
-else {
-    echo 'GD is not available.';
-}
-
-if(extension_loaded('imagick')) {
-    $imagick = new Imagick();
-    print_r($imagick->queryFormats());
-}
-else {
-    echo 'ImageMagick is not available.';
-}
-return;*/
-
 function get_one_jpeg (){
 global $link;
 //if (!$_SESSION['mJSterm']['Running']) return false;
@@ -107,84 +91,5 @@ if (empty($Click['Click']['_x'])) {
             imagedestroy($c);
             imagedestroy($dest_image);
 			return $dest_image;
-/*
-// Layer clipart over texture and convert black to transparent (works)
-$im = imagecreatetruecolor($width,$height);
-imagecopy($im, $texture, 0, 0, 0, 0, $width, $height);
-imagecopy($im, $clipart, 0, 0, 0, 0, $width, $height);
-imagecolortransparent($im, imagecolorclosest($clipart, 0, 0, 0));
-
-// Layer above image with transparency over background (non-working)
-$img = imagecreatetruecolor($width,$height);
-imagecopymerge($img, $background, 0, 0, 0, 0, $width, $height, 100);
-imagecopymerge($img, $im, 0, 0, 0, 0, $width, $height, 100);
-header('Content-Type: image/png');
-
-//imagepng($im); // Correctly outputs first step
-imagejpeg($img); // Incorrectly outputs final result
-imagedestroy($im);
-//imagedestroy($img);
-return $img;
-*/
-
-
-
-//return;
-
-
-
-/*
- //fine no imgk! well GD then!
-	// Create an Imagick object with transparent canvas /
-	$img = new Imagick();
-	$img->newImage($width, $height, new ImagickPixel('transparent'));
-
-	// New ImagickDraw instance for ellipse draw /
-	$draw = new ImagickDraw();
-	// Set purple fill color for ellipse /
-	$draw->setFillColor('#777bb4');
-	// Set ellipse dimensions /
-	$draw->ellipse($width / 2, $height / 2, $width / 2, $height / 2, 0, 360);
-	// Draw ellipse onto the canvas /
-	$img->drawImage($draw);
-
-	// Reset fill color from purple to black for text (note: we are reusing ImagickDraw object) /
-//	$draw->setFillColor('black');
-	$draw->setFillColor(array_rand($colorArray, 1));
-	// Set stroke border to white color /
-	$draw->setStrokeColor('white');
-	// Set stroke border thickness /
-	$draw->setStrokeWidth(2);
-	// Set font kerning (negative value means that letters are closer to each other) /
-	$draw->setTextKerning(-8);
-	// Set font and font size used in PHP logo /
-	$draw->setFont('Handel Gothic.ttf');
-	$draw->setFontSize(150);
-	// Center text horizontally and vertically /
-	$draw->setGravity(Imagick::GRAVITY_CENTER);
-
-	// add center "php" with Y offset of -10 to canvas (inside ellipse) /
-	$img->annotateImage($draw, 0, -10, 0, 'php');
-	$img->setImageFormat('jpeg');
-
-	return $img->getImageBlob();
-	//* Set appropriate header for PNG and output the image /
-*/
 }
-/*
-if(extension_loaded('gd')) {
-    print_r(gd_info());
-}
-else {
-    echo 'GD is not available.';
-}
-
-if(extension_loaded('imagick')) {
-    $imagick = new Imagick();
-    print_r($imagick->queryFormats());
-}
-else {
-    echo 'ImageMagick is not available.';
-}
-*/
 ?>

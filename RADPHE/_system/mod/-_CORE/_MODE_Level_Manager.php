@@ -12,14 +12,14 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 	}
 	if (@$_INTIN['MODRUN']['subLVL']=='before') {
 		bench('CORE#'.$_INTIN['CORE Level'].' MOD#'.$_INTIN['MOD Level'].': '.$_INTIN['MODRUN']['LEVEL'].' as '.$_INTIN['CoreMOD']);
-		include($_INTIN['CoreMOD']);
+		if (filesize($_INTIN['CoreMOD'])>10) include_once($_INTIN['CoreMOD']);
 		bench('CORE '.$_INTIN['CORE Level'].': '.$_INTIN['CORE'].'');
-		include_once($_INTIN['CORE']);
+		if (filesize($_INTIN['CORE'])>10) include_once($_INTIN['CORE']);
 	} else {
 		bench('CORE '.$_INTIN['CORE Level'].': '.$_INTIN['CORE'].'');
-		include_once($_INTIN['CORE']);
+		if (filesize($_INTIN['CORE'])>10) include_once($_INTIN['CORE']);
 		bench('CORE#'.$_INTIN['CORE Level'].' MOD#'.$_INTIN['MOD Level'].': '.$_INTIN['MODRUN']['LEVEL'].' as '.$_INTIN['CoreMOD']);
-		include($_INTIN['CoreMOD']);
+		if (filesize($_INTIN['CoreMOD'])>10) include_once($_INTIN['CoreMOD']);
 	}
 }
 //support priority #_ mod

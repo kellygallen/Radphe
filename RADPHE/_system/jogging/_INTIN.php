@@ -108,5 +108,22 @@ $_INTIN['MOD']['SEO']['Defaults']['PageTitle'] = 'KellyGAllen.blabla - #mem:SEOK
 $_INTIN['MOD']['CMS']['Blocks']['SEOPageTitle'] = $_INTIN['MOD']['SEO']['Defaults']['PageTitle'];
 $_INTIN['MOD']['SEO']['Defaults']['SupplementalContent'] = '';
 
-
+//menu items
+$_INTIN['MOD']['CMS']['Blocks']['PageNavigation1'] = <<<'PageNavigation1'
+|
+<a href="/">Front Page</a> <sup><a href="/index.php">php</a></sup> <sub><a href="/index.html">html</a></sub> <sup><a href="/style.css">virtual</a></sup> |
+<a href="?DevInfo=phpinfo" title="Non Request">PHP Info</a> <sup><a href="/DevInfo.php?DevInfo=phpinfo" title="Virtually Routed and Non Request Content.">Virtual</a></sup> |
+<a href="/mJSterm.php">mJPEG JS Terminal</a> |
+<a href="#DevDebugPreKurser">Footer</a> |
+<a href="RADPHE.php">Simple Direct</a> |
+<hr>
+Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup> |
+<a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub> |
+PageNavigation1;
+$_INTIN['MOD']['CMS']['Blocks']['PageNavigation3'] = <<<'PageNavigation3'
+|
+<h3>the footer nav</h3>|
+|
+#mem:PageNavigation1;#
+PageNavigation3;
 ?>

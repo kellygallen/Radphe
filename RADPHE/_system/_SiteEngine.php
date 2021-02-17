@@ -16,7 +16,7 @@ bench('BEGIN compatibility');
 // Cross Server Compatibility - For Unifying Distributions.
 @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Cross_Server_Compatibility.php';
 
-
+clearstatcache();
 //CORE & RunLevel Manager
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/-_CORE/_MODE_Level_Manager.php');
 die();

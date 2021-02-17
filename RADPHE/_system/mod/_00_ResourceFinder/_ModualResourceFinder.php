@@ -1,5 +1,4 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 
 //Cant get below the site root.
 	//if () //site engine not outside of wwwroot.
@@ -69,8 +68,9 @@
 		$ModResourceLocations = array();
 		$ModResourceLocationsPub = array();
 		$ModualInstances = array();
-		$ModResourceLocations[] = '_system/layout';
+		$ModResourceLocations[] = '_system/mod/_00_StatelessOutputBuffer/Layouts';
 		$ModResourceLocations[] = '_system/class';
+		$ModResourceLocations[] = '_system/function';
 		$ModResourceLocations[] = '_system/mod';
 		foreach ($ModResourceLocations as $MRLsI => $MRLSearch) {
 			$ModualInstances = glob($_SERVER['DOCUMENT_ROOT'].'/'.$MRLSearch.'/*/_Resources/'.$filename);

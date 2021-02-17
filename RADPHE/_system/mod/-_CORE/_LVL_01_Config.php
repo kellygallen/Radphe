@@ -1,5 +1,5 @@
-<?php
-global $_INTIN;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+
 //Service Configuration
 //Consider array building as stacking.
 //its not a solid array that gets added in. for cache and if it was some values would be specified for last or carry thorugh if it is traverse merged.

@@ -16,8 +16,8 @@ class CMS_Skinner{
 	public static function init(){
 		global $_INTIN;
 		self::$BaseFolder = $_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/Layouts/';
-		if (!empty($_INTIN['MOD']['LAYOUT']['Selected']))
-			self::$Selected = $_INTIN['MOD']['LAYOUT']['Selected'];
+		if (!empty($_INTIN['Design']['Tempalte']))
+			self::$Selected = $_INTIN['Design']['Tempalte'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['BaseFolder']))
 			self::$BaseFolder = $_INTIN['MOD']['LAYOUT']['BaseFolder'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['Page']['Title']))
@@ -26,8 +26,8 @@ class CMS_Skinner{
 			self::$Page['HeaderFile'] = $_INTIN['MOD']['LAYOUT']['Page']['HeaderFile'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['Page']['FooterFile']))
 			self::$Page['FooterFile'] = $_INTIN['MOD']['LAYOUT']['Page']['FooterFile'];
-		if (!empty($_INTIN['MOD']['LAYOUT']['Page']['LayoutFile']))
-			self::$Page['LayoutFile'] = $_INTIN['MOD']['LAYOUT']['Page']['LayoutFile'];
+			if (!empty($_INTIN['Design']['Layout']))
+			self::$Page['LayoutFile'] = $_INTIN['Design']['Layout'];
 
 		$TargetLayout = self::$BaseFolder.self::$Selected.'/_BlockDump.php';
 		if (file_exists($TargetLayout)) include($TargetLayout);

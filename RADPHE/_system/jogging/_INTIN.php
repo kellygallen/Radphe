@@ -14,8 +14,8 @@ $_INTIN['bannedIP'] = array(
 
 $_INTIN['Login']['IdleOut'] = '300';
 $_INTIN['Design']['Tempalte'] = '-DefaultCORE'; //You would change this to the sibling folder of your installed layout in stateless mod.
-//$_INTIN['Design']['Layout'] = '__Layout.php'; //features a hook for index.php to have it's own layout.
-$_INTIN['Design']['Layout'] = 'Wide.php'; //Think of file ['Design']['Layout'] as how your Purchased Template has many >PAGES<.
+$_INTIN['Design']['Layout'] = '__Layout.php'; //features a hook for index.php to have it's own layout.
+//$_INTIN['Design']['Layout'] = 'Wide.php'; //Think of file ['Design']['Layout'] as how your Purchased Template has many >PAGES<.
 
 ##Enter Full Web Paths
 $_INTIN['Domains'][0] = '192.168.1.26';

@@ -1,4 +1,6 @@
 <?php
+global $_INTIN;
+
 if (0){
 } else {
     unset($_INTIN['DB']);

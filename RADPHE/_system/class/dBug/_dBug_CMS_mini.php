@@ -1,6 +1,8 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
-include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
+global $_INTIN;
+
+//include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
 
 /*********************************************************************************************************************\
  * LAST UPDATE
@@ -10,11 +12,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maxi
  *
  * AUTHOR
  * =============
- * Kwaku Otchere 
+ * Kwaku Otchere
  * ospinto@hotmail.com
- * 
+ *
  * Thanks to Andrew Hewitt (rudebwoy@hotmail.com) for the idea and suggestion
- * 
+ *
  * All the credit goes to ColdFusion's brilliant cfdump tag
  * Hope the next version of PHP can implement this or have something similar
  * I love PHP, but var_dump BLOWS!!!
@@ -35,22 +37,22 @@ include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maxi
  * example:
  * new dBug ( $myVariable );
  *
- * 
- * if the optional "forceType" string is given, the variable supplied to the 
- * function is forced to have that forceType type. 
+ *
+ * if the optional "forceType" string is given, the variable supplied to the
+ * function is forced to have that forceType type.
  * example: new dBug( $myVariable , "array" );
- * will force $myVariable to be treated and dumped as an array type, 
+ * will force $myVariable to be treated and dumped as an array type,
  * even though it might originally have been a string type, etc.
  *
  * NOTE!
  * ==============
  * forceType is REQUIRED for dumping an xml string or xml file
  * new dBug ( $strXml, "xml" );
- * 
+ *
 \*********************************************************************************************************************/
 
 class dBugM {
-	
+
 	var $xmlDepth=array();
 	var $xmlCData;
 	var $xmlSData;
@@ -62,7 +64,7 @@ class dBugM {
 	var $bInitialized = false;
 	var $bCollapsed = false;
 	var $arrHistory = array();
-	
+
 	//constructor
 	public function __construct($var,$forceType="",$bCollapsed=true) {
 		//include js and css scripts
@@ -84,45 +86,45 @@ class dBugM {
 
 		//possible 'included' functions
 		$arrInclude = array("include","include_once","require","require_once");
-		
+
 		//check for any included/required files. if found, get array of the last included file (they contain the right line numbers)
 		for($i=count($arrBacktrace)-1; $i>=0; $i--) {
 			$arrCurrent = $arrBacktrace[$i];
-			if(array_key_exists("function", $arrCurrent) && 
+			if(array_key_exists("function", $arrCurrent) &&
 				(in_array($arrCurrent["function"], $arrInclude) || (0 != strcasecmp($arrCurrent["function"], "dbug"))))
 				continue;
 
 			$arrFile = $arrCurrent;
-			
+
 			break;
 		}
-		
+
 		if(isset($arrFile)) {
 			$arrLines = file($arrFile["file"]);
 			$code = $arrLines[($arrFile["line"]-1)];
-	
+
 			//find call to dBug class
 			preg_match('/\bnew dBug\s*\(\s*(.+)\s*\);/i', $code, $arrMatches);
-			
+
 			return @$arrMatches[1];
 		}
 		return "";
 	}
-	
+
 	//create the main table header
 	function makeTableHeader($type,$header,$colspan=2) {
 		if(!$this->bInitialized) {
 			$header = $this->getVariableName() . " (" . $header . ")";
 			$this->bInitialized = true;
 		}
-		$str_i = ($this->bCollapsed) ? "style=\"font-style:italic\" " : ""; 
-		
+		$str_i = ($this->bCollapsed) ? "style=\"font-style:italic\" " : "";
+
 		echo "<table cellspacing=2 cellpadding=3 class=\"dBug_".$type."\">
 				<tr>
 					<td ".$str_i."class=\"dBug_".$type."Header\" colspan=".$colspan." onClick='dBug_toggleTable(this);'>".$header."</td>
 				</tr>";
 	}
-	
+
 	//create the table row header
 	function makeTDHeader($type,$header) {
 		$str_d = ($this->bCollapsed) ? " style=\"display:none\"" : "";
@@ -130,12 +132,12 @@ class dBugM {
 				<td valign=\"top\" onClick='dBug_toggleRow(this);' class=\"dBug_".$type."Key\">".$header."</td>
 				<td>";
 	}
-	
+
 	//close table row
 	function closeTDRow() {
 		return "</td></tr>\n";
 	}
-	
+
 	//error
 	function  error($type) {
 		$error="Error: Variable cannot be a";
@@ -169,18 +171,18 @@ class dBugM {
 				break;
 		}
 	}
-	
+
 	//if variable is a NULL type
 	function varIsNULL() {
 		echo "NULL";
 	}
-	
+
 	//if variable is a boolean type
 	function varIsBoolean($var) {
 		$var=($var==1) ? "TRUE" : "FALSE";
 		echo $var;
 	}
-			
+
 	//if variable is an array type
 	function varIsArray($var) {
 		if (!empty($var_ser)) {
@@ -189,12 +191,12 @@ class dBugM {
 			$var_ser=null;
 		}
 		array_push($this->arrHistory, $var_ser);
-		
+
 		$this->makeTableHeader("array","array");
 		if(is_array($var)) {
 			foreach($var as $key=>$value) {
 				$this->makeTDHeader("array",$key);
-				
+
 				//check for recursion
 				if(is_array($value)) {
 					if (!empty($value['GLOBALS'])) {
@@ -230,7 +232,7 @@ try {
 //						}
 					}
 				}
-				
+
 				if(in_array(gettype($value),$this->arrType))
 					$this->checkType($value);
 				else {
@@ -245,7 +247,7 @@ try {
 		array_pop($this->arrHistory);
 		echo "</table>";
 	}
-	
+
 	//if variable is an object type
 	function varIsObject($var) {
 try {
@@ -267,14 +269,14 @@ try {
 //		$var_ser = serialize($var);
 //		array_push($this->arrHistory, $var_ser);
 		$this->makeTableHeader("object","object");
-		
+
 		if(is_object($var)) {
 			$arrObjVars=get_object_vars($var);
 			foreach($arrObjVars as $key=>$value) {
 
 				$value=(!is_object($value) && !is_array($value) && trim($value)=="") ? "[empty string]" : $value;
 				$this->makeTDHeader("object",$key);
-				
+
 				//check for recursion
 				if(is_object($value)||is_array($value)) {
 					$var_ser = serialize($value);
@@ -333,7 +335,7 @@ try {
 			$db = "pg";
 		if($db == "sybase-db" || $db == "sybase-ct")
 			$db = "sybase";
-		$arrFields = array("name","type","flags");	
+		$arrFields = array("name","type","flags");
 		$numrows=call_user_func($db."_num_rows",$var);
 		$numfields=call_user_func($db."_num_fields",$var);
 		$this->makeTableHeader("resource",$db." result",$numfields+1);
@@ -357,7 +359,7 @@ try {
 		for($i=0;$i<$numrows;$i++) {
 			$row=call_user_func($db."_fetch_array",$var,constant(strtoupper($db)."_ASSOC"));
 			echo "<tr>\n";
-			echo "<td class=\"dBug_resourceKey\">".($i+1)."</td>"; 
+			echo "<td class=\"dBug_resourceKey\">".($i+1)."</td>";
 			for($k=0;$k<$numfields;$k++) {
 				$tempField=$field[$k]->name;
 				$fieldrow=$row[($field[$k]->name)];
@@ -370,7 +372,7 @@ try {
 		if($numrows>0)
 			call_user_func($db."_data_seek",$var,0);
 	}
-	
+
 	//if variable is an image/gd resource type
 	function varIsGDResource($var) {
 		$this->makeTableHeader("resource","gd",2);
@@ -382,26 +384,26 @@ try {
 		echo imagecolorstotal($var).$this->closeTDRow();
 		echo "</table>";
 	}
-	
+
 	//if variable is an xml type
 	function varIsXml($var) {
 		$this->varIsXmlResource($var);
 	}
-	
+
 	//if variable is an xml resource type
 	function varIsXmlResource($var) {
 		$xml_parser=xml_parser_create();
-		xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0); 
-		xml_set_element_handler($xml_parser,array(&$this,"xmlStartElement"),array(&$this,"xmlEndElement")); 
+		xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
+		xml_set_element_handler($xml_parser,array(&$this,"xmlStartElement"),array(&$this,"xmlEndElement"));
 		xml_set_character_data_handler($xml_parser,array(&$this,"xmlCharacterData"));
-		xml_set_default_handler($xml_parser,array(&$this,"xmlDefaultHandler")); 
-		
+		xml_set_default_handler($xml_parser,array(&$this,"xmlDefaultHandler"));
+
 		$this->makeTableHeader("xml","xml document",2);
 		$this->makeTDHeader("xml","xmlRoot");
-		
+
 		//attempt to open xml file
 		$bFile=(!($fp=@fopen($var,"r"))) ? false : true;
-		
+
 		//read xml file
 		if($bFile) {
 			while($data=str_replace("\n","",fread($fp,4096)))
@@ -416,20 +418,20 @@ try {
 			$data=$var;
 			$this->xmlParse($xml_parser,$data,1);
 		}
-		
+
 		echo $this->closeTDRow()."</table>\n";
-		
+
 	}
-	
+
 	//parse xml
 	function xmlParse($xml_parser,$data,$bFinal) {
-		if (!xml_parse($xml_parser,$data,$bFinal)) { 
-				   die(sprintf("XML error: %s at line %d\n", 
-							   xml_error_string(xml_get_error_code($xml_parser)), 
+		if (!xml_parse($xml_parser,$data,$bFinal)) {
+				   die(sprintf("XML error: %s at line %d\n",
+							   xml_error_string(xml_get_error_code($xml_parser)),
 							   xml_get_current_line_number($xml_parser)));
 		}
 	}
-	
+
 	//xml: inititiated when a start tag is encountered
 	function xmlStartElement($parser,$name,$attribs) {
 		$this->xmlAttrib[$this->xmlCount]=$attribs;
@@ -444,8 +446,8 @@ try {
 			$this->xmlSData[$this->xmlCount].='echo "&nbsp;";';
 		$this->xmlSData[$this->xmlCount].='echo $this->closeTDRow();';
 		$this->xmlCount++;
-	} 
-	
+	}
+
 	//xml: initiated when an end tag is encountered
 	function xmlEndElement($parser,$name) {
 		for($i=0;$i<$this->xmlCount;$i++) {
@@ -462,8 +464,8 @@ try {
 		echo $this->closeTDRow();
 		echo "</table>";
 		$this->xmlCount=0;
-	} 
-	
+	}
+
 	//xml: initiated when text between tags is encountered
 	function xmlCharacterData($parser,$data) {
 		$count=$this->xmlCount-1;
@@ -471,8 +473,8 @@ try {
 			$this->xmlCData[$count].=$data;
 		else
 			$this->xmlCData[$count]=$data;
-	} 
-	
+	}
+
 	//xml: initiated when a comment or other miscellaneous texts is encountered
 	function xmlDefaultHandler($parser,$data) {
 		//strip '<!--' and '-->' off comments
@@ -489,13 +491,13 @@ try {
 			if (!CMS_Blocks::$Rendered) {
 		CMS_Blocks::startAppendBlock('PageHead');
 ?>
-		<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />	
+		<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
 		<script type='text/javascript' src='/js/dBug.js'></script>
 <?php
 		CMS_Blocks::endAppendBlock();
 			} else {
 ?>
-		<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />	
+		<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
 		<script type='text/javascript' src='/js/dBug.js'></script>
 <?php
 			}
@@ -509,7 +511,7 @@ class dBug extends dBugM {
 	var $bInitialized = false;
 	var $bCollapsed = false;
 	var $arrHistory = array();
-	
+
 	//constructor
 	public function __construct($var,$forceType="",$bCollapsed=false) {
 		//include js and css scripts

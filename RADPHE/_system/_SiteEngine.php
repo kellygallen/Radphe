@@ -16,9 +16,15 @@ $_QUERY=array();
 @include($_SERVER['DOCUMENT_ROOT'].'/_system/function/bench.php');
 bench('BEGIN'); //bench('MAJOR'); bench('Minor');
 
+bench('BEGIN compatibility');
 // Cross Server Compatibility - For Unifying Distributions.
 @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_Cross_Server_Compatibility.php';
+bench('BEGIN requirements cache rebuild');
+bench('BEGIN requirements mod');
+//Modual RunLevel Events.:: REQUIREMENTS.
+foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_RequirementsCache.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('Requirements MOD $AutoMod');}
 
+bench('BEGIN requirement core');
 // Site Config override for DEV env.
 @include_once $_SERVER['DOCUMENT_ROOT'].'/_system/_CheckForRequirements.php';
 
@@ -36,7 +42,12 @@ if (1) {
     //DB Settings and Connection Init.
     //@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
     //Database Settings - you can use ofuscation.
+    bench('pre DB config mods');
+    foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_PreDatabase.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('pre DB Config MOD $AutoMod');}
+    bench('DB config core');
     include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_DBConn_Config.php');
+    bench('post DB config mods');
+    foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_PostDatabase.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('post DB Config MOD $AutoMod');}
 
     // Site Config override for DEV env.
     //Allowing for Dev or Production Server Configurations.
@@ -62,7 +73,9 @@ if (1) {
 $_INTIN['Load Status']['Request']['URL'] = strtr($_SERVER["SCRIPT_FILENAME"], array($_SERVER['DOCUMENT_ROOT'] => ""));
 
 bench('EXCEPTIONS');
+foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_ExemptionHooks.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('EXCEPTIONS mod $AutoMod'); }
 //When not to run site engine and where to direct root control.
+bench('EXCEPTIONS core');
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine_Exceptions.php');
 /* For Example: api-server for example, or a ajax/json request responce.
 	whould have its hooks added in here. */
@@ -139,6 +152,9 @@ CMS_Blocks::endAppendBlock();
 
 //Application Area Code - Code that is run before any other code in an area.
 bench('APP START');
+bench('pre app mods');
+foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_PreApplication.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('pre app MOD $AutoMod');}
+bench('app core');
 if (file_exists(dirname($_SERVER['PHP_SELF']).'/_Application.php')) {
     bench('Application Overide');
     include dirname($_SERVER['PHP_SELF']).'/_Application.php';
@@ -147,6 +163,8 @@ if (file_exists(dirname($_SERVER['PHP_SELF']).'/_Application.php')) {
 } else {
     bench('Application not present');
 }
+bench('post app mods');
+foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_PostApplication.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('post app MOD $AutoMod');}
 bench('APP DONE');
 
 //Proceed into Request.
@@ -158,6 +176,8 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'].'.SEO.php')) 
 }
 
 //THE REQUEST
+bench('pre ready mods');
+foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_PreApplication.php') as $AutoMod) { include_once(realpath($AutoMod)); bench('pre ready MOD $AutoMod');}
 bench('READY');
 
 //Handle Get post if unified to 1 handler.
@@ -234,7 +254,7 @@ zend.focus();
 <center><a href='javascript: ;' id="Trigger" accesskey="K" name="DevDebugPreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:none;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
 <div id='dBug' name='dBug' style=" background-color:#FFF; width:100%; display:none;">
 <?php
-//$_INTIN['Dump'][]='GLOBALS';
+$_INTIN['Dump'][]='GLOBALS';
 //$_INTIN['Dump'][]='_INTIN';
 //Dump a resource like
 /*$_INTIN['Dump'][]='namespace';

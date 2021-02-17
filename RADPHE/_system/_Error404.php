@@ -1,9 +1,8 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 //$_INTIN['Dump'][]='GLOBALS';
 
 if (
-    ($_SERVER['PHP_SELF']==='/Error404.php')&&
+    ($_SERVER['PHP_SELF']==='/-RADPHError404.php')&&
     (1)
     ) {
         if (!empty($_SERVER['REDIRECT_QUERY_STRING'])) parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
@@ -16,7 +15,7 @@ if (
 //	ob_clean();
 	//Error Hook to recover misrouted or unroutable modual resources.
 	//To optimize one could just copy resources to be accessable as a regualr request.
-	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/_ModualResourceFinder.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_ResourceFinder/_ModualResourceFinder.php');
 	if(!isset($foundInMod)) $foundInMod=0;
 	$code = ($foundInMod) ? 200 : 404;
 //	$code = http_response_code();

@@ -1,4 +1,4 @@
-<?php //Spechal Hooks or Exceptions Used by Site.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 //FOR Production ONLY - 'No Help'.
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);

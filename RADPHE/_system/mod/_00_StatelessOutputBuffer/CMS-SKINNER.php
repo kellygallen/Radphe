@@ -1,5 +1,6 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php');
+
 class CMS_Skinner{
 	public static
 		$BaseFolder = '',
@@ -14,7 +15,7 @@ class CMS_Skinner{
 //	Enable Nestable block replacement.
 	public static function init(){
 		global $_INTIN;
-		self::$BaseFolder = $_SERVER['DOCUMENT_ROOT'].'/_system/layout/';
+		self::$BaseFolder = $_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/Layouts/';
 		if (!empty($_INTIN['MOD']['LAYOUT']['Selected']))
 			self::$Selected = $_INTIN['MOD']['LAYOUT']['Selected'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['BaseFolder']))
@@ -50,9 +51,11 @@ class CMS_Skinner{
 		CMS_Blocks::endBlock();
 
 		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'].'.SEO.php')) {
-			CMS_Blocks::startBlock('LayoutCommonSuppliment');
+			if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.'_SupplementryContent.php'.'.SEO.php')) {
+				CMS_Blocks::startBlock('SupplementryContent');
 				include $_SERVER['DOCUMENT_ROOT'].'/'.'_LayoutCommon.php'.'.SEO.php';
-			CMS_Blocks::endBlock();
+				CMS_Blocks::endBlock();
+			}
 		}
 	}
 

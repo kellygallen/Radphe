@@ -1,5 +1,4 @@
-<?php //Spechal Hooks or Exceptions Just For Dev
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 //FOR DEV ONLY - TO HELP YOU IN BEGINING.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

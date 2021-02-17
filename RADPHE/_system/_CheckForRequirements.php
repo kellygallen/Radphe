@@ -31,7 +31,7 @@ if (!empty($_GET['Resource'])) {
 
 //Lock down Error404 page
 //Why request an error?
-if (preg_match('/^Error404.php$/', $RequestPath['basename']) == 1) {
+if (preg_match('/^\-RADPHError404\.php$/', $RequestPath['basename']) == 1) {
     die('This File should not be requested, why request a 404?!');
 }
 

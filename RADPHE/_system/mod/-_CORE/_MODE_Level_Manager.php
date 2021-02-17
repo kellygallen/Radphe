@@ -8,7 +8,7 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 	preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>\d{1,2})?_(?<LEVEL>.*?).php$/', $_INTIN['CORE'], $_INTIN['RUN']);
 	if ((1)||(!empty($_INTIN['RUN']['LEVEL']))) foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_'.$_INTIN['RUN']['LEVEL'].'.php') as $_INTIN['MOD Level'] => $_INTIN['CoreMOD']) {
 			$_INTIN['CoreMOD'] = realpath($_INTIN['CoreMOD']);
-			preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>\d{1,2})?_(?<LEVEL>.*?).php$/', $_INTIN['CoreMOD'], $_INTIN['MODRUN']);
+			preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>[\d\w]{1,2})?_(?<LEVEL>.*?).php$/', $_INTIN['CoreMOD'], $_INTIN['MODRUN']);
 	}
 	if (@$_INTIN['MODRUN']['subLVL']=='before') {
 		bench('CORE#'.$_INTIN['CORE Level'].' MOD#'.$_INTIN['MOD Level'].': '.$_INTIN['MODRUN']['LEVEL'].' as '.$_INTIN['CoreMOD']);

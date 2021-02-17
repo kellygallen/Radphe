@@ -1,0 +1,1 @@
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php'); ?>

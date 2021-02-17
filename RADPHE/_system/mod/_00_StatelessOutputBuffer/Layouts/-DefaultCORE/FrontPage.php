@@ -1,26 +1,24 @@
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 #mem:SEOMeta;#
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>#mem:SEOPageTitle;#</title>
-
 		<link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 #mem:PageHead;#
-		<script type="text/javascript">
+<script type="text/javascript">
 #mem:PagePreRunJS;#
-		</script>
+</script>
 	</head>
-	<body id='subpage' class='fullwidth' #mem:OnLoad;# >
+	<body id='frontpage'>
 		<div class='wrapper'>
 			<div id="top">
-				<div id="head">
+				<!--Head-->
 #mem:PageHeader;#
-				</div>	<!-- end #head -->
-				<div id="main">
-					<div id="content">
-						<div class='entry'>
+				<!--Content-->
 #mem:Request;#
 
 <hr />
@@ -29,17 +27,11 @@
 <hr />
 <h3>Optional SEO Content</h3>
 #mem:SEOSupplementryContent;#
-						<!--end entry-->
-						</div>
-					</div><!-- end content -->
-				</div><!--end main-->
 			</div><!-- end #top -->
 		</div><!-- end #wrapper -->
 		<div class='wrapper' id='footerwrap'>
-			<div id='footer'>
 #mem:PageFooter;#
-			</div><!--end footer-->
-		</div>
+		</div><!--end footer-->
 	</body>
 	<script type="text/javascript">
 #mem:PageRunJS;#

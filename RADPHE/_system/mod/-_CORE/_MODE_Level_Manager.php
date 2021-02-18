@@ -9,7 +9,7 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 	if ((1)||(!empty($_INTIN['RUN']['LEVEL']))) foreach(glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_'.$_INTIN['RUN']['LEVEL'].'.php') as $_INTIN['MOD Level'] => $_INTIN['CoreMOD']) {
 		$_INTIN['CoreMOD'] = realpath($_INTIN['CoreMOD']);
 		preg_match('/(?<file>_LVL_(?<LVL>\d{1,4})_?(?<subLVL>[\d\w]{1,2})?_(?<LEVEL>.*?).php)$/', $_INTIN['CoreMOD'], $_INTIN['MODRUN']);
-		$_INTIN['MODRUN']['manager']=realpath(dirname($_INTIN['CoreMOD']).'_MODE_Before_Level_Manager.php');
+		echo $_INTIN['MODRUN']['manager']=realpath(dirname($_INTIN['CoreMOD']).'_MODE_Before_Level_Manager.php');
 		if (file_exists($_INTIN['MODRUN']['manager'])) {
 			if (filesize($_INTIN['CoreMOD'])>10) include_once($_INTIN['MODRUN']['manager']);
 		} else {//THIS IS THE AFTER MANAGER AS WELL AS DURING unless it is done first.
@@ -27,8 +27,4 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 		}
 	}
 }
-//support priority #_ mod
-//so it coes core, 001_mod, 002_dom
-//also mods may run their level before or after core level in the mod priority order.
-
 ?>

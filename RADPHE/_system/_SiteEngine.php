@@ -1,4 +1,4 @@
-<?php define('RadpheFallBackHook', ' global $_INTIN; ', true);//Fallback Hook Line. //note RadpheFallBackHook does not currently bring _INTIN with it.
+<?php define('RadpheFallBackHook', ' global $_INTIN; ');//Fallback Hook Line. //note RadpheFallBackHook does not currently bring _INTIN with it.
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
 
 

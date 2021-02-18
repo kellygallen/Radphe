@@ -99,7 +99,7 @@ SetEnvIf Host ^(dev\.)?example\.com$ mJS=PujtRX
 
 ##Prepend Site Engine to request.
 #	#Production
-#		php_value auto_prepend_file "/home/vol12_1/RESELLER/USER/htdocs/_system/_PrePend_Hook.htaccess.prefered.php"
+#		php_value auto_prepend_file "/home/vol12_1/RESELLER/USER/htdocs/_system/_EngineHooks/_PrePend_Hook.htaccess.prefered.php"
 #	HINT: Its something like
 #		<?php echo($_SERVER['DOCUMENT_ROOT'].'/_system/_PrePend_Hook.htaccess.prefered.php');
 #	    This is how you might find the right path on your hosting.

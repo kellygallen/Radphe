@@ -84,9 +84,9 @@ if(
   ){
 	bench('Debug Approved');
 	//redundant but stopes privicy config concernes. built into cms mod. later session or debug ip bound.
-	include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
+	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
 	//for now 'regular' in place function runs without public mask.
-	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/dBug.php');	//cms modual
+	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');	//cms modual
 //	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/_dBug.regular.php');	//patched/upgraded original unmasked
 
 	if (!empty($_INTIN['Error'])) {

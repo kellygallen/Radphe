@@ -12,7 +12,8 @@ if (session_status() == PHP_SESSION_NONE) {
 //needs a session id.... or a sticky unique cookie.
 $link = @mysqli_connect("localhost","mod_mJSterm","","radphe");
 if (!$link) $link = @mysqli_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
-CMS_Skinner::$Page['LayoutFile']='WP';
+CMS_Skinner::$Page['LayoutFile']='Wide';
+//$_INTIN['Design']['Layout']
 include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/mJSterm/functions.php');
 
 //View,rendor

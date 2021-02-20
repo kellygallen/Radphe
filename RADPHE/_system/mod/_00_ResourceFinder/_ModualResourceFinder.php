@@ -85,6 +85,10 @@
 	//echo '<pre>'; echo var_dump($ModResourceLocationsPub); echo '</pre><hr>';
 		if (!isset($ModResourceLocationsPub[0])) return;
 		$LayoutsPath = $ModResourceLocationsPub[0];
+		$LayoutsPath = preg_replace('/(\.){2,}/', '', $LayoutsPath);
+		$LayoutsPath = preg_replace('/(\/){2,}/', '/', $LayoutsPath);
+		$LayoutsPath = preg_replace('/(\.\/){2,}/', '/', $LayoutsPath);
+		$LayoutsPath = preg_replace('/(\/){2,}/', '/', $LayoutsPath);
 		if (( $filename == "" ) || ( ! file_exists( realpath($LayoutsPath) ) ) || ($Deny==1)) {
 			return;
 		} else $foundInMod = 1;

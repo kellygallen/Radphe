@@ -96,10 +96,18 @@ if(
 	if (!empty($_INTIN['Dump'])) { //pass var by referance should follow.
 		echo '<h2>Dump</h2>';
 		foreach($_INTIN['Dump'] as $newDBugOrden => $newDBug){
-			echo '<br><hr><h3>$'.$newDBug.'</h3>';
-			if (!empty($newDBug)) if (isset($$newDBug)) if ($newDBug!=='GLOBALS') {
-				eval("new dBug($$newDBug);");
-			} else eval("new dBugM($$newDBug);");
+			if (!empty($newDBug))
+				if (is_array($newDBug))
+//				if (isset($newDBug))
+					if (!is_string($newDBug)) {
+						echo '<br><hr><h3>'.$newDBugOrden.' '.'newDBug'.'</h3>';
+						new dBug($newDBug);
+					} else {
+						echo '<br><hr><h3>'.$newDBugOrden.' $'.$newDBug.'</h3>';
+						if ($newDBug!=='GLOBALS') {
+							eval("new dBug($".$newDBug.");");
+						} else eval("new dBugM($".$newDBug.");");
+					}
 		}
 //		echo '<h3>phpinfo()</h3>';
 //		phpinfo();

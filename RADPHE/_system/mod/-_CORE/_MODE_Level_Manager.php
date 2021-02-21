@@ -19,7 +19,7 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 		$_INTIN['MODRUN']=array();
 		preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>[.]{1,})?_(?<LEVEL>.*).php$/', $_INTIN['CoreMOD'], $_INTIN['MODRUN']);
 		if (@$_INTIN['MODRUN']['subLVL']=='before') {
-			if (filesize($_INTIN['CoreMOD'])>2)
+			if (filesize($_INTIN['CoreMOD'])>2) {
 				if (!in_array($_INTIN['CoreMOD'],get_included_files())) {
 					if (!empty($lasttime)) $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][@$_INTIN['CoreMOD']]['Prior-STATE'] =$lasttime;
 					bench('CORE#'.$_INTIN['CORE Level'].' MOD#'.$_INTIN['MOD Level'].': '.$_INTIN['MODRUN']['LEVEL'].' as '.$_INTIN['CoreMOD']);
@@ -28,6 +28,7 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]	['ACL'] = &
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]	['RETURN']['MOD'][
 	 array_key_last($_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]	['RETURN']['MOD'])];
+
 					if (!empty($_INTIN['Dump'])) {
 						$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'] = @array_diff($_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'],$alltime);
 					} else $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'] = '_INTIN[\'Dump\'][] = (&)? $var; not activated.<br>Light Mode';
@@ -36,12 +37,12 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					if (!isset($alltime))
 						$alltime=array();
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['C'.$_INTIN['CORE Level'].'-R'.$_INTIN['RUN']['subLVL'].'-M'.@$_INTIN['MOD Level'].'-P'.$_INTIN['MODRUN']['LVL'].'-R'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
-	//				$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
+					//$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$lasttime=@array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$alltime=$_INTIN['MOD']['CMS']['Blocks'];
-
 				}
-			if (filesize($_INTIN['CORE'])>2)
+			}
+			if (filesize($_INTIN['CORE'])>2) {
 				if (!in_array($_INTIN['CORE'],get_included_files())) {
 					if (!empty($lasttime)) $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][@$_INTIN['CORE']]['Prior-STATE'] =$lasttime;
 					bench('CORE '.$_INTIN['CORE Level'].': '.$_INTIN['CORE'].'');
@@ -50,6 +51,7 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CORE']]		['ACL'] = &
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CORE']]		['RETURN']['CORE'][
 	 array_key_last($_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CORE']]		['RETURN']['CORE'])];
+
 					if (!empty($_INTIN['Dump'])) {
 						$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'] = @array_diff($_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'],$alltime);
 					} else $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'] = '_INTIN[\'Dump\'][] = (&)? $var; not activated.<br>Light Mode';
@@ -58,13 +60,14 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					if (!isset($alltime))
 						$alltime=array();
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']]['C'.$_INTIN['CORE Level'].'-R'.$_INTIN['RUN']['subLVL'].'-M'.@$_INTIN['MOD Level'].'-P'.$_INTIN['MODRUN']['LVL'].'-R'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
-					//				$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
+					//$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$lasttime=@array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$alltime=$_INTIN['MOD']['CMS']['Blocks'];
 
 				}
+			}
 		} else {
-			if (filesize($_INTIN['CORE'])>2)
+			if (filesize($_INTIN['CORE'])>2) {
 				if (!in_array($_INTIN['CORE'],get_included_files())) {
 					if (!empty($lasttime)) $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][@$_INTIN['CORE']]['Prior-STATE'] =$lasttime;
 					bench('CORE '.$_INTIN['CORE Level'].': '.$_INTIN['CORE'].'');
@@ -73,6 +76,7 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CORE']]		['ACL'] = &
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CORE']]		['RETURN']['CORE'][
 	 array_key_last($_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CORE']]		['RETURN']['CORE'])];
+
 					if (!empty($_INTIN['Dump'])) {
 						$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'] = @array_diff($_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'],$alltime);
 					} else $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['Prior-STATE'] = '_INTIN[\'Dump\'][] = (&)? $var; not activated.<br>Light Mode';
@@ -81,12 +85,12 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					if (!isset($alltime))
 						$alltime=array();
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']]['C'.$_INTIN['CORE Level'].'-R'.$_INTIN['RUN']['subLVL'].'-M'.@$_INTIN['MOD Level'].'-P'.$_INTIN['MODRUN']['LVL'].'-R'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
-					//				$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
+					//$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$lasttime=@array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$alltime=$_INTIN['MOD']['CMS']['Blocks'];
-
 				}
-			if (filesize($_INTIN['CoreMOD'])>2)
+			}
+			if (filesize($_INTIN['CoreMOD'])>2) {
 				if (!in_array($_INTIN['CoreMOD'],get_included_files())) {
 					if (!empty($lasttime)) $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][@$_INTIN['CoreMOD']]['Prior-STATE'] =$lasttime;
 					bench('CORE#'.$_INTIN['CORE Level'].' MOD#'.$_INTIN['MOD Level'].': '.$_INTIN['MODRUN']['LEVEL'].' as '.$_INTIN['CoreMOD']);
@@ -104,10 +108,11 @@ foreach($_INTIN['MOD']['CORE'] as $_INTIN['CORE Level'] => $_INTIN['CORE']) {
 					if (!isset($alltime))
 						$alltime=array();
 					$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CoreMOD']]['C'.$_INTIN['CORE Level'].'-R'.$_INTIN['RUN']['subLVL'].'-M'.@$_INTIN['MOD Level'].'-P'.$_INTIN['MODRUN']['LVL'].'-R'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
-					//				$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
+					//$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][@$_INTIN['MOD Level']][$_INTIN['CORE']][CORE'.$_INTIN['CORE Level'].' Relitivity'.$_INTIN['RUN']['subLVL'].' MOD'.@$_INTIN['MOD Level'].' Priority'.$_INTIN['MODRUN']['LVL'].' Relitivity'.$_INTIN['MODRUN']['subLVL']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$lasttime=@array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
 					$alltime=$_INTIN['MOD']['CMS']['Blocks'];
 				}
+			}
 		}
 	} else {
 		$_INTIN['MODRUN']['subLVL'] = '';

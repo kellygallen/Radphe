@@ -128,7 +128,7 @@ if(
 	echo '<br>Running in public benchmark mode.<br>';
 	echo '<h2>Ingrediants</h2>';
 	echo '<pre>';
-	var_export(get_included_files());
+	var_export($_INCLUDES[]=get_included_files());
 	echo '</pre>';
 	//	include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
 	bench('Public Report');
@@ -188,5 +188,5 @@ echo '</div><br><a id="bottom" name="bottom"></a>';
 
 
 //The End
-die();
+//die();
 ?>

@@ -47,7 +47,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	
  * new dBug ( $strXml, "xml" );
  *
 \*********************************************************************************************************************/
-
+if (!class_exists('dBugM')) {
 class dBugM {
 
 	var $xmlDepth=array();
@@ -502,8 +502,11 @@ try {
 	}
 
 }
+}
 //would be simpler just to call dBug(resource,mini}full,forcetype) but thats later. maybe dbug is a function that chooses how new dbugm is constructed. lots of options.
-class dBug extends dBugM {
+if (!class_exists('dBug'))
+	if (!class_exists('dBugM')) {
+		class dBug extends dBugM {
     protected static $title = 'sub';
 	var $bInitialized = false;
 	var $bCollapsed = false;
@@ -523,5 +526,6 @@ class dBug extends dBugM {
 		else
 			$this->checkType($var);
 	}
+}
 }
 ?>

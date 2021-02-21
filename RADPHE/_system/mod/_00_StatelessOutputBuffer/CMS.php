@@ -418,7 +418,7 @@ class CMS_Blocks{
 //			if (0 === strlen($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 				echo self::TagBlockHead,'mem',self::TagBlockPart2Delimiter,self::$TopBlock,self::TagBlockPart3Delimiter,'Render Empty Content with top level specified',self::TagBlockFoot;
 				$_INTIN['MOD']['CMS']['Blocks']['NULL'][0] = @ob_get_contents();
-			}
+			} else echo '<pre>'.var_export($_INTIN['MOD']['CMS']['Blocks'],true).'</pre>';//@ob_end_flush();
 			@ob_end_flush();
 			self::$OBLevel = -2;
 			if (self::$BufferDeTag) self::dehtmlblocks();

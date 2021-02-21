@@ -418,6 +418,10 @@ class CMS_Blocks{
 //			if (0 === strlen($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 				echo self::TagBlockHead,'mem',self::TagBlockPart2Delimiter,self::$TopBlock,self::TagBlockPart3Delimiter,'Render Empty Content with top level specified',self::TagBlockFoot;
 				$_INTIN['MOD']['CMS']['Blocks']['NULL'][0] = @ob_get_contents();
+//todo fix was previously for white death to trigger debug, or set to block to active, or output block your on, or show error. or not allow no output to be the top block. or it goes down and doesnt referance anything...
+//there is another version where i versioned the output in a differant way just to tell if there was any... that was an old stepping stone to history.
+//this is blameable and for no reason.
+//may break and i font have a whitescreen to test it on.
 			} else echo '<pre>'.var_export($_INTIN['MOD']['CMS']['Blocks'],true).'</pre>';//@ob_end_flush();
 			@ob_end_flush();
 			self::$OBLevel = -2;

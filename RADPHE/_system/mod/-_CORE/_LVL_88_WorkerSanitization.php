@@ -1,7 +1,4 @@
 <?php
-const
-	wwwROOT = $_SERVER['DOCUMENT_ROOT'],
-	siteEngineROOT = $_SERVER['DOCUMENT_ROOT'].'_system/';
 $GLOBALS = array(
 //Keepers & NOTS in Globals.
 //Example of how to do it.

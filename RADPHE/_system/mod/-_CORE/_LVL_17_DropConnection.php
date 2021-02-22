@@ -11,11 +11,13 @@
  //TODO a core level thing where i work with headers to aupport GZ with right content length.
  */
 if (empty($_INTIN['WoRkEr!'])) {
-	die();//nothing to implement yet... need something to work on.
+	@ob_flush();
+	@flush();
+	if (!isset($_GET['ShowLongestRoute'])) die();//nothing to implement yet... need something to work on.
 } else {
-	ob_flush();
-	flush();
+	@ob_flush();
+	@flush();
+	sleep(10);//rest disk, connection send buffer so it can close, rest everything really.
 }
-sleep(10);//rest disk, connection send buffer so it can close, rest everything really.
 //more like take a breather
 ?>

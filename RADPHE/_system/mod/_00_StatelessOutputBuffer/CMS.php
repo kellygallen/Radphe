@@ -1,4 +1,7 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+//TODO nes single line.... in all. declare is best done old way as i do in class. but its not like C it cant be lines of code macro. so the 1 line must be eval.
+//now you can use heredoc which can have php variables so you heredoc with 'heredoc' liter and note it uses less cpu to be literal weathor you use replacement or not.
+
 //start block begins ob buffer capture with callback to end block.
 //start block of all types may replace,pre,post,insert default post.
 //	mode if a and b measure the block. a=before, default *b=after, c=drop for now but version cancel sooner or later., or insert with preg_replace pattern on end ob level callback.

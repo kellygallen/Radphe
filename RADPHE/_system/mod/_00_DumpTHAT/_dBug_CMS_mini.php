@@ -505,7 +505,7 @@ try {
 }
 //would be simpler just to call dBug(resource,mini}full,forcetype) but thats later. maybe dbug is a function that chooses how new dbugm is constructed. lots of options.
 if (!class_exists('dBug'))
-	if (!class_exists('dBugM')) {
+	if (class_exists('dBugM')) {
 		class dBug extends dBugM {
     protected static $title = 'sub';
 	var $bInitialized = false;

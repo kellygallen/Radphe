@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 $_INTIN['DB']['Profiles']['Defaults']['Host']='';
 $_INTIN['DB']['Profiles']['Defaults']['User']='';

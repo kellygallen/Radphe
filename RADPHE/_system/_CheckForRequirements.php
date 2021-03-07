@@ -1,9 +1,8 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 //Check core php.ini settings, check folder settings, check database for conditions that can make this code malfunction and die with a nice error if there are known problems.
 //mod_php
 //mod_rewrite
-//loaded from siteengine
+//loaded from site engine
 //apache
 //database credentials and link
 //
@@ -49,9 +48,9 @@ if ($_INTIN['Config']['DEV']) {
             break;
         default:
             if (
-            (0) && //ip wildcard not implemented yet.
-            ($_SERVER['REMOTE_ADDR'] != $_INTIN['Config']['IPs']['Office']) &&
-            ($_SERVER['REMOTE_ADDR'] != $_INTIN['Config']['IPs']['KGAHOME'])
+                (0) && //ip wildcard not implemented yet.
+                ($_SERVER['REMOTE_ADDR'] != $_INTIN['Config']['IPs']['Office']) &&
+                ($_SERVER['REMOTE_ADDR'] != $_INTIN['Config']['IPs']['KGAHOME'])
             ){
                 die ('Restricted IP Address');
             }

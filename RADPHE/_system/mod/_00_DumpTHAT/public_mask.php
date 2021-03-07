@@ -22,7 +22,7 @@ unset($_INTIN['MOD']['CMS']['Blocks']['PageSideBar']);
 unset($_INTIN['MOD']['CMS']['Blocks']['PageHead']);
 //	unset($_INTIN['MOD']['CMS']['Blocks']['Layout']);
 //	unset($_INTIN['MOD']['CMS']['Blocks']['Request']);
-unset($_INTIN['MOD']['CMS']['Blocks']['LayoutCommonSuppliment']);
+unset($_INTIN['MOD']['CMS']['Blocks']['LayoutCommonSupplement']);
 //	unset($_INTIN['MOD']['CMS'] );
 unset($_INTIN['MOD']['SEO']['Defaults']);
 unset($_INTIN['MOD']['SEO']['SEO Content Code']);

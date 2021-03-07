@@ -1,5 +1,5 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
-
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+//TODO: Depreciated php methods move to mysqlI
 class DBConn{
 	public static $DefaultConnection=NULL;
 	public static $LastInsertID=array();
@@ -36,7 +36,7 @@ class DBConn{
 					return FALSE;
 					break;
 			}
-		} else return FALSE; //Unsuported Query Type
+		} else return FALSE; //Unsupported Query Type
 		$ResultMode = $QueryType;
 		$_QUERY[$Name][$SubInstance]['STATEMENT'] = $QueryType;
 

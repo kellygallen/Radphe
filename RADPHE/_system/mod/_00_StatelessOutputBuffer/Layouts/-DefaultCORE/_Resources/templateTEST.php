@@ -8,25 +8,27 @@
 	<title>Display</title>
 
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/style1.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../../../mJSterm/_Resources/css/style1.css" type="text/css" media="screen" />
 	<!--
 	<link rel="stylesheet" href="css/style2.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/style3.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/style4.css" type="text/css" media="screen" />
 	-->
 
-	<link rel="stylesheet" href="js/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="../../../../mJSterm/_Resources/js/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
 
-	<script type='text/javascript' src='js/jquery.js'></script>
-	<script src="js/prettyPhoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+	<script type='text/javascript' src='../../../../mJSterm/_Resources/js/jquery.js'></script>
+	<script src="../../../../mJSterm/_Resources/js/prettyPhoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 
-	<script type='text/javascript' src='js/custom.js'></script>
+	<script type='text/javascript' src='../../../../mJSterm/_Resources/js/custom.js'></script>
 
 	<!--[if IE 6]>
-	<script type='text/javascript' src='js/dd_belated_png.js'></script>
-	<script>DD_belatedPNG.fix('.ie6fix');</script>
-	<style>#footer .box ul li a, #sidebar .box ul a {zoom:1;}</style>
-	<![endif]-->
+    <script type='text/javascript' src='../../../../mJSterm/_Resources/js/dd_belated_png.js'></script>
+    <script>DD_belatedPNG.fix('.ie6fix');</script>
+    <style>#footer .box ul li a, #sidebar .box ul a {
+        zoom: 1;
+    }</style>
+    <![endif]-->
 
 </head>
 

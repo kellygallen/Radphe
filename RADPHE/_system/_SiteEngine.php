@@ -1,5 +1,5 @@
-<?php define('RadpheFallBackHook', ' global $_INTIN; ');//Fallback Hook Line. //note RadpheFallBackHook does not currently bring _INTIN with it.
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php define('RadpheFallBackHook', ' global $_INTIN; ');//Fallback Hook Line. NOT a C++ defined macro, must be eval()'ed.
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 
 date_default_timezone_set('America/Los_Angeles');

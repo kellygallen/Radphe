@@ -1,5 +1,6 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
-include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
+<?php //@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+//include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
+//Commented out Fallback nd Public Mask. Becasue this is a manual thing, except for the _LVL_10_Debug which is only there for example.
 
 /*********************************************************************************************************************\
  * LAST UPDATE

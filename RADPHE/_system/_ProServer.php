@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 //FOR Production ONLY - 'No Help'.
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
@@ -11,7 +11,7 @@ if (isset($_GET['Info'])) {
 			ob_start();
 			echo '<h2>_GET Info</h2>';
 			echo 'Server is Production<br>';
-			@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= ob_get_clean();
+			@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= ob_get_clean();
 			@ob_end_flush();
 			break;
 	}
@@ -68,7 +68,7 @@ if (isset($_GET['DevInfo'])) {
 			$testphpinfocodecolor = highlight_string($testphpinfocodecolor, true);
 			echo $testphpinfocodecolor;
 			$_INTIN['Debug'][]='$testphpinfocodecolor';
-*/			@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= ob_get_clean();
+*/			@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= ob_get_clean();
 			@ob_end_flush();
 			break;
 	}

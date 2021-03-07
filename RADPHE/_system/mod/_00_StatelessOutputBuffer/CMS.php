@@ -9,10 +9,10 @@
 //fallback block dump featuring assembles template with request on the stream side. and debug bench
 //therefore endblock by name brings it down to that level and nameless ends last of function call kind.
 //make blocks be incremented for all writes and choose that orden to start dumping from.
-//alternate block containing pointer to alternate block. in indexed array of block edits... to that insert also has templating without complex rex-ex pattern replacemnts.
-//pre and post block fuctions/modes must insert into array and increment after keys maybe not in that order. walk array mod vs rebuild replace vs bubble shift.
-//HOPEFULLY what you end up with is the ability to start throing output fragments around in all sorts of wierd orders that with optional termination of the block so long as you make a new output redirection. and the ob buffer level could get insanely deep throwing output here and there per each level then it all collappes like magig and all the callbacks for each new block come out assembled and routed.
-//optionaly you can control your ob levels with ending blocks.
+//alternate block containing pointer to alternate block. in indexed array of block edits... to that insert also has templating without complex rex-ex pattern replacements.
+//pre and post block functions/modes must insert into array and increment after keys maybe not in that order. walk array mod vs rebuild replace vs bubble shift.
+//HOPEFULLY what you end up with is the ability to start throwing output fragments around in all sorts of weird orders that with optional termination of the block so long as you make a new output redirection. and the ob buffer level could get insanely deep throwing output here and there per each level then it all collapse like magic and all the callbacks for each new block come out assembled and routed.
+//optionally you can control your ob levels with ending blocks.
 class CMS_Blocks{
 	public static
 		$Rendered=0;//set to one if already finished.
@@ -24,7 +24,7 @@ class CMS_Blocks{
 		$BlockCurrentResource=NULL,//Name of current Block being built.
 		$BlockCurrentLevel = 0,//ob_get_level of current Block being built.
 		$ReplaceLevel = 0,//current recursive depth of obreplace call back.
-		$ReplaceLevelMax = 15, //How many recursive obreplace calles were needed?
+		$ReplaceLevelMax = 15, //How many recursive obreplace calls were needed?
 		$OBReplaceLastRun = FALSE,
 		$ReplaceLevelCleanup = 0,
 		$TopBlock = '', //output this if no output replaced on first call or obreplace.
@@ -82,23 +82,23 @@ class CMS_Blocks{
 			ob_start(array('CMS_Blocks','obreplace'),0);
 			//Layout Block happens to be top element for supporting code.
 	//		include $_SERVER['DOCUMENT_ROOT'].'/_System/Layout/_manager.php';
-			//Buffer and and Fluch will be at end of this script or may never be called.
+			//Buffer and and Flush will be at end of this script or may never be called.
 			self::$OBLevel=ob_get_level();
 		}
 	}
 
-/*	Call Back Function that recursivly replaces block tags with content in output buffer.
+/*	Call Back Function that recursively replaces block tags with content in output buffer.
 */	public static function obreplace($buffer){
 /*	Resource Tag Parts
 	<part1>
 		Memory Address: [a-zA-Z0-9] OR
-		Lookuop Protocol: (mem|db|url|NULL|file)
+		Lookup Protocol: (mem|db|url|NULL|file)
 	<part2>
 		MemoryAddressName [a-zA-Z0-9]
 		Database rID	[0-9]
 		URL address
 		NULL block tags are outputted.
-		File path from wwwroot.
+		File path from webroot.
 	<part3>
 		Extra Options
 	#<par1>:<part2>;<part3>#
@@ -119,14 +119,14 @@ class CMS_Blocks{
 		} else
 		foreach ($matches as $MatchNum=>$MatchArr) {
 			$MatchArr[1] = strtolower($MatchArr[1]);
-			//Replace Block with content or remove blocks without contnet.
+			//Replace Block with content or remove blocks without content.
 			switch($MatchArr[1]){
 				case 'obj':
 				case 'mem':
 					if (isset($_INTIN['MOD']['CMS']['Blocks'][$MatchArr[2]])) {
 						if (!empty($_INTIN['MOD']['CMS']['Blocks'][$MatchArr[2]])) {
 							if (self::$OBReplaceLastRun === TRUE) {
-								$buffer = str_replace($MatchArr[0], "<!--- DEBUG: ".$MatchArr[0]." CMS Block with Content was not replaced due to recursion depth limits imposed by ReplaceLevelMax. Your probably placeing a block that leads back to itself. --->", $buffer);
+								$buffer = str_replace($MatchArr[0], "<!--- DEBUG: ".$MatchArr[0]." CMS Block with Content was not replaced due to recursion depth limits imposed by ReplaceLevelMax. Your probably placing a block that leads back to itself. --->", $buffer);
 							} else $buffer = str_replace($MatchArr[0], $_INTIN['MOD']['CMS']['Blocks'][$MatchArr[2]], $buffer);
 							$_INTIN['MOD']['CMS']['UsedBlocks'][$MatchArr[2]] = $MatchArr[0];
 							$ReplaceCount++;
@@ -173,7 +173,7 @@ class CMS_Blocks{
 			self::$ReplaceLevel--;
 		}
 
-		//How many recursive obreplace calles were needed?
+		//How many recursive obreplace calls were needed?
 		if (self::$ReplaceLevelMax < self::$ReplaceLevel) self::$ReplaceLevelMax = self::$ReplaceLevel;
 
 		//Cleanup Orfan Block Tags
@@ -297,7 +297,7 @@ class CMS_Blocks{
 			self::$BlockCurrentLevel = (ob_get_level()-self::$OBLevel);//get ob build level
 		} else {
 			if ((self::$BlockCurrentLevel+1) < ob_get_level()) self::closeBuffers(NULL);
-			//enforce ob buld level with closeBlocks(ob buld level)
+			//enforce ob build level with closeBlocks(ob build level)
 			if (!empty($_INTIN['MOD']['CMS']['Blocks'][$Resource] )){
 			    @$_INTIN['MOD']['CMS']['Blocks'][$Resource] .= ob_get_clean();
 			} else
@@ -310,7 +310,7 @@ class CMS_Blocks{
 /*	Save External file linked to session.
 */	public static function startLinkedRequest($filename=NULL){
 		if ($filename=NULL) $mode = 'iframe';
-		//check .htaccess config is instatlled and working
+		//check .htaccess config is installed and working
 		if (is_file($filenamepath)) {
 			$filenamepathinfo = pathinfo($filename);
 			$filenamepath = $filenamepathinfo['dirname'];
@@ -390,14 +390,14 @@ class CMS_Blocks{
 		return TRUE;
 	}
 
-//	End the block management level and therefor run the callback.
+//	End the block management level and therefore run the callback.
 	public static function render() {
 		if( class_exists('CMS_Skinner')&&(1)) {
 			if (self::$SKINcompile) {
 				CMS_Skinner::compile();
 				self::$SKINcompile = 0;
 			}
-		}// Template Modual else { TRUST all trunk blocks are correct.}
+		}// Template Module else { TRUST all trunk blocks are correct.}
 		if( class_exists('SEO')&&(1)) {
 			if (self::$SEOcompile) {
 				SEO::compile();
@@ -414,17 +414,17 @@ class CMS_Blocks{
 			if (self::$OBLevel == -2) return FALSE;
 			if ((ob_get_level())>self::$OBLevel) self::closeBuffers(self::$OBLevel);
 			@$_INTIN['MOD']['CMS']['Blocks']['NULL'][0] = @ob_get_contents();
-			//shoud not be false.
+			//should not be false.
 			//quick dirty patch 0=== was intended pre php7
 //			if (0 === strlen($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 			if (empty($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 //			if (0 === strlen($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 				echo self::TagBlockHead,'mem',self::TagBlockPart2Delimiter,self::$TopBlock,self::TagBlockPart3Delimiter,'Render Empty Content with top level specified',self::TagBlockFoot;
 				$_INTIN['MOD']['CMS']['Blocks']['NULL'][0] = @ob_get_contents();
-//todo fix was previously for white death to trigger debug, or set to block to active, or output block your on, or show error. or not allow no output to be the top block. or it goes down and doesnt referance anything...
-//there is another version where i versioned the output in a differant way just to tell if there was any... that was an old stepping stone to history.
-//this is blameable and for no reason.
-//may break and i font have a whitescreen to test it on.
+//todo fix was previously for white death to trigger debug, or set to block to active, or output block your on, or show error. or not allow no output to be the top block. or it goes down and doesnt reference anything...
+//there is another version where i versioned the output in a different way just to tell if there was any... that was an old stepping stone to history.
+//this is blamable and for no reason.
+//may break and i font have a white-screen to test it on.
 			} else echo '<pre>'.var_export($_INTIN['MOD']['CMS']['Blocks'],true).'</pre>';//@ob_end_flush();
 			@ob_end_flush();
 			self::$OBLevel = -2;

@@ -1,5 +1,4 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 //CROSS SERVER COMPATIBILITY
 
 /*	echo '<br><h1>Unmodified $_SERVER[\'DOCUMENT_ROOT\']  : '.$_SERVER['DOCUMENT_ROOT'].'</h1><br>';

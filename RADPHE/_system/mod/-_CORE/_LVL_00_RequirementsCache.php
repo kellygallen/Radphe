@@ -1,9 +1,9 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 //Check core php.ini settings, check folder settings, check database for conditions that can make this code malfunction and die with a nice error if there are known problems.
 //mod_php
 //mod_rewrite
-//loaded from siteengine
+//loaded from site engine
 //apache
 //database credentials and link
 //
@@ -25,7 +25,7 @@ if (preg_match('/^\_/', $RequestPath['dirname']) == 1) {
 if (!empty($_GET['Resource'])) {
 	//    $RequestPath = pathinfo($_GET['Resource']);
 	if (preg_match('/^\_/', $_GET['Resource']) == 1) {
-		die('This File dosent exist and should not be requested, system file!');
+		die('This File does not exist and should not be requested, system file!');
 	}
 }
 

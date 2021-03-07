@@ -1,7 +1,7 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');
-//Fallback Hook, SHOULD BE .htaccess install in Apache AllowOveride All
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+//Fallback Hook, SHOULD BE .htaccess install in Apache AllowOverride All
 
-//How this page is differant in content.
+//How this page is different in content.
 echo 'The Point to something.';
 
-//Thats it!?>
+//That's it!?>

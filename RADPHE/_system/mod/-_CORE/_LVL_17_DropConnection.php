@@ -6,9 +6,9 @@
  ob_end_flush();
  header('Content-Length: '.ob_get_length());
  ob_end_flush();
- * if GZ compress responce and you want acurate file size...
+ * if GZ compress response and you want accurate file size...
  *
- //TODO a core level thing where i work with headers to aupport GZ with right content length.
+ //TODO a core level thing where i work with headers to support GZ with right content length.
  */
 if (empty($_INTIN['WoRkEr!'])) {
 	@ob_flush();

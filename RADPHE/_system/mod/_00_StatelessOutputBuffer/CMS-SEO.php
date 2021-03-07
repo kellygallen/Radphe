@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php');
 
 class SEO{
@@ -6,7 +6,7 @@ class SEO{
 		$PageTitle = '',
 		$PageDescription = '',
 		$MetaTagsTxt = '',
-		$SupplementryContent = '',
+		$SupplementaryContent = '',
 		$MetaArray = array(),
 		$Keywords = array(),//Default Base Keywords in SiteConfig
 		$SEOfileKeywords = array(),//Keywords customized with SEO file.
@@ -14,7 +14,7 @@ class SEO{
 		$ForcedKeywords = array(),//keywords that will be used by force
 		$DeepKeywordSearch=0,
 		$Debug=0,
-		$SEOsearchBlockList = 'Request,SEODescription,SEOPageTitle,SEOSupplementryContent',
+		$SEOsearchBlockList = 'Request,SEODescription,SEOPageTitle,SEOSupplementaryContent',
 		$KeywordsText = '';
 
 	public static function __constructor(){
@@ -39,7 +39,7 @@ class SEO{
 		$State['PageTitle'] =self::$PageTitle;
 		$State['PageDescription'] =self::$PageDescription;
 		$State['MetaTagsTxt'] = '<pre>'.self::$MetaArray.'</pre>';
-		$State['SupplementryContnet'] = '<pre>'.str_replace(">","&gt;", str_replace("<","&lt;", self::$SupplementryContent)).'</pre>';
+		$State['SupplementaryContent'] = '<pre>'.str_replace(">","&gt;", str_replace("<","&lt;", self::$SupplementaryContent)).'</pre>';
 		$State['Keywords'] =self::$Keywords;
 		$State['ForcedKeywords'] =$CombinedForcedKeywords;
 		$State['KeywordsText'] =self::$Keywords;
@@ -48,7 +48,7 @@ class SEO{
 
 /*	Enable Nestable block replacement.
 //==========================================================================
-	This is done automaticaly since this is a static class.
+	This is done automatically since this is a static class.
 	So if you ever call this function you better know what your doing
 	Or I will find you, tie you up, and waist your time.
 */	public static function init(){
@@ -72,7 +72,7 @@ class SEO{
 			$SEO['Array']['Keywords'][] = $_INTIN['MOD']['SEO']['Keywords'];
 		if (!empty(self::$ForcedKeywords))
 			$SEO['Array']['Forced Keywords'][] = self::$ForcedKeywords;
-		$SEO['Array']['MetaTags'][] = array();//all meta txt immediatly added to metta array.
+		$SEO['Array']['MetaTags'][] = array();//all meta txt immediately added to meta array.
 
 		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'].'.SEO.php')) {
 			include $_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'].'.SEO.php';
@@ -161,7 +161,7 @@ class SEO{
 			}
 		}
 		unset($BirthOrder,$Text);
-		self::$SupplementryContent = $ValidSupplementalContent;
+		self::$SupplementaryContent = $ValidSupplementalContent;
 	}
 
 	public static function AddBlockKeywordSearch($Block){
@@ -354,7 +354,7 @@ array(
 		return $stripped;
 	}
 
-//	End the block management level and therefor run the callback.
+//	End the block management level and therefore run the callback.
 	public static function compile() {
 		global $_INTIN;
 
@@ -364,8 +364,8 @@ array(
 
 		$_INTIN['MOD']['CMS']['Blocks']['SEOPageTitle'] = self::$PageTitle;
 		$_INTIN['MOD']['CMS']['Blocks']['SEODescription'] = self::$PageDescription;
-		if (!empty(self::$SupplementryContent)) {
-			$_INTIN['MOD']['CMS']['Blocks']['SEOSupplementryContent'] = "<hr>".self::$SupplementryContent;
+		if (!empty(self::$SupplementaryContent)) {
+			$_INTIN['MOD']['CMS']['Blocks']['SEOSupplementaryContent'] = "<hr>".self::$SupplementaryContent;
 		}
 
 
@@ -378,7 +378,7 @@ array(
 //		self::setPrivateVar('DeepKeywordSearch',1); //set deep keyword search.
 		self::setPrivateVar('Debug',1); //set deep keyword search.
 
-		//Deek (entire request) keyword search or fast search.
+		//Deep (entire request) keyword search or fast search.
 		if ((!empty(self::$SEOsearchBlockList))||(self::$DeepKeywordSearch == 1)){
 			if (self::$DeepKeywordSearch == 0) {
 				$SearchBlocks = explode(',',self::$SEOsearchBlockList);
@@ -417,7 +417,7 @@ array(
 		$_INTIN['MOD']['SEO']['RemovedKeywords'] = $RemovedKeywords;
 //		$RemovedKeywords = array_flip($RemovedKeywords);
 
-		//Finalize Keyword List with manditory keywords
+		//Finalize Keyword List with mandatory keywords
 		$FinalKeywords = array_flip($UsableKeywords);
 		if (!empty(self::$ForcedKeywords))
 		foreach(self::$ForcedKeywords as $Index => $Keyword) {
@@ -425,7 +425,7 @@ array(
 			$FinalKeywords[$Keyword] = $Index;
 			$_INTIN['MOD']['SEO']['ForcedKeywords'][] = $Keyword;
 		}
-		//Cleanup Array Indexes and unflip
+		//Cleanup Array Indexes and un-flip
 		$ArrayIndex = 0;
 		$NewKeywords = array();//make it blank.
 		foreach ($FinalKeywords as $Keyword => $Index) {

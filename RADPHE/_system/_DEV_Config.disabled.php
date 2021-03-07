@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 //FOR Production ONLY - 'No Help'.
 ini_set('display_errors', 1);
@@ -9,16 +9,16 @@ $_INTIN['DB']['Profiles']['Pro']['User']='epiz_27737017';
 $_INTIN['DB']['Profiles']['Pro']['Pass']=apache_getenv('term').chr(rand(32,126)).apache_getenv('mJS');
 //$_INTIN['DB']['Profiles']['Pro']['Pass']='';
 $_INTIN['DB']['Profiles']['Pro']['Schema']='epiz_27737017_mjsterm';
-//other nested ofuscation methods.might make it try the md5 of a file outside webroot.
+//other nested obfuscation methods.might make it try the md5 of a file outside webroot.
 
 
 
 /*	$__IntIn['Awareness']['URL']['RequireSSL'] stores a 's' or ''
- Is literaly placed after 'http' and before '://' in urls. */
+ Is literally placed after 'http' and before '://' in urls. */
 $_INTIN['Awareness']['URL']['RequireSSL'] = '';
 
 /*	$__IntIn['Awareness']['URL']['RequireWWW'] stores a 'www.' or ''
- Is literaly placed after 'http://' and before the domain in urls. */
+ Is literally placed after 'http://' and before the domain in urls. */
 if (stripos($_SERVER['SERVER_NAME'], 'www.')!==FALSE) { //DO NOT CHANGE THIS LINE
 	$_INTIN['Awareness']['URL']['RequireWWW'] = ''; //DO NOT CHANGE THIS LINE
 } else {
@@ -43,7 +43,7 @@ $_INTIN['Load Status']['Request']['Micro Debug'] = '1';
 //	$_IntIn['Config']['Cache']['_DB_SERVER'] To use cache or not on _DB_SERVER, can be changed before logic T.
 $_INTIN['Config']['Cache']['_DB_SERVER'] = '0';
 
-//	$_IntIn['Config']['Debug']['Redirect'] When Debug is set print a redirect link in a div ontop of everythign instead of redirecting.
+//	$_IntIn['Config']['Debug']['Redirect'] When Debug is set print a redirect link in a div on top of everything instead of redirecting.
 $_INTIN['Config']['Debug']['Redirect'] = '1';
 
 $_INTIN['Config']['LogInAnywhere']['Enable'] = '1';

@@ -49,14 +49,14 @@ $_INTIN['Dump'][]='_SESSION';
 $_INTIN['Dump'][]='GLOBALS';// It could be big.
 $_INTIN['Debug']=1; //	force debug. i want yu to see this.
 
-//else prefent this trigger.
+//else prevent this trigger.
 //UNSET($_INTIN['Debug'],$_INTIN['Dump']);// force no debug.
 
-//add your ip or wildIP to the list that cache\intin jogs prior to run
+//add your ip or wildIP to the list that Rush\intin jogs prior to run
 //$_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.2';
-//uhh no that is primative down there.. its just in array so add exact ip to above, just copy lines and change the ip number that is all; it will build a list.
+//uhh no that is primitive down there.. its just in array so add exact ip to above, just copy lines and change the ip number that is all; it will build a list.
 */
-//you might consider just dieing here... go ahead its probably better that way for production.
+//you might consider just die here... go ahead its probably better that way for production.
 //die();
 
 //TODO: so you can have your address in the access list array.
@@ -83,17 +83,17 @@ if(
     )
   ){
 	bench('Debug Approved');
-	//redundant but stopes privicy config concernes. built into cms mod. later session or debug ip bound.
+	//redundant but stops privacy config concerns. built into cms mod. later session or debug ip bound.
 	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
 	//for now 'regular' in place function runs without public mask.
-	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');	//cms modual
+	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');	//cms module
 	//	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/_dBug.regular.php');	//patched/upgraded original unmasked
 
 	if (!empty($_INTIN['Error'])) {
 		echo '<h2>Errors</h2>';
 		new dBug($_INTIN['Error']);
 	}
-	if (!empty($_INTIN['Dump'])) { //pass var by referance should follow.
+	if (!empty($_INTIN['Dump'])) { //pass var by reference should follow.
 		echo '<h2>Dump</h2>';
 		foreach($_INTIN['Dump'] as $newDBugOrden => $newDBug){
 			if (!empty($newDBug))
@@ -113,7 +113,7 @@ if(
 //		phpinfo();
 //		new dBugM($GLOBALS);
 	}
-	echo '<h2>Ingrediants</h2>';
+	echo '<h2>Ingredients</h2>';
 	new dBugM(get_included_files());
 	echo '<h2>Stack Details</h2>';
 	echo '<pre>'.var_dump(debug_print_backtrace(true,true)).'</pre><hr>';
@@ -126,11 +126,11 @@ if(
 	echo '<br>When running in debug mode memory usage is double. It takes extra ram to format code for display.<br>';
 } else {
 	echo '<br>Running in public benchmark mode.<br>';
-	echo '<h2>Ingrediants</h2>';
+	echo '<h2>Ingredients</h2>';
 	echo '<pre>';
 	var_export($_INCLUDES[]=get_included_files());
 	echo '</pre>';
-	include($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/public_mask.php');	//Maximized Normal dBug
+	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
 	bench('Public Report');
 }
 
@@ -140,7 +140,7 @@ if(
 
 
 	//Get system load factor.
-//TODO: Cash on disk and run if within timiing.
+//TODO: Cash on disk and run if within timing.
 	$os = strtolower(PHP_OS);
 	if(strpos($os, "win") === false) {
 		if ( @file_exists('/proc/loadavg') ) {

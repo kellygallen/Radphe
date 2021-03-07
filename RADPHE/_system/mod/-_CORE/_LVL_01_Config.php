@@ -1,8 +1,8 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 //Service Configuration
 //Consider array building as stacking.
-//its not a solid array that gets added in. for cache and if it was some values would be specified for last or carry thorugh if it is traverse merged.
+//its not a solid array that gets added in. for cache and if it was some values would be specified for last or carry thorough if it is traverse merged.
 //stacking the final state of setting things.
 //it could be simpler... indeed.
 //it could also get a lot more crazy
@@ -13,7 +13,7 @@ if (1) {
 
     //DB Settings and Connection Init.
     //@include_once $_SERVER['DOCUMENT_ROOT'].'/_system/Config_DB.php';
-    //Database Settings - you can use ofuscation.
+    //Database Settings - you can use obfuscation.
     include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_01_DBLayer/_DBConn_Config.php');
 
     // Site Config override for DEV env.
@@ -30,9 +30,9 @@ if (1) {
     }
 //TODO: cache script jogging... stateful cache jogging if it can carry loads possibly with noise filter. and installer.
 //only for now is some stuff in rescued cache working.
-//will also need an editor and smart lodgic for if it can successfully write it's own cache. maybe a db mode failover.
+//will also need an editor and smart logic for if it can successfully write it's own cache. maybe a db mode flyover.
     require_once($_SERVER['DOCUMENT_ROOT'].'/_system/Rush/_INTIN.php');
-} else //Sitewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
+} else //Statewide: Information, API Credentials, Banned IP's, SEO Meta Merge, SEO Terms heredoc
     require_once($_SERVER['DOCUMENT_ROOT'].'/_system/Rush/_INTIN.php');
 
 //Register initial request. So it may be modified or examined by other pre request code.

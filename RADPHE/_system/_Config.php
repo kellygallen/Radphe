@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 ////	Internal Config
 ////			Site Wide Config
@@ -17,11 +17,11 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 
 
 /*	$__IntIn['Awareness']['URL']['RequireSSL'] stores a 's' or ''
-		Is literaly placed after 'http' and before '://' in urls. */
+		Is literally placed after 'http' and before '://' in urls. */
 	$_INTIN['Awareness']['URL']['RequireSSL'] = 's';
 
 /*	$__IntIn['Awareness']['URL']['RequireWWW'] stores a 'www.' or ''
-		Is literaly placed after 'http://' and before the domain in urls. */
+		Is literally placed after 'http://' and before the domain in urls. */
 	if ((stripos($_SERVER['SERVER_NAME'], 'www.')!==FALSE) || (ltrim($_SERVER['SERVER_NAME'],'0123456789\.') == "")) { //DO NOT CHANGE THIS LINE
 		$_INTIN['Awareness']['URL']['RequireWWW'] = ''; //DO NOT CHANGE THIS LINE
 	} else //DO NOT CHANGE THIS LINE
@@ -52,7 +52,7 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 //	$_IntIn['Config']['Cache']['_DB_SERVER'] To use cache or not on _DB_SERVER, can be changed before logic T.
 	$_INTIN['Config']['Cache']['_DB_SERVER'] = '1';
 
-//	$_IntIn['Config']['Debug']['Redirect'] When Debug is set print a redirect link in a div ontop of everythign instead of redirecting.
+//	$_IntIn['Config']['Debug']['Redirect'] When Debug is set print a redirect link in a div on top of everything instead of redirecting.
 	$_INTIN['Config']['Debug']['Redirect'] = '0';
 
 //	$_IntIn['Config']['LogInAnywhere'] To allow login or logout from ALMOST any url.
@@ -62,8 +62,8 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 	$_INTIN['Config']['LogInAnywhere']['GetURLLogInTrigger'] = 'LogIn';
 	$_INTIN['Config']['LogInAnywhere']['GetURLLogOutTrigger'] = 'LogOut';
 
-//	$_IntIn['Config']['Srtict'] Die instead of logging errors.
-//	$_IntIn['Config']['Srtict'] = '0';
+//	$_IntIn['Config']['Strict'] Die instead of logging errors.
+//	$_IntIn['Config']['Strict'] = '0';
 
 
 	$_INTIN['Load Status']['Display Message'] = '';

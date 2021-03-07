@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,7 +11,7 @@
 #mem:PagePreRunJS;#
 		</script>
 	</head>
-	<body id='subpage'>
+	<body id='subpage' #mem:OnLoad;# >
 		<div class='wrapper'>
 			<div id="top">
 <!--Header-->
@@ -26,7 +26,11 @@
 <!--Content-->
 #mem:Request;#
 <hr />
-#mem:SEOSupplementryContent;#
+<h3>Optional Supplemental Content</h3>
+#mem:SupplementaryContent;#
+<hr />
+<h3>Optional SEO Content</h3>
+#mem:SEOSupplementaryContent;#
 						</div><!--end entry-->
 					</div><!-- end content -->
 				</div><!--end main-->

@@ -4,7 +4,7 @@ bench('EXCEPTIONS');
 //When not to run site engine and where to direct root control.
 bench('EXCEPTIONS core');
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine_Exceptions.php');
-/* For Example: api-server for example, or a ajax/json request responce.
-	whould have its hooks added in here. */
-
+/* For Example: api-server for example, or a ajax/json request response.
+	would have its hooks added in here. */
+//TODO remove, completely or mostly in favor of modules being able to hook event levels. or make a exception module which looks for exceptions in other modules then hooks them.
 ?>

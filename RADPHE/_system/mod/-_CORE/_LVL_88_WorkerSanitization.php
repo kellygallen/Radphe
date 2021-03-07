@@ -18,7 +18,7 @@ $GLOBALS = array(
 		),
 		'_ENV'=>array(),
 		'_COOKIE'=>'',
-		'_FILES'=>$_FILES, //maybe could be that kind of worker on a unnessery long run that should be an exemption hook n die.
+		'_FILES'=>$_FILES, //maybe could be that kind of worker on a unnecessary long run that should be an exemption hook n die.
 		'_REQUEST'=>array(),
 		NULL=>NULL//leave me alone. I am ARRAY.
 );

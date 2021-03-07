@@ -25,11 +25,11 @@
 #mem:Request;#
 
 <hr />
-<h3>Optional Suplimental Content</h3>
-#mem:SupplementryContent;#
+<h3>Optional Supplemental Content</h3>
+#mem:SupplementaryContent;#
 <hr />
 <h3>Optional SEO Content</h3>
-#mem:SEOSupplementryContent;#
+#mem:SEOSupplementaryContent;#
 						<!--end entry-->
 						</div>
 					</div><!-- end content -->

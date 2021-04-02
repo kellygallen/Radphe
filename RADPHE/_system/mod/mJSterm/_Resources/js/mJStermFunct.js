@@ -3,7 +3,7 @@ function formSubmit(event) {
   var url = "mJSterm.php";
   var request = new XMLHttpRequest();
   var imgMAPInputEle = document.getElementById('Terminal');
-  var FormTargetEle = document.getElementById('TermResponce');
+  var FormTargetEle = document.getElementById('TermResponse');
   request.open('POST', url, true);
   request.onload = function() { // request successful
   // we can use server response to our request now

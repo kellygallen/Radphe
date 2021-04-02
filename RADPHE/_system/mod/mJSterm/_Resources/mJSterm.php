@@ -16,7 +16,7 @@ CMS_Skinner::$Page['LayoutFile']='Wide';
 //$_INTIN['Design']['Layout']
 include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/mJSterm/functions.php');
 
-//View,rendor
+//View,render
 if (isset($_GET['GUI'])) {
 	if ($_GET['GUI']==0) {
 		CMS_Blocks::CancelOutput();
@@ -57,7 +57,7 @@ die();
 //$_POST['LINK']=1;
 $schema = (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) ? $_INTIN['DB']['Profiles']['Pro']['Schema'] : 'DB';
 if ((0)||(!$link)) {
-	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= <<<THEREuGO
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= <<<THEREuGO
 <h2>How to set up database.</h2>
 Database Example DB SCHEMA.table currently set in config as {$schema}.Session<hr>
 <h1>Install</h1>
@@ -77,7 +77,7 @@ but with your values in the ' single quotes.<br>
 <h2>Radphe DB Config. <siteroot>/System/_DBConn_Config.php</h2>
 This is for the DATABASE SERVER Credentials.<br> This reflects most of your current config. <br>
 THEREuGO;
-	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= <<<THEREuGO
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= <<<THEREuGO
 \$_INTIN['DB']['Profiles']['Pro']['Host']='{$_INTIN['DB']['Profiles']['Pro']['Host']}';
 \$_INTIN['DB']['Profiles']['Pro']['User']='{$_INTIN['DB']['Profiles']['Pro']['User']}';
 \$_INTIN['DB']['Profiles']['Pro']['Pass']='.NOT.SHOWN.';
@@ -85,8 +85,8 @@ THEREuGO;
 </pre>
 
 THEREuGO;
-	if (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) @$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= 'for your config it is your '.$_INTIN['DB']['Profiles']['Pro']['Schema'].'.Session is your table.<br>';
-	@$_INTIN['MOD']['CMS']['Blocks']['SupplementryContent'] .= 'This SQL command or a slight adjustment installes the table for threading with session individuality and threading updates on your db server if the site has your db credentials and _DB_Config.php.';
+	if (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) @$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= 'for your config it is your '.$_INTIN['DB']['Profiles']['Pro']['Schema'].'.Session is your table.<br>';
+	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= 'This SQL command or a slight adjustment installs the table for threading with session individuality and threading updates on your db server if the site has your db credentials and _DB_Config.php.';
 }
 //Model
 ?>
@@ -94,10 +94,10 @@ THEREuGO;
 <link rel="stylesheet" href="/css/mJStermStyle.css" type="text/css" />
 
 <h3>For now limited to QUOTA! YEAH GO FOR IT!</h3>
-<pre>I am setting to run for 20 seconds max. it might go longer it is time duffy. be nice and disconncet it when done.
+<pre>I am setting to run for 20 seconds max. it might go longer it is time duffy. be nice and disconnect it when done.
 So you may need to press connect to get it going even though it shows connected.
 and on shared free hosting without time... since i am misbehaving yo many need to wait either for quota 5-15 min, or you may need to refresh page ctrl+shift+f5 then connect, maybe repeat. it got that way... after i started minimal abusing it.
-whats weird is the timing reves up in that senerio and then becomes super fast lock step in other process even though time is screwed.</pre>
+whats weird is the timing revs up in that scenario and then becomes super fast lock step in other process even though time is screwed.</pre>
 <form id="Term" target="TermResponce" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
 	<fieldset>
 		<legend>
@@ -120,7 +120,7 @@ whats weird is the timing reves up in that senerio and then becomes super fast l
 					<input type="text" value="" id="TermClickY" name="Term[_y]" style="display: none;" size=5 />
 				</label>
 				&emsp;
-				<iframe width=300 height=22; id="TermResponce" name="TermResponce" style="border:hidden;"></iframe>
+				<iframe width=300 height=22; id="TermResponse" name="TermResponse" style="border:hidden;"></iframe>
 			</h3>
 		</legend>
 		<input type="image" name="Terminal" id="Terminal" src="mJSterm.php?GUI=<?php if (!empty($_POST['LINK'])) echo $_POST['LINK']; else echo '0'; ?>" style="border:6px solid red;" />

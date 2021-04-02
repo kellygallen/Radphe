@@ -1,4 +1,4 @@
-#No ModReWrite reles above here.
+#No ModReWrite relies above here.
 #Mod Re_Write stuff is FAR below.
 
 #Custom Error Documents.
@@ -9,18 +9,18 @@
 	ErrorDocument 500 /-RADPHError404.php
 	ErrorDocument 503 /-RADPHError404.php
 	FallbackResource /-RADPHError404.php
-##to prevent shared hosting error jacking set all to a real file and reset headers and ststus to 200 if nessesary. though setting these jsut might take back your errors from the jacker.
+##to prevent shared hosting error jacking set all to a real file and reset headers and status to 200 if necessary. though setting these just might take back your errors from the hijack'ers.
 
 #Do not show directory indexes!
 	Options -Indexes
 
-##PHP Paramiters
+##PHP Parameters
 #Use of short tags - <?=$Var?>
 #	php_flag short_open_tag off
 #Register Globals
 #	php_value register_globals 0
 #	php_flag register_globals off
-#Use of Magic Quotes - When 'on' may complicate incomming data.
+#Use of Magic Quotes - When 'on' may complicate incoming data.
 #	php_value magic_quotes 0
 #	php_flag magic_quotes off
 #	php_value magic_quotes_gpc 0
@@ -93,16 +93,16 @@
 #No ModReWrite below here.
 </IfModule>
 
-#Sneeky and possibly dangerus.
+#Sneeky and possibly dangerous.
 SetEnvIf Host ^example\.com$ term=645mie
 SetEnvIf Host ^(dev\.)?example\.com$ mJS=PujtRX
 
 ##Prepend Site Engine to request.
 #	#Production
-#		php_value auto_prepend_file "/home/vol12_1/RESELLER/USER/htdocs/_system/_EngineHooks/_PrePend_Hook.htaccess.prefered.php"
+#		php_value auto_prepend_file "/home/vol12_1/RESELLER/USER/htdocs/_system/_EngineHooks/_PrePend_Hook.htaccess.preferred.php"
 #	HINT: Its something like
-#		<?php echo($_SERVER['DOCUMENT_ROOT'].'/_system/_PrePend_Hook.htaccess.prefered.php');
+#		<?php echo($_SERVER['DOCUMENT_ROOT'].'/_system/_PrePend_Hook.htaccess.preferred.php');
 #	    This is how you might find the right path on your hosting.
 #	HINT: For this file it's best to merge with what you got... at root of your site.
 #	#Development Shared
-		php_value auto_prepend_file "/var/www/_system/_EngineHooks/_PrePend_Hook.htaccess.prefered.php"
+		php_value auto_prepend_file "/var/www/_system/_EngineHooks/_PrePend_Hook.htaccess.preferred.php"

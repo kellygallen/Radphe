@@ -6,7 +6,7 @@ function include_closest($Filename, $IncludeFn=NULL, $Direction='<',$Steps=10) {
 	//Direction > Deeper, < To Root
 	//Steps NULL is no limit, 0-+ stop searching when level is reached
 	$RequestPath = pathinfo($_SERVER['REQUEST_URI']);
-	list($HOLDER,$ScriptPath) = explode($_SERVER['DOCUMENT_ROOT'], str_replace('\\', '/', __FILE__));
+	list($HOLDER,$ScriptPath) = explode($_SERVER['DOCUMENT_ROOT'],str_replace('\\', '/', __FILE__)); //windows path fix
 	$ScriptPath = pathinfo($ScriptPath);
 	$FilenamePath = pathinfo($Filename);
 	if ($FilenamePath['dirname']=='.') {

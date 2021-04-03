@@ -1,0 +1,118 @@
+#Mod Re_Write stuff is FAR below.
+#If you have trouble with 500 error, use httpd error log to see where the issue is possibly in this file; it might have something your host does not support.
+
+#Custom Error Documents.
+	ErrorDocument 400 /-RADPHError404.php
+	ErrorDocument 401 /-RADPHError404.php
+	ErrorDocument 403 /-RADPHError404.php
+	ErrorDocument 404 /-RADPHError404.php
+	ErrorDocument 500 /-RADPHError404.php
+	ErrorDocument 503 /-RADPHError404.php
+	FallbackResource /-RADPHError404.php
+##to prevent shared hosting 'error jacking' set all to a real file and reset headers and status to 200 if necessary. though setting these just might take back your errors from the hijackers.
+## FallbackResource is an important hook, but will break if your on an older apache server version. It is in the site root, and must be accessible so make sure the FORBID rules don't apply to this file.
+
+#Do not show directory indexes!
+	Options -Indexes
+
+##PHP Parameters
+#Use of short tags - <?=$Var?>
+#	php_flag short_open_tag off
+#Register Globals
+#	php_value register_globals 0
+#	php_flag register_globals off
+#Use of Magic Quotes - When 'on' may complicate incoming data.
+#	php_value magic_quotes 0
+#	php_flag magic_quotes off
+#	php_value magic_quotes_gpc 0
+#	php_flag magic_quotes_gpc off
+
+##Forbid Private Resources
+	IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+#Forbid files with ".inc.", ".sql.", or ".SEO." in the file name.
+	<Files ~ "\.(inc|sql|SEO)\.">
+		order allow,deny
+		deny from all
+	</Files>
+#Forbid files that begin with "_" (a underscore character).
+	<Files ~ "^_.+$">
+		order allow,deny
+		deny from all
+	</Files>
+###Hide php ini files
+	<Files ".user.ini"> 
+	    Require all denied
+	</Files>
+	<Files "php.ini"> 
+	    Require all denied
+	</Files>
+
+###Make php do htm too		May cause issues on some hosts. Then you have to use AddHandler to make it run html files as if they were php.
+	AddType application/x-httpd-php .html .htm
+#This is uncommon.
+
+#Enable ReWrite Engine
+<IfModule mod_rewrite.c>
+#	Have To Turn It on.
+	RewriteEngine on
+#No ModReWrite rules above here.
+
+#	No Underscore Requests.
+#	RewriteRule /?_.*/$ - [F]
+	RewriteRule /?_.*/$ /
+
+#	Make Site Map findable. not case sensitive except for the second argument.
+#	RewriteRule   ^sitemap\.xml$  Sitemap.xml [NC]
+
+#	Allow Old URLS to map to new urls. not case sensitive except for the second argument.
+#	RewriteRule   ^request\.html$  request.php [NC]
+
+#Protect from LIB WWW CGI attacks.
+	RewriteCond %{HTTP_USER_AGENT} libwww [NC,OR]
+	RewriteCond %{QUERY_STRING} ^(.*)=http: [NC]
+	RewriteRule ^(.*)$ - [F,L]
+
+#Dynamic Image Name for SEO.
+#	###Image in directory begins with 'IMG####-_-' and may end with anything prior to the extension.
+#	RewriteRule ^Resources/(.*?)/(IMG[0-9]{1,4})\-\_\-(.*?)\.(.*)$ /Resources/$1/$2.$4 [L]
+#	RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
+
+#No using the _system folder
+	RewriteRule ^_system/.*$ /Error404.php [NC]
+
+#Skins and protected resources and virtual resources.
+	RewriteCond     %{REQUEST_FILENAME}     !-f
+	RewriteCond     %{REQUEST_FILENAME}     !-d
+	RewriteRule ^([a-zA-Z0-9\_\-\.\ \#\%\$\^\&\(\)\+\/]*)$ /-RADPHError404.php?Resource=$1 [QSA]
+
+#Your Mod_ReWrite Stuff Here.
+
+
+#Sneaky. Condition THEN Apache _ENV variable::Then Get in php and mash it into obfusc-paiste.
+#	RewriteCond %{HTTP_HOST} ^example\.com$
+#	RewriteRule (.*) $1 [E=KEY:VAL]
+#No ModReWrite below here.
+</IfModule>
+
+#Sneaky and possibly dangerous. ONLY used for side project mJSterm in this project.
+SetEnvIf Host ^example\.com$ term=645mie
+SetEnvIf Host ^(dev\.)?example\.com$ mJS=PujtRX
+
+# This has been moved to .user.ini see the example. It works more commonly because .htaccess may be host NOT ALLOWED.
+# Using both .htaccess and .user.ini for this setting can be an extra redundancy but may get weird if you forget.
+#TODO test which one takes precedence. auto_prepend_file FROM .htaccess OR .user.ini (recursive) OR php.ini (not recursive)
+## Prepend Site Engine to request. This makes every request start by loading the site engine.
+#### NOTE that windows files are not case sensitive but linux files are.
+#	# WINDOWS XAMPP typical		NOTE Windows needs \\ as directory separator not \ or / in .htaccess and .user.ini but php files dont.
+#		php_value auto_prepend_file "C:\\xampp\\htdocs\\_system\\_EngineHooks\\_PrePend_Hook.htaccess.preferred.php"
+#	# CentOS 8 typical
+#		php_value auto_prepend_file "/var/www/html/_system/_EngineHooks/_PrePend_Hook.htaccess.preferred.php"
+#	# TurnKey or Debian
+#		php_value auto_prepend_file "/var/www/_system/_EngineHooks/_PrePend_Hook.htaccess.preferred.php"
+#	HINT: You can find it with a php file on your host containing:
+#		<?php echo($_SERVER['DOCUMENT_ROOT'].'/_system/_PrePend_Hook.htaccess.preferred.php'); ?>
+#	    This is how you might find the right path on your hosting, because sometimes they hide your server location from you.
+#	HINT: For this file it's best to merge with what you have... at root of your site. Your preexisting stuff may depend upon it.
+#		WinMerge is great for this kind of thing.
+#######

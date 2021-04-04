@@ -25,6 +25,7 @@ function getpidinfo($pid=NULL, $ps_opt="aux"){
 	if($pid==NULL) {
 		$pid = @getmypid();
 	}
+  
   $ps=@shell_exec("ps -".$ps_opt."p ".$pid);
   $ps=explode("\n", $ps);
 //  $pidinfo[] = $ps;
@@ -136,12 +137,12 @@ function bench($Name=""){
 		$_INTIN['Init']['Stats']['Time'][$Name] = microtime(true);
 		$_INTIN['Init']['Stats']['Memory'][$Name]['usage'] = memory_get_usage(TRUE);
 		$_INTIN['Init']['Stats']['Memory'][$Name]['peak'] = memory_get_peak_usage(TRUE);
-		$_INTIN['Init']['Stats']['Process'][$Name] = getpidinfo(NULL,"u");
+		if (DIRECTORY_SEPARATOR=='/') $_INTIN['Init']['Stats']['Process'][$Name] = getpidinfo(NULL,"u");
 	} else {
 		$_INTIN['Init']['Stats']['Time'][$CheckPointCount] = microtime(true);
 		$_INTIN['Init']['Stats']['Memory'][$CheckPointCount]['usage'] = memory_get_usage(TRUE);
 		$_INTIN['Init']['Stats']['Memory'][$CheckPointCount]['peak'] = memory_get_peak_usage(TRUE);
-		$_INTIN['Init']['Stats']['Process'][$CheckPointCount] = getpidinfo();
+		if (DIRECTORY_SEPARATOR=='/') $_INTIN['Init']['Stats']['Process'][$CheckPointCount] = getpidinfo();
 	}
 }
 bench('BEGIN');

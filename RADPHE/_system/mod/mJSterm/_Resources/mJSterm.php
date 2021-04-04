@@ -1,6 +1,7 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 @$_INTIN['DB']['Profiles']['Pro']['Pass'] = danGit;
+//TODO Does not work in XAMPP, possibly header mod behind back. Possibly forced compression deflate? Figure it out.
 if (session_status() == PHP_SESSION_NONE) {
 	session_start(); //because it needs a session id and i dont get it from cookies.
 	//session_write_close();
@@ -71,7 +72,7 @@ CREATE TABLE `Session` (
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 and you will want /_system/_DBConn_Config.php
-to have something like this prevail (final referance ending)
+to have something like this prevail (final reference ending)
 but with your values in the ' single quotes.<br>
 <br>
 <h2>Radphe DB Config. <siteroot>/System/_DBConn_Config.php</h2>
@@ -98,7 +99,7 @@ THEREuGO;
 So you may need to press connect to get it going even though it shows connected.
 and on shared free hosting without time... since i am misbehaving yo many need to wait either for quota 5-15 min, or you may need to refresh page ctrl+shift+f5 then connect, maybe repeat. it got that way... after i started minimal abusing it.
 whats weird is the timing revs up in that scenario and then becomes super fast lock step in other process even though time is screwed.</pre>
-<form id="Term" target="TermResponce" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
+<form id="Term" target="TermResponse" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
 	<fieldset>
 		<legend>
 			<h1 class="OneInLiners">&emsp;mJSterm&emsp;&emsp;&emsp;</h1>

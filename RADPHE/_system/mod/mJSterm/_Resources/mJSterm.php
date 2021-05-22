@@ -2,6 +2,8 @@
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 @$_INTIN['DB']['Profiles']['Pro']['Pass'] = danGit;
 //TODO Does not work in XAMPP, possibly header mod behind back. Possibly forced compression deflate? Figure it out.
+// https://www.jeffgeerling.com/blog/2016/streaming-php-disabling-output-buffering-php-apache-nginx-and-varnish
+// Suspected Outputbuffering is not turning off, also gzip not off with  
 if (session_status() == PHP_SESSION_NONE) {
 	session_start(); //because it needs a session id and i dont get it from cookies.
 	//session_write_close();
@@ -94,7 +96,7 @@ THEREuGO;
 <script src="/js/mJStermFunct.js"></script>
 <link rel="stylesheet" href="/css/mJStermStyle.css" type="text/css" />
 
-<h3>For now limited to QUOTA! YEAH GO FOR IT!</h3>
+<h3>For now limited to QUOTA! YEAH GO FOR IT! 'production demo' remote link hosting dictates these messages.</h3>
 <pre>I am setting to run for 20 seconds max. it might go longer it is time duffy. be nice and disconnect it when done.
 So you may need to press connect to get it going even though it shows connected.
 and on shared free hosting without time... since i am misbehaving yo many need to wait either for quota 5-15 min, or you may need to refresh page ctrl+shift+f5 then connect, maybe repeat. it got that way... after i started minimal abusing it.

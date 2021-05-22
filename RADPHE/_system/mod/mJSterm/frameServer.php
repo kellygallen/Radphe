@@ -28,8 +28,10 @@ print "--$boundary\n";
 @set_time_limit(20);
 
 # Disable Apache and PHP's compression of output to the client
-@apache_setenv('no-gzip', 1);
+@setenv('no-gzip', 1);
 @ini_set('zlib.output_compression', 0);
+//TODO not working on fpm and nginx.
+//https://www.jeffgeerling.com/blog/2016/streaming-php-disabling-output-buffering-php-apache-nginx-and-varnish
 
 # Set implicit flush, and flush all current buffers
 @ini_set('implicit_flush', 1);

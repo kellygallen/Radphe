@@ -118,6 +118,7 @@ $_INTIN['MOD']['SEO']['Defaults']['SupplementalContent'] = '';
 | Local: <a href="/wordpress/">Wordpress</a> <sup><a href="/wordpress/wp-admin/">Admin</a></sup>
 | <a href="http://kellygallen.lovestoblog.com/">Remote</a>: <a href="http://kellygallen.lovestoblog.com/WordPress/">Wordpress</a> <sup><a href="http://kellygallen.lovestoblog.com/WordPress/wp-admin/">Admin</a></sup> <sub><a href="http://192.168.1.26/wordpress/">local LAMP</a></sub>
 | <a href="/-RADPHEindex.php">Debug Example.</a>
+| <a href="/Wiki-Single-Doc.php">RADPhE Wiki.</a>
 PageNavigation1;
 @$_INTIN['MOD']['CMS']['Blocks']['PageNavigation3'] .= '#mem:PageNavigation1;#';
 

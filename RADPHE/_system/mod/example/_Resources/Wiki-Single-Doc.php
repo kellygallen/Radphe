@@ -6,13 +6,31 @@
 				Since your new to it I have to make it sand out clumsily for you to see it is there.<hr>
 				The real demo is when you realise how these pages differ and you use it to application firewall your web service or actually use it to run your domain.
 				You may decide to go with the event driven stages of the request/response OR use the bench command to see where you app is loosing efficiency OR you may use it in your development to make and debug apps rapidly.
-				<h3>When you understand it and the parts you need, you can strip away the rest; and that is your demo: <u>Your Solution</u> vs it's RADPhE version or <u>itself in RADPhE</u>.</h3>
+				<h3>When you understand it and the parts you need, you can strip away the rest; and that is your demo: <u>Your Solution</u> vs it's RADPhE version or <u>itself in RADPhE</u>. Try on your <u>DEV Server</u> till you understand it.</h3>
 				Apache + MOD_PHP is what you want. It's the only way it is real php... thats right FastCGI; I said it.
 			</p>
 		<h3>Install</h3>
+			<p>
+				Install 1 or many of the Site Engine hooking methods in /_system/_EngineHooks to their corresponding pipes.
+				You will be able to tell later which one is the Request's root caller. It could be different.
+				<hr>
+				For example ResourceFinder is the root for 404 and other errors by default and it may search the modules for virtual replacements.
+				The WWWroot folder will take precedence over any virtual files from modules and only the first replacement file by a module is provided as a permanent cached file for the browser; it will rely on the ETAG for the need to update but it also an update for everyone could be triggered by touching the timestamp of the virtual request.
+				So you update the Virtual File or execute touch on the file and all clients will update it on next request.
+				<hr>
+				The site engine would wrap around what ever work you have done without migration or integration of features and facilities.
+				Your script should die/exit if you want it to have authority over the site engine process but otherwise it could end at EOF or Return a value for an Access Control Layer.
+				If you dont want layout and template and debug in your ajax response you should abort all output buffering and terminate after your done.
+				<hr>
+				As per allowed by each example name menu link and possibly its corelation to another there is a range of reporting hidden in the trey at the bottom. Press <b>CTRL + SHIFT + K</b> for extra Knowledge.
+				Dont worry soon there will be a production brach of this, as a updatable core if not merge-able; it is just still taking its form and shape at the moment and many things are dummy place holder function snapins.
+				<hr>
+				That is MODULES in the Site Engine System; the APPLICATIONS you make outside the system folder however is wrapped by it.
+				You probably want to make a APP rather than a MOD.
+			</p>
 		<h3>www Where is it?</h3>
 			<p>
-				If not in WWWroot, then each module and event level will have a chance to provide a just in time replacement for the response from their _Resources sub folder before it fails.
+				If not in WWWroot, then each module and event level will have a chance to provide a just in time replacement for the response from their _Resources sub folder before it fails. This I refer to as a virtual.
 			</p>
 		<h3></h3>
 <h1>Features</h1>

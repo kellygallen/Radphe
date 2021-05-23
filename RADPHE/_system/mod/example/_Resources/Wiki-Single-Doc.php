@@ -78,10 +78,3 @@
 		<h3>Self Check sanity and standard enforcement audits and checks.</h3>
 	<h2>Server Side Terminal Rendering <sup>In high JPEG fps as a stream</sup></h2>
 	<h2>Light Bench Performance Report <sup>with its own secondary application firewall<sup> </h2>	
-<?php //FallBackHook alone hook will fail in this way.
-	@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '';
-	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '<blockquote>Contents of this file:'.__FILE__.'<hr><pre><code>';
-	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= highlight_file(__FILE__,true);
-	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '</code></pre></blockquote>';
-?>

@@ -72,6 +72,7 @@
 		$ModResourceLocations[] = '_system/class';
 		$ModResourceLocations[] = '_system/function';
 		$ModResourceLocations[] = '_system/mod';
+		$ModResourceLocations[] = '_system/mod/example';
 		foreach ($ModResourceLocations as $MRLsI => $MRLSearch) {
 			$ModuleInstances = glob($_SERVER['DOCUMENT_ROOT'].'/'.$MRLSearch.'/*/_Resources/'.$filename);
 	//echo '<pre>'; echo var_dump($ModuleInstances); echo '</pre><hr>';

@@ -1,4 +1,5 @@
 <h1>RADPhE</h1>
+	<hr>
 	<h2>About</h2>
 		<h3>The Bad Demo</h3>
 			<p>Currently this is a bad demo to show you the basics of how radphe works and what it does.
@@ -33,34 +34,42 @@
 				If not in WWWroot, then each module and event level will have a chance to provide a just in time replacement for the response from their _Resources sub folder before it fails. This I refer to as a virtual.
 			</p>
 		<h3></h3>
+	<hr>
 <h1>Features</h1>
 	<h2>Output Buffer Blocking</h2>
-		<h3>OBB HASH-URL Markup Language: <sup>#type#uri:param;command;...#</sup></h3>
+		<h3>OBB HASH-URL Markup Language: <sup>#type#uri:param;command;...#</sup></h3> This is a server side url which becomes evaluated and replaced or is an event's output so it becomes and can take a payload. These are recursively solved from the output of the request. I might refer to these as [building] BLOCKS (of output, or information).
 		<h3>Stateless Recursive Output Blocks <sup>and alternate format conversion</sup></h3>
-		<h3>HTTP Output Channeling <sup>http3 and prior</sub></h3>
-		<h3>Resource Alternates and Extensions <sup>per session and public</sup></h3>
-		<h3>Templates and Layouts in html php and tpl if you want.</h3>
+		<h3>HTTP Output Channeling <sup>http3 and prior</sub></h3>  Essentially this is the beginnings of output channeling for its own http3 process AND/OR parallel subsequent http 1-3 requests.
+		<h3>Resource Alternates and Extensions <sup>per session and public</sup></h3> You will be able to alter, extend, replace resources called by the result from the process your working under.
+		<h3>Templates and Layouts in html php and tpl if you want.</h3> You have the full php language.
 		<h3></h3>
+		<hr>
 	<h2>Forced Kernel Mode PHP</h2>
-		<h3>Making PHP Right <sup>and Kernel Optimization Wrong</sup></h3>
+		<h3>Making PHP Right <sup>and Kernel Optimization Wrong</sup></h3> First off you want your script to be doing what your saying. So you want php to run in Kernel Mode; but surprisingly that is not a thing. Unless you go through some lengths to make it that way; and there is not really wa way to do that. So the kernel has to decide that it is wrong, and back off of process optimization; and then you get the result you desire after opt-cash is made. If php became kernel mode on its own, things would go even faster and it would be doing exactly as you say. For now this is the best you get.
+	<hr>
 	<h2>Event Levels<h3>
-		<h3>Event 
+		<h3>e.POOP <sub>Event based</sub> 
 			<sup>Process</sup>
 			<sub>Oriented</sub>
 			<sup>Object</sup>
-			<sub>Programming</sub>
-		</h3>
-		<h3>Request Response Result Production</h3>
+			Programming
+		</h3> Its the thing that cant and should be; you should really try it out; as it is everything from every camp. OOP vs POP. Events!, POP and OOP. All at the same time, like they are the same thing.
+		<h3>Request Response Result Production</h3> Tracking.
 		<h3>Tracks changes between events <sup>Saves Work</sup></h3>
+	<hr>
 	<h2>SEO</h2>
-		<h3>Used/Missing/Forced Keywords</h3>
-		Response without template boiled down user text content.
-		dynamic and seo file per request customization.
-		.seo.php files may be in an isolated ftp or user folder.
-		the application may programmatically add and remove seo response metadata.
-	<h2>Debug and Persistent Recursive Dump</h2>
-	<h2>Minified! <sup>after your merge</sup><h2>
+		<h3>Used/Missing/Forced Keywords</h3> reporting of your seo hits and misses for a page once you make your seo serps array configuration in _INTIN.
+		<h3>response output without template boiled down user text content.</h3> words found in your template will not count to the SEO'able content and automation of KEYWORDS in the HTML output.
+		<h3>dynamic and seo file per request customization.</h3>You can change the SEO configuration at any time because it is an array. You can have index.php also pair with index.seo.php from a external user's home directory; if you wanted... or something like that. You SEO team wont need web access and they can process or modify anything; after it is done as it is being renderer. .seo.php files may be in an isolated ftp or user folder.
+		<h3>the application may programmatically add and remove seo response metadata.</h3>
+	<hr>
+	<h2>Debug and Persistent Recursive Dump</h2> which with History will be able to see previous session related server responses and environments. So if you want to go HIPPA compliant, you can implement secure storage or remote mounts of such. you can use session and files or parts of filesystem but you will have to solve security with configuration and physical implantation. History will be in session, and it will be unafraid to get big, and it will only make a single sessID cookie. There will be a way to implement no caching of certain files/responses or everything.
+	<hr>
+	<h2>Minified! <sup>after your merge</sup><h2> This script gets it done in very small, try minimizing it with a program that takes notes out and makes it as small as possible.
+	<hr>
 	<h2>PHP Language <sup>Is what you get</sup></h2>
+		You are expected to make your own things in PHP and what you can produce with it. You get the full language in this platform and you have control to break out of the sanity check wrapper. The Site Engine and Application Firewall is what you do with to the process environment prior to and without modification to your existing scripts and apps. PHP is essentially C language; am I wrong? I use a C style code macro defined and evaluated when called; but it currently only sets the main global structured array. As for Namespace that switching is on you and at present it is currently uninitiated and therefore not switched unless you manage it. The debugger at present does not version and dump all namespaces; only what your on.
+	<hr>
 	<h2>Application Firewall</h2>
 		It likely runs way before your request, calls it, dies... and the stage your request would be called is never reached unless you explore the long route that transcends pre-THING-post boundaries. Yes it can have 3 lives with resume skip or retry in the way you code it; and maybe do garbage clean up after the connection terminates after a non permissive app firewall stage.
 		<h3>Pre Process <sup>$_POST, _GET, practically ALL</sup></h3>
@@ -73,8 +82,10 @@
 		<h3>Offend to FailToBan <sup>parallel implementation</sup></h3>
 			<p>Independent IP ban list with wild cards and subnet size. And maybe a 3rd party sandbox for spiders to fill burn their quota and jack up their price until they bust their hosting budget with garbage on a 304 header.</P>
 			<p>Gateway Firewall and Syslog Spider Service for perimeter attack awareness with a above standard sticky identiprint some day.. ;-)</p>
-		<h3>Request History</h3>
+		<h3>Request History</h3> 
 		<h3>Support Submitting</h3>
-		<h3>Self Check sanity and standard enforcement audits and checks.</h3>
-	<h2>Server Side Terminal Rendering <sup>In high JPEG fps as a stream</sup></h2>
-	<h2>Light Bench Performance Report <sup>with its own secondary application firewall<sup> </h2>	
+		<h3>Self Check sanity and standard enforcement audits and checks.</h3> Ability to spider it self and probe for misconfigurations, verify production or development identity, installation, and logs. So that your problem is not that you dont periodicals check for certain things. [at present in no way at all]
+	<hr>
+	<h2>Server Side Terminal Rendering <sup>In high JPEG fps as a stream</sup></h2> and that is just me tinkering with any ol thing to have something in this project to run as I master the environment it runs in. It should be noted that if you want a php form submitted during an ongoing php generated stream or output or even into an already running process... you might want to take a loot at what I am doing. I am making a mjpeg stream as a sort fo server side image map where as the touch/click, gestures, and keys will be sent over post with slight Javascript (basic and common to browsers on any device). This is just a proof of concept. You can touch the screen and a dot's location will be chosen as it fly's through random. That is all it does besides this nifty trick of inserting information into a running process (With a database because sessions don't have an update or merge event built into php).
+	<hr>
+	<h2>Light Bench Performance Report <sup>with its own secondary application firewall<sup> </h2> May need to press CTRL+SHIFT+K and you will see there is the potential for time awareness. Here is how the output currently works. All CAPS events are major, and mixed case is minor. It will try to consolidate Major and Minor Events if they are less than a few percent of the total report so you may not see all your major events. Bench snapshots will be made around the php kernel events with snapshots of memory changes if enabled.

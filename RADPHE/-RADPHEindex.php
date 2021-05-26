@@ -1,4 +1,5 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+
 //Old way.
 	$_INTIN['Dump'][]='GLOBALS'; //wont work
 	$_INTIN['Dump'][]='_SESSION'; //wont work

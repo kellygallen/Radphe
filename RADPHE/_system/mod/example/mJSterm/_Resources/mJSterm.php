@@ -99,7 +99,7 @@ THEREuGO;
 <h3>For now limited to QUOTA! YEAH GO FOR IT! 'production demo' remote link hosting dictates these messages.</h3>
 <pre>I am setting to run for 20 seconds max. it might go longer it is time duffy. be nice and disconnect it when done.
 So you may need to press connect to get it going even though it shows connected.
-and on shared free hosting without time... since i am misbehaving yo many need to wait either for quota 5-15 min, or you may need to refresh page ctrl+shift+f5 then connect, maybe repeat. it got that way... after i started minimal abusing it.
+and on shared free hosting without time... since i am misbehaving yo many need to wait either for quota 5-15 min, or you may need to refresh page alt+shift+f5 then connect, maybe repeat. it got that way... after i started minimal abusing it.
 whats weird is the timing revs up in that scenario and then becomes super fast lock step in other process even though time is screwed.</pre>
 <form id="Term" target="TermResponse" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
 	<fieldset>

@@ -1,6 +1,38 @@
 <?php
 global $_INTIN;
 
+/* psudoprocrss build kernel print
+//find all befores use them to make place holder before events in core.
+$_INTIN['KERNEL']['MODULES']['CORE'] //just making this key means core files will be first.
+//Make all CORE, then make all rest.
+$_INTIN['KERNEL']['MODULES'][$MOD]
+KERNEL
+    MOD
+        EVENTS
+            BEFORE event lvl files
+            NATSORTED LVL Files with befores removed or omitted [moved to front].
+*/
+//$_INTIN['KERNEL']['MODfiles']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/*.php');
+$_INTIN['KERNEL']['FILES']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_*.php');
+$_INTIN['KERNEL']['MANAGERS']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_MODE_Level_Manager.php');
+//do just core events... toggle point. or all
+//and only make event names = array();
+$_INTIN['KERNEL']['BEFOREs']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_before_*.php');
+foreach($_INTIN['KERNEL']['BEFOREs'] as $Before_Orden => $Kernel_Level) {
+    $_INTIN['KERNEL']['BEFORE'][$Before_Orden] = realpath($Kernel_Level);
+    preg_match('/_LVL_(?<LVL>\d{1,4})(_before_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['BEFORE'][$Before_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$Before_Orden]);
+    //make path relative site root or site engine | which is right or full... as is. or include path option.
+    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$Before_Orden]['LEVEL']][]=$_INTIN['KERNEL']['BEFORE'][$Before_Orden];
+}
+
+foreach($_INTIN['KERNEL']['FILES'] as $Kernel_Level_Orden => $Kernel_Level) {
+    $_INTIN['KERNEL']['FILES'][$Kernel_Level_Orden] = realpath($Kernel_Level);
+    preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>[.\dazA-Z]{1,10})?_(?<LEVEL>.*).php$/', $_INTIN['KERNEL']['FILES'][$Kernel_Level_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$Kernel_Level_Orden]);
+    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$Kernel_Level_Orden]['LEVEL']][]=$Kernel_Level;
+}
+$_INTIN['Dump'][]=$_INTIN['KERNEL'];
+
+
 bench('CORE');
 $_INTIN['MOD']['CORE']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/-_CORE/_LVL_*_*.php');
 $lasttime=array();

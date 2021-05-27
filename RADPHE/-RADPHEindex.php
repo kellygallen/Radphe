@@ -5,7 +5,7 @@
 	$_INTIN['Dump'][]='_SESSION'; //wont work
 //New Way.
 	$_INTIN['Dump'][]=&$_INTIN['MOD']; //new way. by reference [can change after you reference still linked]
-	$_INTIN['Dump'][]=$_INTIN['CORE']; //new way by copy state.
+	$_INTIN['Dump'][]=$_INTIN['KERNEL']; //new way by copy state.
 //Show This.
 	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= 'Looks like $_INTIN["Dump"][]= is only for passing copies or by references for now.';
 	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '<blockquote><pre><code>';

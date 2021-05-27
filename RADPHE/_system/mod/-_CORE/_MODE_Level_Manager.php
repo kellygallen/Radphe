@@ -50,7 +50,12 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
         if (filesize($_INTIN['KERNEL']['EVENTlevelFILE'])>2) {
             if (!in_array($_INTIN['KERNEL']['EVENTlevelFILE'],get_included_files())) {
                 bench(strtolower(''.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelFILE']));
-                $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
+                try {
+                    $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
+                } catch (Exception $e) {
+                    $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = 1; //1 whole problem; ah, ;ah; ah. 0 or "" is prefered.
+                    $_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]=$e;
+                }
                 if (!isset($_INTIN['MOD']['CMS']['Blocks']))
                     $_INTIN['MOD']['CMS']['Blocks']=array();
                 if (!isset($alltime))

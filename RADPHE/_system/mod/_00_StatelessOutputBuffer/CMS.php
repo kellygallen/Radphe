@@ -40,7 +40,7 @@ class CMS_Blocks{
 		TagBlockFoot = '#',
 		TagPart1 = 'obj|mem|db|url|file|null|mod',
 		TagPart2 = '[a-zA-Z0-9_\/\:\=\&\?]*',
-		TagPart3 = '[a-zA-Z0-9_ \-]*',
+		TagPart3 = '[a-zA-Z0-9_ \-\:\&\>\;\=\(\)\{\}]*', //mist work for class function and things or array payloads
 		OBLEVELNAME = 'CMS_Blocks::obreplace',//obstart callback function name
 		OBTanCalBack = 'CMS_Blocks::TangentBlockCallBack',
 		DEBUG_DIV_INIT_STYLE = 'display:block; border:solid;',

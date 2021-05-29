@@ -1,6 +1,6 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 //TODO nes single line.... in all. declare is best done old way as i do in class. but its not like C it cant be lines of code macro. so the 1 line must be eval.
-//now you can use heredoc which can have php variables so you heredoc with 'heredoc' liter and note it uses less cpu to be literal weathor you use replacement or not.
+//now you can use heredoc which can have php variables so you heredoc with 'heredoc' literal and note it uses less cpu to be literal vs with replacement.
 
 //start block begins ob buffer capture with callback to end block.
 //start block of all types may replace,pre,post,insert default post.
@@ -38,7 +38,7 @@ class CMS_Blocks{
 		TagBlockPart2Delimiter = ':',
 		TagBlockPart3Delimiter = ';',
 		TagBlockFoot = '#',
-		TagPart1 = 'obj|mem|db|url|file|null',
+		TagPart1 = 'obj|mem|db|url|file|null|mod',
 		TagPart2 = '[a-zA-Z0-9_\/\:\=\&\?]*',
 		TagPart3 = '[a-zA-Z0-9_ \-]*',
 		OBLEVELNAME = 'CMS_Blocks::obreplace',//obstart callback function name
@@ -69,6 +69,8 @@ class CMS_Blocks{
 
 //	Enable Nestable block replacement.
 	public static function init(){
+//TODO:	DESTROY e.POOP injection. by recoding post and get to cut it out with no replacement.
+//If you want it to be a font end thing and not a protocol back end thing. code and snippets with #MEM:_;# will have to be sent by your own sneaky design. good work already has a method to authenticate its traffic this will be an ultra basic example of that. it applies its own inward firewalling for what matters. buy file upload over perl is what you want for that ideal method.
 		self::$OBLevel = ob_get_level();
 		if (self::$DEBUG_DIV === 1) {
 			echo "\r\n",'<div name=\'CMS_RecursiveOutputBlocks','__INIT','\' id=\'CMS_RecursiveOutputBlocks','__INIT','\' style=\'',self::DEBUG_DIV_INIT_STYLE,'\'>',"\r\n";
@@ -92,7 +94,7 @@ class CMS_Blocks{
 /*	Resource Tag Parts
 	<part1>
 		Memory Address: [a-zA-Z0-9] OR
-		Lookup Protocol: (mem|db|url|NULL|file)
+		Lookup Protocol: (mem|db|url|NULL|mod|file)
 	<part2>
 		MemoryAddressName [a-zA-Z0-9]
 		Database rID	[0-9]
@@ -158,7 +160,17 @@ class CMS_Blocks{
 					break;
 				case 'null':
 				case NULL:
-					//output the block anyway. do nto replace it
+					//output the block anyway. do not replace it
+					break;
+				case 'mod':
+					if (file_exists(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php')))
+						include_once(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php'));
+					if (!empty($MatchArr[3])) try {
+							$buffer = str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
+						} catch (Exception $e) {
+							$_INTIN['Dump']['_ERRORS'][]=$e;
+							$buffer = str_replace($MatchArr[0], '', $buffer);
+						}
 					break;
 				default:
 					//Remove Tag on last recursive instance

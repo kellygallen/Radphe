@@ -1,4 +1,9 @@
-<?php return 'NOT READY';
+<?php
+
+if (!isset($_GET['ShowLongestRoute'])) die();
+
+return 'NOT READY';
+
 foreach ($_INTIN['MOD']['']['AWARENESS']['Mods'] as $CoreLevel) {
 	//$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['CORE Level']][$_INTIN['MOD Level']][@$_INTIN['CORE']]['Prior-STATE']
 	foreach($CoreLevel as $modLevel) {

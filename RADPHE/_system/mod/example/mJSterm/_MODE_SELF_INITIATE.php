@@ -8,5 +8,6 @@ function CMSInitiatorTestMistake() {
     throw new Exception("Error Processing Request ON-PURPOSE");
     return ('Exception will be in _INTIN[Debug] array in alternate knowledge.');
 }
+
 //
 ?>

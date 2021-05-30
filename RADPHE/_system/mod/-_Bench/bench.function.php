@@ -25,7 +25,7 @@ function getpidinfo($pid=NULL, $ps_opt="aux"){
 	if($pid==NULL) {
 		$pid = @getmypid();
 	}
-  
+  if (DIRECTORY_SEPARATOR!='/') return $pid;//skip on windows
   $ps=@shell_exec("ps -".$ps_opt."p ".$pid);
   $ps=explode("\n", $ps);
 //  $pidinfo[] = $ps;
@@ -127,6 +127,8 @@ function mini_bench_to($arg_t, $arg_ra=false,$Start=NULL,$End=NULL,$Min=4) {
 }
 function bench($Name=""){
 	global $_INTIN;
+	if (!in_array($Name,array('BEGIN','APP START','APP DONE','READY','REQUEST LOADED','FINAL','CORE','RENDERED')))
+		 if ($_INTIN['Load Status']['Request']['Show Bench']!=1) return;
 //quick dirty patch.
 	if (!empty($_INTIN['Init']['Stats']['Time'])) {
 		$CheckPointCount = count($_INTIN['Init']['Stats']['Time']);

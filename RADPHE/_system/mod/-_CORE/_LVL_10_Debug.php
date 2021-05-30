@@ -1,4 +1,5 @@
 <?php
+if ($_INTIN['Load Status']['Request']['Show Debug']!=1) return "";
 global $_INTIN;
 bench('DEBUG');
 //Auto Dev Debug
@@ -184,9 +185,4 @@ if(
 //	echo 'Total: ' .$_INTIN['Init']['Stats']['Time']['Length']['Execution']. " ";
 //	echo '</center>';
 echo '</div><br><a id="bottom" name="bottom"></a>';
-
-if (!isset($_GET['ShowLongestRoute'])) die();
-
-//The End
-//die();
 ?>

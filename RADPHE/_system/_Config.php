@@ -30,12 +30,17 @@ $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Contacts']['Admin'
 /*	$_IntIn['Load Status']['Request']['Show Debug'] stores a '1' or '0'
 		Marks to display debug info in hidden div
 		Alt+Shift+K Enter ~ to unhide debug info */
+	$_INTIN['Load Status']['Request']['Show Bench'] = '1';
+
+/*	$_IntIn['Load Status']['Request']['Show Debug'] stores a '1' or '0'
+		Marks to display debug info in hidden div
+		Alt+Shift+K Enter ~ to unhide debug info */
 	$_INTIN['Load Status']['Request']['Show Debug'] = '1';
 
 /*	$_IntIn['Load Status']['Request']['Micro Debug'] stores a '1' or '0'
 		Marks to display debug info within request
 		?debugme=someflag[,someflag[,...]] appended to a rul request to set flags */
-	$_INTIN['Load Status']['Request']['Micro Debug'] = '0';
+	$_INTIN['Load Status']['Request']['Micro Debug'] = '1';
 
 /*	$_IntIn['Load Status']['Request']['Layout'] stores a '' or name of the layout folder
 		/_system/layout/_/Header.php

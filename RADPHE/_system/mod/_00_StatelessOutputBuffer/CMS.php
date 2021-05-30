@@ -168,8 +168,11 @@ class CMS_Blocks{
 					if (!empty($MatchArr[3])) try {
 							$buffer = str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
 						} catch (Exception $e) {
-							$_INTIN['Dump']['_ERRORS'][]=$e;
+							$_INTIN['Dump']['_ERRORS'][]=(string)$e;//."\n\n".$e->getTraceAsString();
 							$buffer = str_replace($MatchArr[0], '', $buffer);
+							do {
+								$_INTIN['Dump']['_ERRORS'][array_key_last($_INTIN['Dump']['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e));
+							} while($e = $e->getPrevious());
 						}
 					break;
 				default:
@@ -394,9 +397,9 @@ class CMS_Blocks{
 		global $_INTIN;
 		foreach ($_INTIN['MOD']['CMS']['Blocks'] as $BlockName => $BlockContent) {
 			if (is_string($BlockContent)) {
-				$BlockContent = str_replace("<","&lt;", $BlockContent);
-				$BlockContent = str_replace(">","&gt;", $BlockContent);
-				$_INTIN['MOD']['CMS']['Blocks'][$BlockName] = '<div align="left"><pre>'.$BlockContent.'</pre></div>';
+				//$BlockContent = str_replace("<","&lt;", $BlockContent);
+				//$BlockContent = str_replace(">","&gt;", $BlockContent);
+				$_INTIN['MOD']['CMS']['Blocks'][$BlockName] = ''.$BlockContent.'';
 			}
 		}
 		return TRUE;

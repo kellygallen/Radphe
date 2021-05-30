@@ -7,10 +7,10 @@
 if (!empty($_POST)) {
 	//Was for login only being available on in-house self-hosted dev server.
 	if (isset($_POST['LoginType'])) {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/_system/functions/_Login.php');//?
+		require_once($_SERVER['DOCUMENT_ROOT'].'/_system/function/_Login.php');//?
 	} else {
 //		require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_post.php');//unified post handler??
-	}//might consider switch case default break(s) for more complex.
+	}
 	bench('POSTED');
 } else bench('Posted');
 ?>

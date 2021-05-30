@@ -54,7 +54,10 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                     $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
                 } catch (Exception $e) {
                     $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = 1; //1 whole problem; ah, ;ah; ah. 0 or "" is prefered.
-                    $_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]=$e;
+                    $_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]=(string)$e;
+                    do {
+                        $_INTIN['Dump']['_ERRORS'][array_key_last($_INTIN['Dump']['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e));
+                    } while($e = $e->getPrevious());
                 }
                 if (!isset($_INTIN['MOD']['CMS']['Blocks']))
                     $_INTIN['MOD']['CMS']['Blocks']=array();

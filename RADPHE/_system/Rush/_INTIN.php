@@ -80,9 +80,19 @@ $_INTIN['DevConfig']['RestrictAccess']['IP List'][] = 'Localhost';
 
 $_INTIN['MOD']['CMS']['Blocks']['SEOKeywords'] = <<<'HereKeywords'
 website
+e.poop
+oop
+pop
+php
+apache
+mod_php
+Site Engine
+PHP Kernel
+Kernel Mode
+Radphe
 HereKeywords;
 
-$_INTIN['MOD']['CMS']['Blocks']['SEODescription'] = 'Config Level Default SEO Descrition';
+$_INTIN['MOD']['CMS']['Blocks']['SEODescription'] = 'Config Level Default SEO Description';
 //$_INTIN['MOD']['SEO']['Defaults']['Keywords'] = explode(',',$_INTIN['MOD']['CMS']['Blocks']['SEOKeywords']);
 $_INTIN['MOD']['SEO']['Defaults']['Keywords'] = $_INTIN['MOD']['CMS']['Blocks']['SEOKeywords'];
 $_INTIN['MOD']['SEO']['Defaults']['ForcedKeywords'] = 'Kelly,Allen';//NOT USED YET
@@ -101,7 +111,7 @@ $_INTIN['MOD']['SEO']['Defaults']['Meta'] = <<<'EOLongString'
 		<meta name="Distribution" content="Global">
 		<meta name="robots" content="index, follow, archive">
 EOLongString;
-$_INTIN['MOD']['SEO']['Defaults']['ForcedKeywordsTxt'] = 'Forced';
+$_INTIN['MOD']['SEO']['Defaults']['ForcedKeywordsTxt'] = 'Forced SERP, kelly g. allen, radphe';
 $_INTIN['MOD']['CMS']['Blocks']['SEOMeta'] = $_INTIN['MOD']['SEO']['Defaults']['Meta'];
 $_INTIN['MOD']['SEO']['Defaults']['PageTitle'] = 'KellyGAllen.blabla - #mem:SEOKeywords;#';
 $_INTIN['MOD']['CMS']['Blocks']['SEOPageTitle'] = $_INTIN['MOD']['SEO']['Defaults']['PageTitle'];

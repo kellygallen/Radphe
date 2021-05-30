@@ -7,6 +7,8 @@
 	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '<blockquote><pre><code>';
 	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= highlight_file(__FILE__,true);
 	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '</code></pre></blockquote>';
+	throw new Exception("Error Processing Request TESTING OUTSIDE ON-PURPOSE !");
+
 ?>
 OK but you may need to click the >>> <a href="#DevDebugPreKurser">Hidden Footer</a> <<< or press Alt + Shift + K.
 <hr>

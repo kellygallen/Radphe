@@ -1,4 +1,4 @@
-Sugjestions:
+Sugjestions: read wiki file from example mod resources
 
 Turnkey LAMP on VM in VMWare or VirtualBox BUT bare metal if not clusters of it for production.
 

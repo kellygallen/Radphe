@@ -1,6 +1,4 @@
 <?php
-
-//Application Area Code - Code that is run before any other code in an area.
 bench('APP START');
 if (file_exists(dirname($_SERVER['PHP_SELF']).'/_Application.php')) {
     bench('Application Override');

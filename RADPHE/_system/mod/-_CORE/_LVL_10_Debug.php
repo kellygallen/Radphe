@@ -2,7 +2,6 @@
 if ($_INTIN['Load Status']['Request']['Show Debug']!=1) return "";
 global $_INTIN;
 bench('DEBUG');
-//Auto Dev Debug
 ?>
 <script type="text/javascript">
 function toggleDiv(divId,alttriggerid,triggerid) {
@@ -18,11 +17,9 @@ function toggleDiv(divId,alttriggerid,triggerid) {
   if (x.style.display === "none") {
     x.style.display = "block";
     y.style.display = "none";
-//    z.style.display = "none";
   } else {
     x.style.display = "none";
     y.style.display = "block";
-//    z.style.display = "block";
   }
 zend = document.getElementById("bottom");
 zend.scrollIntoView();
@@ -33,42 +30,7 @@ zend.focus();
 <center><a href='javascript: ;' id="Trigger" accesskey="K" name="DevDebugPreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:none;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
 <div id='dBug' name='dBug' style=" background-color:#FFF; width:100%; display:none;">
 <?php
-//$_INTIN['Dump'][]='GLOBALS';
-//$_INTIN['Dump'][]='_INTIN';
-//Dump a resource like
-/*$_INTIN['Dump'][]='namespace';
-$_INTIN['Dump'][]='namespaces';
-$_INTIN['Dump'][]='style';
-$_INTIN['Dump'][]='_SERVER';
-$_INTIN['Dump'][]='_REQUEST';
-$_INTIN['Dump'][]='_POST';
-$_INTIN['Dump'][]='_GET';
-$_INTIN['Dump'][]='_FILES';
-$_INTIN['Dump'][]='_ENV';
-$_INTIN['Dump'][]='_COOKIE';
-$_INTIN['Dump'][]='_SESSION';
-$_INTIN['Dump'][]='GLOBALS';// It could be big.
-$_INTIN['Debug']=1; //	force debug. i want yu to see this.
-
-//else prevent this trigger.
-//UNSET($_INTIN['Debug'],$_INTIN['Dump']);// force no debug.
-
-//add your ip or wildIP to the list that Rush\intin jogs prior to run
-//$_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.2';
-//uhh no that is primitive down there.. its just in array so add exact ip to above, just copy lines and change the ip number that is all; it will build a list.
-*/
-//you might consider just die here... go ahead its probably better that way for production.
-//die();
-
-//TODO: so you can have your address in the access list array.
-//$_SERVER["REMOTE_ADDR"] = isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : '127.0.0.1';
-//once you realize what your doing... then not above line... comment it out. might be a fake php hosting thing...
-$_INTIN['DevConfig']['RestrictAccess']['IP List'][] = $_SERVER["REMOTE_ADDR"]; //lets call that a temporary go as well.
-//$_INTIN['Debug'][]='_POST';
-//$_INTIN['Debug'][]='_GET';
-//$_INTIN['Dump'][]='_FILES';
-
-//For internal loopback or application firewalling if you so choose.
+$_INTIN['DevConfig']['RestrictAccess']['IP List'][] = $_SERVER["REMOTE_ADDR"];
 $_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.1';
 if(
     (
@@ -84,22 +46,17 @@ if(
     )
   ){
 	bench('Debug Approved');
-	//redundant but stops privacy config concerns. built into cms mod. later session or debug ip bound.
-	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
-	//for now 'regular' in place function runs without public mask.
-	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');	//cms module
-	//	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/class/dBug/_dBug.regular.php');	//patched/upgraded original unmasked
-
+	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');
 	if (!empty($_INTIN['Error'])) {
 		echo '<h2>Errors</h2>';
 		new dBug($_INTIN['Error']);
 	}
-	if (!empty($_INTIN['Dump'])) { //pass var by reference should follow.
+	if (!empty($_INTIN['Dump'])) {
 		echo '<h2>Dump</h2>';
 		foreach($_INTIN['Dump'] as $newDBugOrden => $newDBug){
 			if (!empty($newDBug))
 				if (is_array($newDBug))
-//				if (isset($newDBug))
 					if (!is_string($newDBug)) {
 						echo '<br><hr><h3>'.$newDBugOrden.' '.'newDBug'.'</h3>';
 						new dBug($newDBug);
@@ -110,38 +67,27 @@ if(
 						} else eval("new dBugM($".$newDBug.");");
 					}
 		}
-//		echo '<h3>phpinfo()</h3>';
-//		phpinfo();
-//		new dBugM($GLOBALS);
 	}
+	echo '<br><hr><h3> </h3>';
 	echo '<h2>Ingredients</h2>';
 	new dBugM(get_included_files());
+	echo '<br><hr><h3> </h3>';
 	echo '<h2>Stack Details</h2>';
-	echo '<pre>'.var_dump(debug_print_backtrace(true,true)).'</pre><hr>';
-//	echo '<h2>Globals</h2>';
-//	new dBugM($GLOBALS);
-//		new dBugM($_INTIN['MOD']['CMS']['Blocks']);
-//		new dBug($_INTIN['MOD']['SEO']['Keywords']);
-//		new dBugM(@$_INTIN['MOD']['SEO']);
-//		new dBug($_INTIN['MOD']['SEO']['RemovedKeywords']);
+	echo '<pre>';
+	$e = new Exception();
+	print_r(str_replace(realpath($_SERVER['DOCUMENT_ROOT']), '', $e->getTraceAsString()));
+	echo '</pre><hr>';
 	echo '<br>When running in debug mode memory usage is double. It takes extra ram to format code for display.<br>';
 } else {
 	echo '<br>Running in public benchmark mode.<br>';
-	echo '<h2>Ingredients</h2>';
-	echo '<pre>';
-	var_export($_INCLUDES[]=get_included_files());
-	echo '</pre>';
-	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');	//Maximized Normal dBug
+	include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/public_mask.php');
 	bench('Public Report');
 }
-
 	bench('Bench Report');
 	$_INTIN['Init']['Stats']['Time Report']['Report']=mini_bench_to($_INTIN['Init']['Stats']['Time']);
 	bench('FINAL');
 
 
-	//Get system load factor.
-//TODO: Cash on disk and run if within timing.
 	$os = strtolower(PHP_OS);
 	if(strpos($os, "win") === false) {
 		if ( @file_exists('/proc/loadavg') ) {
@@ -151,12 +97,10 @@ if(
 		}
 	}
 	$EnvInfo['pid'] = getpidinfo();
-//TODO://Get system load factor.
 
-	$_INTIN['Init']['Stats']['Time Report']['Report']=mini_bench_to($_INTIN['Init']['Stats']['Time'],false,NULL,NULL).'<br><b><u>ENV</u></b>: <sub>Hosting&nbsp;Scenario:&nbsp;Primary&nbsp;Web&nbsp;w/sub&nbsp;webs&nbsp;(Phisical)&nbsp;Private&nbsp;Server</sub> <sup>Server&nbsp;Load:&nbsp;'.@$EnvInfo['fs'].'</sup>';/* <sub>Visits&nbsp;'.@$_GoogleAnalytics['VPHLast'].'/hour</sub> <sup>Views&nbsp;'.@$_GoogleAnalytics['PageViewsTotal'].'/day</sup> <sub>Visitors&nbsp;'.@$_GoogleAnalytics['VisitorsTotal'].'/day</sub>';*/
+	$_INTIN['Init']['Stats']['Time Report']['Report']=mini_bench_to($_INTIN['Init']['Stats']['Time'],false,NULL,NULL).'<br><b><u>ENV</u></b>: <sub>Hosting&nbsp;Scenario:&nbsp;Primary&nbsp;Web&nbsp;w/sub&nbsp;webs&nbsp;(Phisical)&nbsp;Private&nbsp;Server</sub> <sup>Server&nbsp;Load:&nbsp;'.@$EnvInfo['fs'].'</sup>';
 	$_INTIN['Init']['Stats']['Time Report']['Data']=mini_bench_to($_INTIN['Init']['Stats']['Time'],true);
 
-//	echo '<center>';
 	echo '<b><u>MEMORY</u></b>: <sub>Final:&nbsp;<b>' .number_format($_INTIN['Init']['Stats']['Memory']['FINAL']['usage'], 0, '.', ','). "</b>&nbsp;b</sub>";
 	echo ' <sup>Peak:&nbsp;' .number_format($_INTIN['Init']['Stats']['Memory']['FINAL']['peak'], 0, '.', ','). "&nbsp;b</sup>";
 	echo ' <sub>System&nbsp;Base:&nbsp;' .number_format($_INTIN['Init']['Stats']['Memory']['BEGIN']['usage'], 0, '.', ','). "&nbsp;b</sub>";
@@ -164,7 +108,7 @@ if(
 		(
 			($_INTIN['Init']['Stats']['Memory']['APP START']['usage']-$_INTIN['Init']['Stats']['Memory']['BEGIN']['usage'])+
 			($_INTIN['Init']['Stats']['Memory']['READY']['usage']-$_INTIN['Init']['Stats']['Memory']['APP DONE']['usage'])+
-			($_INTIN['Init']['Stats']['Memory']['FINAL']['usage']-$_INTIN['Init']['Stats']['Memory']['REQUEST LOADED']['usage'])
+			@($_INTIN['Init']['Stats']['Memory']['FINAL']['usage']-@$_INTIN['Init']['Stats']['Memory']['REQUEST LOADED']['usage'])
 		), 0, '.', ','). "&nbsp;b</sup>";
 	echo ' <sub>Application:&nbsp;' .number_format(
 		(
@@ -172,17 +116,14 @@ if(
 		), 0, '.', ','). "&nbsp;b</sub>";
 	echo ' <sup>Request:&nbsp;' .number_format(
 		(
-			($_INTIN['Init']['Stats']['Memory']['REQUEST LOADED']['usage']-$_INTIN['Init']['Stats']['Memory']['READY']['usage'])
+			@(@$_INTIN['Init']['Stats']['Memory']['REQUEST LOADED']['usage']-$_INTIN['Init']['Stats']['Memory']['READY']['usage'])
 		), 0, '.', ','). "&nbsp;b</sup>";
 	echo ' <sub>DEBUG&nbsp;REPORT:&nbsp;' .number_format(
 		(
-//			($_INTIN['Init']['Stats']['Memory']['FINAL']['usage']-$_INTIN['Init']['Stats']['Memory']['DEBUG']['usage'])+
 			($_INTIN['Init']['Stats']['Memory']['FINAL']['peak']-$_INTIN['Init']['Stats']['Memory']['RENDERED']['usage'])
 		), 0, '.', ','). "&nbsp;b</sub>";
 
 	echo '<br><b><u>EXE</u></b>: ';
 	echo $_INTIN['Init']['Stats']['Time Report']['Report'];
-//	echo 'Total: ' .$_INTIN['Init']['Stats']['Time']['Length']['Execution']. " ";
-//	echo '</center>';
 echo '</div><br><a id="bottom" name="bottom"></a>';
 ?>

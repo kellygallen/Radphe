@@ -8,10 +8,9 @@
 
 	bench('JOGGED');
 
-	$_INTIN['Init']['Stats']['Time Report']['Report']=mini_bench_to($_INTIN['Init']['Stats']['Time'],false,NULL,NULL).'<br><b><u>ENV</u></b>: <sub>Hosting&nbsp;Scenario:&nbsp;Primary&nbsp;Web&nbsp;w/sub&nbsp;webs&nbsp;(Phisical)&nbsp;Private&nbsp;Server</sub> <sup>Server&nbsp;Load:&nbsp;'.@$EnvInfo['fs'].'</sup>';/* <sub>Visits&nbsp;'.@$_GoogleAnalytics['VPHLast'].'/hour</sub> <sup>Views&nbsp;'.@$_GoogleAnalytics['PageViewsTotal'].'/day</sup> <sub>Visitors&nbsp;'.@$_GoogleAnalytics['VisitorsTotal'].'/day</sub>';*/
+	$_INTIN['Init']['Stats']['Time Report']['Report']=mini_bench_to($_INTIN['Init']['Stats']['Time'],false,NULL,NULL).'<br><b><u>ENV</u></b>: <sub>Hosting&nbsp;Scenario:&nbsp;Primary&nbsp;Web&nbsp;w/sub&nbsp;webs&nbsp;(Phisical)&nbsp;Private&nbsp;Server</sub> <sup>Server&nbsp;Load:&nbsp;'.@$EnvInfo['fs'].'</sup>';
 	$_INTIN['Init']['Stats']['Time Report']['Data']=mini_bench_to($_INTIN['Init']['Stats']['Time'],true);
 
-	//	echo '<center>';
 	echo '<b><u>MEMORY</u></b>: <sub>Final:&nbsp;<b>' .number_format($_INTIN['Init']['Stats']['Memory']['FINAL']['usage'], 0, '.', ','). "</b>&nbsp;b</sub>";
 	echo ' <sup>Peak:&nbsp;' .number_format($_INTIN['Init']['Stats']['Memory']['FINAL']['peak'], 0, '.', ','). "&nbsp;b</sup>";
 	echo ' <sub>System&nbsp;Base:&nbsp;' .number_format($_INTIN['Init']['Stats']['Memory']['BEGIN']['usage'], 0, '.', ','). "&nbsp;b</sub>";
@@ -31,14 +30,11 @@
 					), 0, '.', ','). "&nbsp;b</sup>";
 	echo ' <sub>DEBUG&nbsp;REPORT:&nbsp;' .number_format(
 			(
-			//			($_INTIN['Init']['Stats']['Memory']['FINAL']['usage']-$_INTIN['Init']['Stats']['Memory']['DEBUG']['usage'])+
 					($_INTIN['Init']['Stats']['Memory']['FINAL']['peak']-$_INTIN['Init']['Stats']['Memory']['RENDERED']['usage'])
 					), 0, '.', ','). "&nbsp;b</sub>";
 
 	echo '<br><b><u>EXE</u></b>: ';
 	echo $_INTIN['Init']['Stats']['Time Report']['Report'];
-	//	echo 'Total: ' .$_INTIN['Init']['Stats']['Time']['Length']['Execution']. " ";
-	//	echo '</center>';
 	echo '</div><br><a id="bottom" name="bottom"></a>';
 	echo '<h2>From The TOP!</h2><pre>';
 	var_export(get_included_files());

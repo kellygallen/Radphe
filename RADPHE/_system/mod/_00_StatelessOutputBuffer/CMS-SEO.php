@@ -1,6 +1,5 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 require_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_StatelessOutputBuffer/CMS.php');
-
 class SEO{
 	private static
 		$PageTitle = '',
@@ -46,12 +45,7 @@ class SEO{
 		$_INTIN['MOD']['SEO']['DEBUG'][] = $State;
 	}
 
-/*	Enable Nestable block replacement.
-//==========================================================================
-	This is done automatically since this is a static class.
-	So if you ever call this function you better know what your doing
-	Or I will find you, tie you up, and waist your time.
-*/	public static function init(){
+ 	public static function init(){
 		global $_INTIN;
 		if (CMS_Blocks::getPrivateVar('OBLevel')===-1) CMS_Blocks::init();
 		if (!empty($_INTIN['MOD']['SEO']['Defaults']['SupplementalContent']))
@@ -176,7 +170,6 @@ class SEO{
 		$Final=array();
 		if (!is_string($Txt)) return FALSE;
 		$Items = preg_split('/([,\r\n\|])/i',$Txt,0);
-//		$Items = @spliti (",|\r|\n|\|", $Txt);//TODO migrate to preg_split
 		//Make array of unique and lowercase.
 		foreach ($Items as $Item) {
 			$Array[trim(strtolower($Item))] = NULL;
@@ -316,7 +309,6 @@ class SEO{
 	//Strip Tags, dont join words, and consolidate whitespace.
 //Move to common static tools class, src=/_system/function/strip_clean_html_tags.php
 	public static function strip_html_tags( $text,$keeptags='') {
-//		return preg_replace('/\s\s+/',' ',strip_tags( $text,$keeptags));
 		return preg_replace('/\s\s+/',' ',strip_tags( $text,$keeptags));
 		$text = preg_replace(
 array(
@@ -391,10 +383,8 @@ array(
 				$_INTIN['MOD']['CMS']['Test'][''] = $SearchBlocks;
 			}
 			foreach ($SearchBlocks as $Index => $Block) {
-//strip_html_tags will be moved to common tools.
+//todo: strip_html_tags will be moved to common tools.
 				if (!empty($_INTIN['MOD']['CMS']['Blocks'][$Block])) $JustText .= "\r\n\t".self::strip_html_tags($_INTIN['MOD']['CMS']['Blocks'][$Block],"<img><a><b><u><strong>");
-//				if (1) $JustText .= "\r\n\t".self::strip_html_tags($_INTIN['MOD']['CMS']['Blocks'][$Block],"<img><a><b><u><strong><table><tr></td><hr>");
-//				if (!empty($_INTIN['MOD']['CMS']['Blocks'][$Block])) $JustBlock .= "\r\n\t".self::strip_html_tags($_INTIN['MOD']['CMS']['Blocks'][$Block],"<img><a><p><div><span><h1><h2><h3><table></tr></td><th><label><hr><center><br>");
 			}
 		}
 		if (self::$Debug == 1) {

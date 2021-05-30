@@ -16,9 +16,7 @@
 	<body id='frontpage' #mem:OnLoad;# >
 		<div class='wrapper'>
 			<div id="top">
-				<!--Head-->
 #mem:PageHeader;#
-				<!--Content-->
 #mem:Request;#
 
 <hr />
@@ -27,11 +25,11 @@
 <hr />
 <h3>Optional SEO Content</h3>
 #mem:SEOSupplementaryContent;#
-			</div><!-- end #top -->
-		</div><!-- end #wrapper -->
+			</div>
+		</div>
 		<div class='wrapper' id='footerwrap'>
 #mem:PageFooter;#
-		</div><!--end footer-->
+		</div>
 	</body>
 	<script type="text/javascript">
 #mem:PageRunJS;#

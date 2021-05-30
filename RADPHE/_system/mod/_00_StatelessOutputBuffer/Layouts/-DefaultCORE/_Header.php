@@ -14,12 +14,9 @@
 				<br />
 #mem:PageBreadCrumbRight;#
 			</ul>
-		</div>	<!-- end #head -->
+		</div>
 <?php
-//home page eye candy //happens inside cms_skinner
 if ($_SERVER['PHP_SELF']=="/index.php") {
-	//Cub3r html fallback. Becomes Cub3r.
-//	self::$Page['LayoutFile'] = 'FrontPage';
 ?>
 #mem:PageSlideShow;#
 <?php

@@ -1,26 +1,4 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-/*
-mixed getpidinfo(mixed pid [, string system_ps_command_options])
-this function gets PID-info from system ps command and return it in useful assoc-array,
-or return false and trigger warning if PID doesn't exists
-$pidifo=getpidinfo(12345);
-print_r($pidifo);
-Array
-(
-   [USER] => user
-   [PID] => 12345
-   [%CPU] => 0.0
-   [%MEM] => 0.0
-   [VSZ] => 1720
-   [RSS] => 8
-   [TT] => ??
-   [STAT] => Is
-   [STARTED] => 6:00PM
-   [TIME] => 0:00.01
-   [COMMAND] => php someproces.php > logfile
-)
-*/
-//////////////////////////////////////////////
 function getpidinfo($pid=NULL, $ps_opt="aux"){
 	if($pid==NULL) {
 		$pid = @getmypid();

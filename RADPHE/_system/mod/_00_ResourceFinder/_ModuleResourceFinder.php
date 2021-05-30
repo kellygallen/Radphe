@@ -1,53 +1,22 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-
-//Cant get below the site root.
-	//if () //site engine not outside of webroot.
 	ini_set('open_basedir', $_SERVER['DOCUMENT_ROOT']);
-
-//Errors should be off for this but html error are even worse.
 	ini_set('html_errors', false);
-//	ini_set('display_errors', 0);
-//	ini_set('display_startup_errors', 0);
-//	error_reporting(E_ALL);
-
-
-//	ob_clean();
-	//Nothing to return yet.
 	$foundInMod = 0;
-
-	//What are we looking for?
-	//Routed from URL or Mod_ReWrite
 	if (!empty($_GET['Resource'])) {
 		$filename = $_GET['Resource'];
-	//A Secret Post Method Resources.
 	} elseif (!empty($_POST['Resource'])) {
 		$filename = $_POST['Resource'];
-	//ELSE Strip to request side path filename.
 	} else $filename = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-//	echo '<hr>'.$filename.'<hr>'; //See what your working with.
-
-	//Is this because .htaccess says if its not a DIR or FILE that exists, then ________?
-	//Perhaps it is a default index file.
 	if (is_dir($_SERVER['DOCUMENT_ROOT'].'/'.$filename)) {
 		$filename.='/index.php';
-//	echo '<hr>'.$filename.'<hr>'; //See what your working with.
 		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$filename)) {
-			//Its a default index file. It will be included as PHP_Self.
 			return;
 		} else {
-			//Its Still Missing, not found.
 		}
 	}
-
-
-	//If a resource being requested can be discerned.
 	if (!empty($filename)){
-		// required for IE, otherwise Content-disposition is ignored
-	//	if(ini_get('zlib.output_compression')) ini_set('zlib.output_compression', 'Off');
 		$file_extension = strtolower(substr(strrchr($filename,"."),1));
-
-		//What not to allow.
-		$Deny = 0;	//Dont Deny.
+		$Deny = 0;
 		$DisallowedFiles = array();
 //		$DisallowedFiles[] = '.php';
 //		$DisallowedFiles[] = '.htm';
@@ -63,8 +32,6 @@
 		foreach ($DisallowedFiles as $FileNum => $FileType) {
 			if (stripos($filename,$FileType) !== FALSE) $Deny =1;
 		}
-
-		//Assemble locations and structures to look through.
 		$ModResourceLocations = array();
 		$ModResourceLocationsPub = array();
 		$ModuleInstances = array();
@@ -75,15 +42,12 @@
 		$ModResourceLocations[] = '_system/mod/example';
 		foreach ($ModResourceLocations as $MRLsI => $MRLSearch) {
 			$ModuleInstances = glob($_SERVER['DOCUMENT_ROOT'].'/'.$MRLSearch.'/*/_Resources/'.$filename);
-	//echo '<pre>'; echo var_dump($ModuleInstances); echo '</pre><hr>';
 			if ($ModuleInstances === FALSE) {
-				//continue;
 			} else foreach ($ModuleInstances as $MRLfI => $MRLfound) {
 				$ModResourceLocationsPub[] = $MRLfound;
 			}
 		}
 		$foundInMod = 0;
-	//echo '<pre>'; echo var_dump($ModResourceLocationsPub); echo '</pre><hr>';
 		if (!isset($ModResourceLocationsPub[0])) return;
 		$LayoutsPath = $ModResourceLocationsPub[0];
 		$LayoutsPath = preg_replace('/(\.){2,}/', '', $LayoutsPath);
@@ -96,18 +60,8 @@
 
 	} else {
 		return;
-/*		$Err404 = <<<ENDOFSTRING
-<center><h1 style="background: rgb(255, 255, 255) none repeat scroll 0%; margin-top: 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: rgb(0, 0, 0);">Not Found</h1>
-<div>The requested URL was not found on this server.</div>
-<hr>
-ENDOFSTRING;
-		http_response_code(404);*/
 	}
-
 if($foundInMod){
-//TODO set to request, ignore 404. set to NULL if does not equate to a real file.
-//	$filename = $_GET['file'];
-
 	switch( $file_extension ) {
 		case "pdf": $ctype="application/pdf"; break;
 		case "exe": $ctype="application/octet-stream"; break;
@@ -129,58 +83,46 @@ if($foundInMod){
 		case "jpg": $ctype="image/jpg"; break;
 		default: $ctype="application/force-download";
 	}
-
-	// Get last modification time of the current PHP file
 	$file_last_mod_time = filemtime(__FILE__);
-	// Get last modification time of the main content (that user sees)
 	$content_last_mod_time = filemtime($LayoutsPath);
-	//$LayoutsPathParts= pathinfo($LayoutsPath);
 	$ModuleRelativeLocation = str_replace($_SERVER["DOCUMENT_ROOT"].'_system/','',$LayoutsPath);
-	// Combine both to generate a unique ETag for a unique content
-	// Specification says ETag should be specified within double quotes
-	$etag = '"' . $file_last_mod_time . '.' .$ModuleRelativeLocation. '.' . $content_last_mod_time . '.'.filesize($LayoutsPath).'"';
-	//rREMOVE HEADERS AND START BUILDING THEM OVER.
+	$etag = '"' . $file_last_mod_time . '.' .$ModuleRelativeLocation. '.' . $content_last_mod_time . '.'.filesize($LayoutsPath).hash_file('md5',$LayoutsPath).'"';
 	header_remove();
-	//should be using set top block method in Stateless Module
 	switch( $file_extension ) {
 		case  "php":
-//			http_response_code(200);
 			header('HTTP/1.1 200 OK',true,200);
-			if (0) {//To run
+			if (0) {
 				@ob_clean();
 				include($LayoutsPath);
 				die();
-			} else {//insert to parent block
+			} else {
 				include($LayoutsPath);
 				return;
 			}
 		case  "htm":
 		case  "html":
-//			http_response_code(200);
 			header('HTTP/1.1 200 OK',true,200);
-			if (0) {//To run
+			if (0) {
 				@ob_clean();
 				echo file_get_contents ( $LayoutsPath , false);
-				die();//run over
-			} else {//insert to parent block
+				die();
+			} else {
 				echo file_get_contents ( $LayoutsPath , false);
 				return;
 			}
 			break;
 		default: break;
 	}
-	// Set Cache-Control header
+	bench('REQUEST LOADED');
 	header('Cache-Control: max-age=86400');
-	// Set ETag header
 	header('ETag: ' . $etag);
-	// Check whether browser had sent a HTTP_IF_NONE_MATCH request header
 	if(isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
 		if($_SERVER['HTTP_IF_NONE_MATCH'] == $etag) {
 			header('HTTP/1.1 304 Not Modified', true, 304);
 			exit();
 		}
 	}
-	header("Pragma: public"); // required
+	header("Pragma: public");
 	header("Expires: 0");
 	header("Content-Type: $ctype");
 	header("Content-Length: ".filesize($LayoutsPath));

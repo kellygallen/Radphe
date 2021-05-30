@@ -15,11 +15,7 @@ function is_func_enabled($func) {
 }
 function skippy_sleep($timeout=1) {
     $Start = time();
-//    $StartPart = explode('.',$Start);
     $StartPart = time();
-//    $finishStart=$StartPart[0]+$timeout;
-//    $finishStart=$finishStart.'.'.$StartPart[1];
-//    $finishStart=$Start+$timeout;
     $finishStart=$Start+$timeout;
     $MethodCount=0;
     $MEthodToggle=0;
@@ -39,20 +35,13 @@ function skippy_sleep($timeout=1) {
 	    if ((1)&&($MEthodToggle / 5 == 3) &&(is_func_enabled('curl_exec'))) {
 	    	$MEthod='time';
 	    	$end = time();
-	    	//		$diff=round($end,2)-round($Start,2);
 	    	$diff=$end-$Start;
-	    	//		die('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart);
-	    	//		if( floatval( (string) $a ) < floatval( (string) $b) ) { //do something }
-	    	//		$diff=bcsub($end, $Start, 4); //nobcmath
 	    	while(
 	    			($diff < $timeout)
 	    			) {
-	    				//			error_log('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart,0);
 	    				$end = time();
-
 	    				$MEthod='curl';
 	    				$ch = curl_init('http://10.200.100.20/No_Sleep_Makes_NGINX_Posing_As_Apache_To_Do_Weird_Things');
-	    				//localhost or a site that putposly never flushes output and keeps a iniated but null connection open for atleast a few seconds. or just a slow to respond site like my wordpress.
 	    				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    				curl_setopt($ch, CURLOPT_VERBOSE, 0);
 	    				curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);//maybe+1
@@ -61,7 +50,6 @@ function skippy_sleep($timeout=1) {
 	    				if ($response === false) {
 	    					$info = curl_getinfo($ch);
 	    					if ($info['http_code'] === 0) {
-	    						// timeouth=
 	    					}
 	    				}
 	    				$diff=$end-$Start;
@@ -69,20 +57,14 @@ function skippy_sleep($timeout=1) {
 	    			}
 	    }
 	    if ((0)&&($MEthodToggle / 5  == 4)) {//BURN IT UP ================================= 0 = not.
-	        //This one gets cpu hot.
+	        //This one gets cpu hot. so dont do it. have a server with real sleep.
 	        //microtime is slower. fix use it explode by space and make its time boundery use the unix ts plus the mtime for the measure. if a resonable delay was made allow it to recall it self.
-	        //		$MEthod='microtime';
 	        $MEthod='time';
 	        $end = time();
-	        //		$diff=round($end,2)-round($Start,2);
 	        $diff=$end-$Start;
-	        //		die('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart);
-	        //		if( floatval( (string) $a ) < floatval( (string) $b) ) { //do something }
-	        //		$diff=bcsub($end, $Start, 4); //nobcmath
 	        while(
 	            ($diff < $timeout)
 	            ) {
-	                //			error_log('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart,0);
 	                $end = time();
 	                $diff=$end-$Start;
 	                continue;
@@ -98,26 +80,16 @@ function skippy_sleep($timeout=1) {
 	    	if (!$linkSlow) $linkSlow = @mysql_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
 	    	$result = mysql_query("select concat(mod(unix_timestamp(now(6)),1),'00 ',unix_timestamp());",$linkSlow);
 	    	while ($row = mysql_fetch_assoc($result)) {
-	//todo
-	//work with microtime. here and there.
 	    		$dbtimestart = value($row);
 	    	}
 	    	mysql_close($linkSlow);
 	    	$end = time();
-	    	//		$diff=round($end,2)-round($Start,2);
 	    	$diff=$end-$Start;
-	    	//		die('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart);
-	    	//		if( floatval( (string) $a ) < floatval( (string) $b) ) { //do something }
-	    	//		$diff=bcsub($end, $Start, 4); //nobcmath
 	    	while(
 	    			($diff < $timeout)
 	    			) {
-	    				//			error_log('sleepy:'.$end.'-'.$Start.'='.$diff.'>?'.$timeout.' But the fiish is '.$finishStart,0);
 	    				$linkSlow = @mysql_connect("localhost","mod_mJSterm","","radphe");
 	    				if (!$linkSlow) $linkSlow = @mysql_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
-	    				//query db for time. compare to real time. micro time and if php7 hwtime to detect and time timing issues.
-	    				//but for now disconeect and reconnect should do it to lag some considerable microtime.
-	    				//select concat(mod(unix_timestamp(now(6)),1),'00 ',unix_timestamp());
 	    				$result = mysql_query("select concat(mod(unix_timestamp(now(6)),1),'00 ',unix_timestamp());",$linkSlow);
 	    				while ($row = mysql_fetch_assoc($result)) {
 	    					$dbtimenow = value($row);

@@ -98,21 +98,3 @@
 #Sneaky and possibly dangerous. ONLY used for side project mJSterm in this project.
 SetEnvIf Host ^example\.com$ term=645mie
 SetEnvIf Host ^(dev\.)?example\.com$ mJS=PujtRX
-
-# This has been moved to .user.ini see the example. It works more commonly because .htaccess may be host NOT ALLOWED.
-# Using both .htaccess and .user.ini for this setting can be an extra redundancy but may get weird if you forget.
-#TODO test which one takes precedence. auto_prepend_file FROM .htaccess OR .user.ini (recursive) OR php.ini (not recursive)
-## Prepend Site Engine to request. This makes every request start by loading the site engine.
-#### NOTE that windows files are not case sensitive but linux files are.
-#	# WINDOWS XAMPP typical		NOTE Windows needs \\ as directory separator not \ or / in .htaccess and .user.ini but php files dont.
-#		php_value auto_prepend_file "C:\\xampp\\htdocs\\_system\\_EngineHooks\\_PrePend_Hook.htaccess.preferred.php"
-#	# CentOS 8 typical
-#		php_value auto_prepend_file "/var/www/html/_system/_EngineHooks/_PrePend_Hook.htaccess.preferred.php"
-#	# TurnKey or Debian
-#		php_value auto_prepend_file "/var/www/_system/_EngineHooks/_PrePend_Hook.htaccess.preferred.php"
-#	HINT: You can find it with a php file on your host containing:
-#		<?php echo($_SERVER['DOCUMENT_ROOT'].'/_system/_PrePend_Hook.htaccess.preferred.php'); ?>
-#	    This is how you might find the right path on your hosting, because sometimes they hide your server location from you.
-#	HINT: For this file it's best to merge with what you have... at root of your site. Your preexisting stuff may depend upon it.
-#		WinMerge is great for this kind of thing.
-#######

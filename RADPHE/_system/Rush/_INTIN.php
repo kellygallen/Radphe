@@ -1,17 +1,6 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
-
-// array's of banned IP addresses
 $_INTIN['bannedIP'] = array(
-//	"70.180.218.*", BLOCK with wildcard
-//	"70.180.218.23?", BLOCK with single digit wildcard
-//	"70.180.218.123", BLOCK static ip
-//	"",
-	"94.127.144.*",
-	"94.127.145.*"
-//	"94.127.144.225" //Programer IP?
 );
-
-
 $_INTIN['Login']['IdleOut'] = '300';
 $_INTIN['Design']['Template'] = '-DefaultCORE'; //You would change this to the sibling folder of your installed layout in stateless mod.
 $_INTIN['Design']['Layout'] = '__Layout'; //features a hook for index.php to have it's own layout.
@@ -31,21 +20,6 @@ $_INTIN['Webs'][$_INTIN['Domains'][1]]['GoogleAnaliticsCode'] = 'UA-#######-2';
 $_INTIN['Webs'][$_INTIN['Domains'][1]]['GoogleAnaliticsProfile'] = $_INTIN['Webs'][$_INTIN['Domains'][1]]['root']['path'];
 $_INTIN['Webs'][$_INTIN['Domains'][1]]['GoogleAnaliticsProfileUser'] = 'analytics@com';
 $_INTIN['Webs'][$_INTIN['Domains'][1]]['GoogleAnaliticsProfilePWD'] = '';
-
-$_INTIN['Domains'][2] = 'dev.com';
-$_INTIN['Webs'][$_INTIN['Domains'][2]]['root']['path'] = 'com';
-$_INTIN['Webs'][$_INTIN['Domains'][2]]['GoogleAnaliticsCode'] = 'UA-#######-3';
-$_INTIN['Webs'][$_INTIN['Domains'][2]]['GoogleAnaliticsProfile'] = $_INTIN['Webs'][$_INTIN['Domains'][2]]['root']['path'];
-$_INTIN['Webs'][$_INTIN['Domains'][2]]['GoogleAnaliticsProfileUser'] = 'analytics@com';
-$_INTIN['Webs'][$_INTIN['Domains'][2]]['GoogleAnaliticsProfilePWD'] = '';
-
-$_INTIN['Domains'][3] = 'dev.com:2080';
-$_INTIN['Webs'][$_INTIN['Domains'][3]]['root']['path'] = 'com';
-$_INTIN['Webs'][$_INTIN['Domains'][3]]['GoogleAnaliticsCode'] = 'UA-#######-4';
-$_INTIN['Webs'][$_INTIN['Domains'][3]]['GoogleAnaliticsProfile'] = $_INTIN['Webs'][$_INTIN['Domains'][3]]['root']['path'];
-$_INTIN['Webs'][$_INTIN['Domains'][3]]['GoogleAnaliticsProfileUser'] = 'analytics@com';
-$_INTIN['Webs'][$_INTIN['Domains'][3]]['GoogleAnaliticsProfilePWD'] = '';
-
 ////	Defualt Config
 
 ////	Internal Config
@@ -73,8 +47,6 @@ $_INTIN['Config']['Support']['Level 1'] = &$_INTIN['Config']['Manager'];
 $_INTIN['Config']['Support']['Level 2'] = &$_INTIN['Config']['Admin'];
 
 
-//$_INTIN['DevConfig']['RestrictAccess']['Mode'] = 'IP List';
-//Used to limit an access to a trusted list.
 $_INTIN['DevConfig']['RestrictAccess']['IP List'][] = '127.0.0.1';
 $_INTIN['DevConfig']['RestrictAccess']['IP List'][] = 'Localhost';
 

@@ -1,18 +1,4 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-//TODO nes single line.... in all. declare is best done old way as i do in class. but its not like C it cant be lines of code macro. so the 1 line must be eval.
-//now you can use heredoc which can have php variables so you heredoc with 'heredoc' literal and note it uses less cpu to be literal vs with replacement.
-
-//start block begins ob buffer capture with callback to end block.
-//start block of all types may replace,pre,post,insert default post.
-//	mode if a and b measure the block. a=before, default *b=after, c=drop for now but version cancel sooner or later., or insert with preg_replace pattern on end ob level callback.
-//start default top block to request.
-//fallback block dump featuring assembles template with request on the stream side. and debug bench
-//therefore endblock by name brings it down to that level and nameless ends last of function call kind.
-//make blocks be incremented for all writes and choose that orden to start dumping from.
-//alternate block containing pointer to alternate block. in indexed array of block edits... to that insert also has templating without complex rex-ex pattern replacements.
-//pre and post block functions/modes must insert into array and increment after keys maybe not in that order. walk array mod vs rebuild replace vs bubble shift.
-//HOPEFULLY what you end up with is the ability to start throwing output fragments around in all sorts of weird orders that with optional termination of the block so long as you make a new output redirection. and the ob buffer level could get insanely deep throwing output here and there per each level then it all collapse like magic and all the callbacks for each new block come out assembled and routed.
-//optionally you can control your ob levels with ending blocks.
 class CMS_Blocks{
 	public static
 		$Rendered=0;//set to one if already finished.
@@ -69,8 +55,6 @@ class CMS_Blocks{
 
 //	Enable Nestable block replacement.
 	public static function init(){
-//TODO:	DESTROY e.POOP injection. by recoding post and get to cut it out with no replacement.
-//If you want it to be a font end thing and not a protocol back end thing. code and snippets with #MEM:_;# will have to be sent by your own sneaky design. good work already has a method to authenticate its traffic this will be an ultra basic example of that. it applies its own inward firewalling for what matters. buy file upload over perl is what you want for that ideal method.
 		self::$OBLevel = ob_get_level();
 		if (self::$DEBUG_DIV === 1) {
 			echo "\r\n",'<div name=\'CMS_RecursiveOutputBlocks','__INIT','\' id=\'CMS_RecursiveOutputBlocks','__INIT','\' style=\'',self::DEBUG_DIV_INIT_STYLE,'\'>',"\r\n";
@@ -79,32 +63,12 @@ class CMS_Blocks{
 			//Init NameSpace Used.
 			if (!isset($_INTIN['MOD']['CMS']['Blocks'])) $_INTIN['MOD']['CMS']['Blocks'] = array();
 			$_INTIN['MOD']['CMS']['Blocks']['NULL'] = '';
-			//Main Outpput Buffer with callback to Block Replacement
-//			ob_start(self::OBLEVELNAME,0);
 			ob_start(array('CMS_Blocks','obreplace'),0);
-			//Layout Block happens to be top element for supporting code.
-	//		include $_SERVER['DOCUMENT_ROOT'].'/_System/Layout/_manager.php';
-			//Buffer and and Flush will be at end of this script or may never be called.
 			self::$OBLevel=ob_get_level();
 		}
 	}
 
-/*	Call Back Function that recursively replaces block tags with content in output buffer.
-*/	public static function obreplace($buffer){
-/*	Resource Tag Parts
-	<part1>
-		Memory Address: [a-zA-Z0-9] OR
-		Lookup Protocol: (mem|db|url|NULL|mod|file)
-	<part2>
-		MemoryAddressName [a-zA-Z0-9]
-		Database rID	[0-9]
-		URL address
-		NULL block tags are outputted.
-		File path from webroot.
-	<part3>
-		Extra Options
-	#<par1>:<part2>;<part3>#
-*/
+	public static function obreplace($buffer){
 		global $_INTIN;
 		$EmptyBuffer = 0;
 		$ReplaceCount = 0;
@@ -146,13 +110,6 @@ class CMS_Blocks{
 					}
 					break;
 				case 'db':
-					//if db layer exists and con
-					//can get db content
-						//content is nto empty
-							//$DBContentBlock = DB content
-/*							$buffer = str_replace($MatchArr[0], $DBContentBlock, $buffer);
-							$ReplaceCount++;
-*/
 					break;
 				case 'url': //not supported yet
 						//Remove Tag on last recursive instance
@@ -429,17 +386,9 @@ class CMS_Blocks{
 			if (self::$OBLevel == -2) return FALSE;
 			if ((ob_get_level())>self::$OBLevel) self::closeBuffers(self::$OBLevel);
 			@$_INTIN['MOD']['CMS']['Blocks']['NULL'][0] = @ob_get_contents();
-			//should not be false.
-			//quick dirty patch 0=== was intended pre php7
-//			if (0 === strlen($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 			if (empty($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
-//			if (0 === strlen($_INTIN['MOD']['CMS']['Blocks']['NULL'][0])) {
 				echo self::TagBlockHead,'mem',self::TagBlockPart2Delimiter,self::$TopBlock,self::TagBlockPart3Delimiter,'Render Empty Content with top level specified',self::TagBlockFoot;
 				$_INTIN['MOD']['CMS']['Blocks']['NULL'][0] = @ob_get_contents();
-//todo fix was previously for white death to trigger debug, or set to block to active, or output block your on, or show error. or not allow no output to be the top block. or it goes down and doesnt reference anything...
-//there is another version where i versioned the output in a different way just to tell if there was any... that was an old stepping stone to history.
-//this is blamable and for no reason.
-//may break and i font have a white-screen to test it on.
 			} else echo '<pre>'.var_export($_INTIN['MOD']['CMS']['Blocks'],true).'</pre>';//@ob_end_flush();
 			@ob_end_flush();
 			self::$OBLevel = -2;

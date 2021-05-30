@@ -14,16 +14,13 @@
 	<body id='subpage' #mem:OnLoad;# >
 		<div class='wrapper'>
 			<div id="top">
-<!--Header-->
 #mem:PageHeader;#
-<!--End Header-->
 				<div id="main">
 					<div id='sidebar'>
 #mem:PageSideBar;#
-					</div><!-- end #sidebar -->
+					</div>
 					<div id="content">
 						<div class='entry'>
-<!--Content-->
 #mem:Request;#
 <hr />
 <h3>Optional Supplemental Content</h3>
@@ -31,15 +28,15 @@
 <hr />
 <h3>Optional SEO Content</h3>
 #mem:SEOSupplementaryContent;#
-						</div><!--end entry-->
-					</div><!-- end content -->
-				</div><!--end main-->
-			</div><!-- end #top -->
-		</div><!-- end #wrapper -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class='wrapper' id='footerwrap'>
-			<div id='footer'><!--Footer-->
+			<div id='footer'>
 #mem:PageFooter;#
-			</div><!--end footer-->
+			</div>
 		</div>
 	</body>
 		<script type="text/javascript">

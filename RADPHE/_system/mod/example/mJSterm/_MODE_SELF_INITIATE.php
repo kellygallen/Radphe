@@ -6,7 +6,7 @@ function CMSInitiatorTest() {
     return (__FILE__.' WITH '.__FUNCTION__);
 }
 function CMSInitiatorTestMistake() {
-    throw new Exception("Error Processing Request ON-PURPOSE");
+    throw new Exception("Error Processing Request ON-PURPOSE",2);
     return ('Exception will be in _INTIN[Debug] array in alternate knowledge.');
 }
 

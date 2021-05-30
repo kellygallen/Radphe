@@ -7,7 +7,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>#mem:SEOPageTitle;#</title>
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
 #mem:PageHead;#
 		<script type="text/javascript">
 #mem:PagePreRunJS;#
@@ -18,28 +17,26 @@
 			<div id="top">
 				<div id="head">
 #mem:PageHeader;#
-				</div>	<!-- end #head -->
+				</div>
 				<div id="main">
 					<div id="content">
 						<div class='entry'>
 #mem:Request;#
-
 <hr />
 <h3>Optional Supplemental Content</h3>
 #mem:SupplementaryContent;#
 <hr />
 <h3>Optional SEO Content</h3>
 #mem:SEOSupplementaryContent;#
-						<!--end entry-->
 						</div>
-					</div><!-- end content -->
-				</div><!--end main-->
-			</div><!-- end #top -->
-		</div><!-- end #wrapper -->
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class='wrapper' id='footerwrap'>
 			<div id='footer'>
 #mem:PageFooter;#
-			</div><!--end footer-->
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript">

@@ -168,10 +168,10 @@ class CMS_Blocks{
 					if (!empty($MatchArr[3])) try {
 							$buffer = str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
 						} catch (Exception $e) {
-							$_INTIN['Dump']['_ERRORS'][]=(string)$e;//."\n\n".$e->getTraceAsString();
+						//	$_INTIN['Dump']['_ERRORS'][]=(string)$e;//."\n\n".$e->getTraceAsString();
 							$buffer = str_replace($MatchArr[0], '', $buffer);
 							do {
-								$_INTIN['Dump']['_ERRORS'][array_key_last($_INTIN['Dump']['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e));
+								$_INTIN['Dump']['_ERRORS'][array_key_last($_INTIN['Dump']['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n%s", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e), $e->getTraceAsString());
 							} while($e = $e->getPrevious());
 						}
 					break;

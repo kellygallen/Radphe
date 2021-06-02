@@ -28,6 +28,7 @@
 <hr />
 <h3>Optional SEO Content</h3>
 #mem:SEOSupplementaryContent;#
+<hr>
 						</div>
 					</div>
 				</div>

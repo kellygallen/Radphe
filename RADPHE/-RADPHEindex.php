@@ -2,16 +2,17 @@
 
 	$_INTIN['Dump'][]=&$_INTIN['MOD']; //by reference [can change after you reference still linked]
 	$_INTIN['Dump'][]=$_INTIN['KERNEL']; //new way by copy state.
-//Show This but dont count it for seo keywords.
-	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= 'Looks like $_INTIN["Dump"][]= is only for passing copies or by references for now.';
-	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '<blockquote><pre><code>';
-	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= highlight_file(__FILE__,true);
-	$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '</code></pre></blockquote>';
-	throw new Exception("Error Processing Request TESTING OUTSIDE ON-PURPOSE !");
-
+	$_INTIN['Dump'][]=$GLOBALS; //new way by copy state.
 ?>
-OK but you may need to click the >>> <a href="#DevDebugPreKurser">Hidden Footer</a> <<< or press Alt + Shift + K.
-<hr>
+This is the only real file RADPHE has in the site root for expendable example files. You need at least 1 real one This file is optional.<br>
+The ERROR file at site root is NOT OPTIONAL; it is used as a auto alternate path to RADPhE virtual files.<br>
+<center>
+Click the hidden footer toggle link below as linked to Alt + Shift + K key combo.
+<h1>>>> <a href="#DevDebugPreKurser">Hidden Footer</a> <<<</h1>
+<hr></center>
 <center><h2>This is a Module Block call :: <u>#<b>mod</b>:<sup>example/mJSterm</sup>;<sub>CMSInitiatorTest</sub>#</u></h2><br>#mod:example/mJSterm;CMSInitiatorTest#</center>
 <hr>
 <center><h2>This is a Module Block call with a mistake :: <u>#<b>mod</b>:<sup>example/mJSterm</sup>;<sub>CMSInitiatorTestMistake</sub>#</u></h2><br>#mod:example/mJSterm;CMSInitiatorTestMistake#</center>
+<?php
+	throw new Exception("Error Processing Request TESTING OUTSIDE ON-PURPOSE !");
+?>

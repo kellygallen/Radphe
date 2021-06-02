@@ -2,7 +2,7 @@
 
 	$_INTIN['Dump'][]=&$_INTIN['MOD']; //by reference [can change after you reference still linked]
 	$_INTIN['Dump'][]=$_INTIN['KERNEL']; //new way by copy state.
-	$_INTIN['Dump'][]=$GLOBALS; //new way by copy state.
+	//$_INTIN['Dump'][]=$GLOBALS; //new way by copy state.
 ?>
 This is the only real file RADPHE has in the site root for expendable example files. You need at least 1 real one This file is optional.<br>
 The ERROR file at site root is NOT OPTIONAL; it is used as a auto alternate path to RADPhE virtual files.<br>

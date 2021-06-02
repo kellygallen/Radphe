@@ -1,6 +1,9 @@
 <?php
     if ( in_array(realpath($_SERVER['DOCUMENT_ROOT'].'/-RADPHError404.php'),get_included_files()) && 
-    (!empty($_GET['Resource']))) {
+        (!empty($_GET['Resource'])) &&
+        (file_exists($_SERVER['DOCUMENT_ROOT'].'/_system/'.@$ModuleRelativeLocation))&&
+        (!empty(@$ModuleRelativeLocation))
+    ) {
         @$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '';
         $_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= '<blockquote><center>Missing Resource Locator<hr>'.@$_GET['Resource'].' IS '.@$ModuleRelativeLocation.'<hr>According TO -RADPHEError404.php | core mod _ModuleResourceFinder<hr>core mod example _lvl_10_before_PreShutdown.php made this message...<hr> Contents of this VIRTUAL<sup>not in site root as ordered</sup> file: '.@$ModuleRelativeLocation.'<hr></center><pre><code>';
         $_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= highlight_file($_SERVER['DOCUMENT_ROOT'].'/_system/'.@$ModuleRelativeLocation,true);

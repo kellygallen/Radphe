@@ -3,6 +3,7 @@ if ($_INTIN['Load Status']['Request']['Show Debug']!=1) return "";
 global $_INTIN;
 bench('DEBUG');
 ?>
+<hr>
 <script type="text/javascript">
 function toggleDiv(divId,alttriggerid,triggerid) {
   var x = document.getElementById(divId);
@@ -54,19 +55,10 @@ if(
 	}
 	if (!empty($_INTIN['Dump'])) {
 		echo '<h2>Dump</h2>';
-		foreach($_INTIN['Dump'] as $newDBugOrden => $newDBug){
-			if (!empty($newDBug))
-				if (is_array($newDBug))
-					if (!is_string($newDBug)) {
-						echo '<br><hr><h3>'.$newDBugOrden.' '.'newDBug'.'</h3>';
-						new dBug($newDBug);
-					} else {
-						echo '<br><hr><h3>'.$newDBugOrden.' $'.$newDBug.'</h3>';
-						if ($newDBug!=='GLOBALS') {
-							eval("new dBug($".$newDBug.");");
-						} else eval("new dBugM($".$newDBug.");");
-					}
-		}
+		new dBugM($_INTIN['Dump']);
+		//if you want to see globals you have to do it expanded.
+		//new dBug($GLOBALS);
+
 	}
 	echo '<br><hr><h3> </h3>';
 	echo '<h2>Ingredients</h2>';

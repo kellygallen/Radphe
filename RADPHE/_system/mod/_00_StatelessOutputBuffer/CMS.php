@@ -26,7 +26,7 @@ class CMS_Blocks{
 		TagBlockFoot = '#',
 		TagPart1 = 'obj|mem|db|url|file|null|mod',
 		TagPart2 = '[a-zA-Z0-9_\/\:\=\&\?]*',
-		TagPart3 = '[a-zA-Z0-9_ \-\:\&\>\;\=\(\)\{\}]*', //mist work for class function and things or array payloads
+		TagPart3 = '[a-zA-Z0-9_ \-\:\&\>\=]*',
 		OBLEVELNAME = 'CMS_Blocks::obreplace',//obstart callback function name
 		OBTanCalBack = 'CMS_Blocks::TangentBlockCallBack',
 		DEBUG_DIV_INIT_STYLE = 'display:block; border:solid;',
@@ -121,11 +121,10 @@ class CMS_Blocks{
 					break;
 				case 'mod':
 					if (file_exists(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php')))
-						include_once(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php'));
+							include_once(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php'));
 					if (!empty($MatchArr[3])) try {
-							$buffer = str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
+							$buffer = (string) str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
 						} catch (Exception $e) {
-						//	$_INTIN['Dump']['_ERRORS'][]=(string)$e;//."\n\n".$e->getTraceAsString();
 							$buffer = str_replace($MatchArr[0], '', $buffer);
 							do {
 								$_INTIN['Dump']['_ERRORS'][array_key_last($_INTIN['Dump']['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n%s", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e), $e->getTraceAsString());

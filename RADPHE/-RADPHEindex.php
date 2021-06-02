@@ -1,8 +1,10 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
-	$_INTIN['Dump'][]=&$_INTIN['MOD']; //by reference [can change after you reference still linked]
-	$_INTIN['Dump'][]=$_INTIN['KERNEL']; //new way by copy state.
-	//$_INTIN['Dump'][]=$GLOBALS; //new way by copy state.
+	$_INTIN['Dump'][]=&$_INTIN['MOD']; //by reference [can change after you reference, still linked... may also be read/write difference to function parameters.]
+	$_INTIN['Dump'][]=&$_INTIN['KERNEL']; //new way by copy state.
+	$_INTIN['Dump'][__FILE__]=$GLOBALS; //new way by copy state.
+	//	$_INTIN['Dump'][]=&$_INTIN['KERNEL']; //new way by copy state.
+	// by referance = as it is later. array diff a now and a &$later.
 ?>
 This is the only real file RADPHE has in the site root for expendable example files. You need at least 1 real one This file is optional.<br>
 The ERROR file at site root is NOT OPTIONAL; it is used as a auto alternate path to RADPhE virtual files.<br>

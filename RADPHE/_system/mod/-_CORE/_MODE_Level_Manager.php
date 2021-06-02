@@ -43,9 +43,9 @@ $_INTIN['Dump'][]=$_INTIN['KERNEL'];
 
 bench('CORE');
 
-$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array();//=$GLOBALS; is too much memory for default config on most hosting. perhaps a filter.
+$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array();//=$GLOBALS;  needs filter limits as or after. perhaps my php4.3 array diff function from back somewhere.
 
-//$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][] = 'Every Kernel Include is wrapped for output, throwables, and changes (soon globals and maybe namespace exploration by file index spider if i have to. :~O) My motto is you have to want to make it work.';
+//$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][] = 'Every Kernel Include is wrapped for output, throwables, and changes
 foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['KERNEL']['EVENTlevel']) {
     bench(strtoupper(''.$_INTIN['KERNEL']['EVENT'].''));
     foreach ($_INTIN['KERNEL']['EVENTlevel'] as $_INTIN['KERNEL']['EVENTlevelORDEN'] => $_INTIN['KERNEL']['EVENTlevelFILE']) {
@@ -56,7 +56,6 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                     $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
                 } catch (Exception $e) {
                     $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = 1; //1 whole problem; ah, ;ah; ah. 0 or "" is prefered.
-//                    $_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][]=(string)$e;
                     do {
                         @$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][array_key_last($_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n%s", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e),$e->getTraceAsString());
                     } while($e = $e->getPrevious());
@@ -74,6 +73,7 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
     }
     bench(strtoupper(''.$_INTIN['KERNEL']['EVENT'].''));
 }
+unset($_INTIN['KERNEL']['Tracking']['Memory'],$_INTIN['KERNEL']['EVENTlevelORDEN'],$_INTIN['KERNEL']['EVENTlevel'],$_INTIN['KERNEL']['EVENTlevelFILE']);
 /*
             case 'overload':
                 //new level manager

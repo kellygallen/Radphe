@@ -43,7 +43,8 @@ $_INTIN['Dump'][]=$_INTIN['KERNEL'];
 
 bench('CORE');
 
-$lasttime=array();
+$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array();//=$GLOBALS; is too much memory for default config on most hosting. perhaps a filter.
+
 //$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][] = 'Every Kernel Include is wrapped for output, throwables, and changes (soon globals and maybe namespace exploration by file index spider if i have to. :~O) My motto is you have to want to make it work.';
 foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['KERNEL']['EVENTlevel']) {
     bench(strtoupper(''.$_INTIN['KERNEL']['EVENT'].''));
@@ -62,11 +63,11 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                 }
                 if (!isset($_INTIN['MOD']['CMS']['Blocks']))
                     $_INTIN['MOD']['CMS']['Blocks']=array();
-                if (!isset($alltime))
-                    $alltime=array();
-                $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
-                $lasttime=@array_diff($_INTIN['MOD']['CMS']['Blocks'],$alltime);
-                $alltime=$_INTIN['MOD']['CMS']['Blocks'];
+                if (!isset($_INTIN['KERNEL']['Tracking']['Memory']['AllTime']))
+                $_INTIN['KERNEL']['Tracking']['Memory']['AllTime']=array();//=$GLOBALS;
+                $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'] /* $GLOBALS */,$_INTIN['KERNEL']['Tracking']['Memory']['AllTime']);
+                $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=@array_diff($_INTIN['MOD']['CMS']['Blocks'] /* $GLOBALS */,$_INTIN['KERNEL']['Tracking']['Memory']['AllTime']);
+                $_INTIN['KERNEL']['Tracking']['Memory']['AllTime']=$_INTIN['MOD']['CMS']['Blocks'];
                 bench(strtolower('END '.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelORDEN']));
             }
         }

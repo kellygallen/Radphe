@@ -30,6 +30,7 @@ zend.focus();
 </script>
 <center><a href='javascript: ;' id="Trigger" accesskey="K" name="DevDebugPreKurser" onfocus='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'><input id="AltTriggerFocus" type="button" style="display:none;" value="Performance &amp; dBug: Press Alt + Shift + K" onclick='javascript: toggleDiv("dBug","AltTriggerFocus","Trigger");'></a></center><br>
 <div id='dBug' name='dBug' style=" background-color:#FFF; width:100%; display:none;">
+<center></center><hr><h1>WAS HIDDEN</h1><hr>
 <?php
 $_INTIN['DevConfig']['RestrictAccess']['IP List'][] = $_SERVER["REMOTE_ADDR"];
 $_INTIN['DevConfig']['RestrictAccess']['IP List'][]='127.0.0.1';

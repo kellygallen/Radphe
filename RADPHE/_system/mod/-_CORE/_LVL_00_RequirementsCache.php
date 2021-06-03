@@ -1,9 +1,9 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-$RequestPath = pathinfo($_SERVER['REQUEST_URI']);
-if (preg_match('/^\_/', $RequestPath['filename']) == 1) {
+$_INTIN['KERNEL']['FIREWALL']['RequestPath'] = pathinfo($_SERVER['REQUEST_URI']);
+if (preg_match('/^\_/', $_INTIN['KERNEL']['FIREWALL']['RequestPath']['filename']) == 1) {
 	die('This File should not be requested, system file!');
 }
-if (preg_match('/^\_/', $RequestPath['dirname']) == 1) {
+if (preg_match('/^\_/', $_INTIN['KERNEL']['FIREWALL']['RequestPath']['dirname']) == 1) {
 	die('This Directory should not be requested, system file!');
 }
 if (!empty($_GET['Resource'])) {
@@ -12,11 +12,11 @@ if (!empty($_GET['Resource'])) {
 	}
 }
 
-if (preg_match('/^\-RADPHError404\.php$/', $RequestPath['basename']) == 1) {
+if (preg_match('/^\-RADPHError404\.php$/', $_INTIN['KERNEL']['FIREWALL']['RequestPath']['basename']) == 1) {
 	die('This File should not be requested, why request a 404?!');
 }
 
-if (preg_match('/\.SEO$/', $RequestPath['filename']) == 1) {
+if (preg_match('/\.SEO$/', $_INTIN['KERNEL']['FIREWALL']['RequestPath']['filename']) == 1) {
 	die('This File should not be requested, SEO customizations!');
 }
 

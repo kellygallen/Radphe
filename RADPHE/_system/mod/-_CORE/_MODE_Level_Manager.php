@@ -3,40 +3,42 @@
 global $_INTIN;
 
 $_INTIN['KERNEL']['MANAGERS']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_MODE_Level_Manager.php');
-foreach($_INTIN['KERNEL']['MANAGERS'] as $Kernel_CORE_Orden => $Kernel_Level) {
-    $_INTIN['KERNEL']['MANAGERS'][$Kernel_CORE_Orden] = realpath($Kernel_Level);
+foreach($_INTIN['KERNEL']['MANAGERS'] as $_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden'] => $_INTIN['KERNEL']['LEVEL']['Kernel_Level']) {
+    $_INTIN['KERNEL']['MANAGERS'][$_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden']] = realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
 }
 
 $_INTIN['KERNEL']['CORE']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/-_CORE/_LVL_*.php');
-foreach($_INTIN['KERNEL']['CORE'] as $Kernel_CORE_Orden => $Kernel_Level) {
-    $_INTIN['KERNEL']['FILES'][$Kernel_CORE_Orden] = realpath($Kernel_Level);
-    preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>[.\dazA-Z]{1,10})?_(?<LEVEL>.*).php$/', $_INTIN['KERNEL']['CORE'][$Kernel_CORE_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$Kernel_CORE_Orden]);
-    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$Kernel_CORE_Orden]['LEVEL']]=array();
+foreach($_INTIN['KERNEL']['CORE'] as $_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden'] => $_INTIN['KERNEL']['LEVEL']['Kernel_Level']) {
+    $_INTIN['KERNEL']['FILES'][$_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden']] = realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
+    preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>[.\dazA-Z]{1,10})?_(?<LEVEL>.*).php$/', $_INTIN['KERNEL']['CORE'][$_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden']], $_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden']]);
+    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_CORE_Orden']]['LEVEL']]=array();
 }
 
 $_INTIN['KERNEL']['BEFOREs']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_before_*.php');
-foreach($_INTIN['KERNEL']['BEFOREs'] as $Before_Orden => $Kernel_Level) {
-    $_INTIN['KERNEL']['BEFORE'][$Before_Orden] = realpath($Kernel_Level);
-    preg_match('/_LVL_(?<LVL>\d{1,4})(_before_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['BEFORE'][$Before_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$Before_Orden]);
-    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$Before_Orden]['LEVEL']][]=realpath($Kernel_Level);
+foreach($_INTIN['KERNEL']['BEFOREs'] as $_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden'] => $_INTIN['KERNEL']['LEVEL']['Kernel_Level']) {
+    $_INTIN['KERNEL']['BEFORE'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']] = realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
+    preg_match('/_LVL_(?<LVL>\d{1,4})(_before_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['BEFORE'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']], $_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']]);
+    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']]['LEVEL']][]=realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
 }
 
 $_INTIN['KERNEL']['FILES']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_*.php');
-foreach($_INTIN['KERNEL']['FILES'] as $Kernel_Level_Orden => $Kernel_Level) {
-    $_INTIN['KERNEL']['FILES'][$Kernel_Level_Orden] = realpath($Kernel_Level);
-    preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>\d{1,4})?_(?<LEVEL>.*).php$/', $_INTIN['KERNEL']['FILES'][$Kernel_Level_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$Kernel_Level_Orden]);
-    if (stripos($Kernel_Level,'_before_')==FALSE)
-        if (stripos($Kernel_Level,'_after_')==FALSE)
-            $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$Kernel_Level_Orden]['LEVEL']][]=realpath($Kernel_Level);
+foreach($_INTIN['KERNEL']['FILES'] as $_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden'] => $_INTIN['KERNEL']['LEVEL']['Kernel_Level']) {
+    $_INTIN['KERNEL']['FILES'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']] = realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
+    preg_match('/_LVL_(?<LVL>\d{1,4})_?(?<subLVL>\d{1,4})?_(?<LEVEL>.*).php$/', $_INTIN['KERNEL']['FILES'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']], $_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']]);
+    if (stripos($_INTIN['KERNEL']['LEVEL']['Kernel_Level'],'_before_')==FALSE)
+        if (stripos($_INTIN['KERNEL']['LEVEL']['Kernel_Level'],'_after_')==FALSE)
+            $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']]['LEVEL']][]=realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
 }
 
 $_INTIN['KERNEL']['AFTERs']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_*_after_*.php');
-foreach($_INTIN['KERNEL']['AFTERs'] as $After_Orden => $Kernel_Level) {
-    $_INTIN['KERNEL']['AFTER'][$After_Orden] = realpath($Kernel_Level);
-    preg_match('/_LVL_(?<LVL>\d{1,4})(_after_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['AFTER'][$After_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$After_Orden]);
-    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$After_Orden]['LEVEL']][]=realpath($Kernel_Level);
+foreach($_INTIN['KERNEL']['AFTERs'] as $_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden'] => $_INTIN['KERNEL']['LEVEL']['Kernel_Level']) {
+    $_INTIN['KERNEL']['AFTER'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']] = realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
+    preg_match('/_LVL_(?<LVL>\d{1,4})(_after_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['AFTER'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']], $_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']]);
+    $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$_INTIN['KERNEL']['LEVEL']['Kernel_Level_Orden']]['LEVEL']][]=realpath($_INTIN['KERNEL']['LEVEL']['Kernel_Level']);
 }
 $_INTIN['KERNEL'] = array('EVENTS'=>$_INTIN['KERNEL']['EVENTS'],'MANAGERS'=>$_INTIN['KERNEL']['MANAGERS']);
+
+//do each level manager and let it prune its own events or add in non core events with the parallel module as the core in loop. TO REDUCE EVENTS and ADD DYNAMIC ONES. the non demo will have nothing near "the long route"... i could use just the site engine merged from the first commit as the stages flat.
 
 bench('CORE');
 

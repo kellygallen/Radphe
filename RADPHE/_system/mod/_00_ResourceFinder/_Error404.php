@@ -1,5 +1,4 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-function (){
 if (
     ($_SERVER['PHP_SELF']==='/-RADPHError404.php')&&
     (1)
@@ -55,5 +54,4 @@ ENDOFSTRING;
 
 	echo $Err404;
 	return;
-}
 ?>

@@ -40,7 +40,6 @@ if (isset($_GET['GUI'])) {
 //Control,input
 if (!empty($_POST)) {
 	CMS_Blocks::CancelOutput();
-//	var_dump($_POST);
 	$runningtext = ($_POST['LINK']) ? '' : 'not ';
 	echo "<html><body style='margin: 0;padding: 0;'>OK: [".$_POST['Term']['_x'].','.$_POST['Term']['_y']."]<sup><sup<sub>xy</sub></sup></sup> ".'While '.$runningtext.'running <br>';
 	$_SESSIONthread['mJSterm']['Running'] = $_POST['LINK'];
@@ -50,10 +49,6 @@ if (!empty($_POST)) {
 		$result = mysqli_query($link,"REPLACE INTO Session SET Session_Id = '".session_id()."', Session_Expires = '".$NewDateTime."', Session_Data = '".serialize($_SESSIONthread)."'");
 
 //	session_write_close();
-//	$_INTIN['Dump'][]='GetQuery';
-//	$_INTIN['Dump'][]='_POST';
-//	$_INTIN['Dump'][]='_GET';
-//	$_INTIN['Dump'][]='_Globals';
 die();
 }
 

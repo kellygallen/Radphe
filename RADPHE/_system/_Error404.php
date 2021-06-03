@@ -1,7 +1,5 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 
-//$_INTIN['Dump'][]='GLOBALS';
-
 if (
     ($_SERVER['PHP_SELF']==='/-RADPHError404.php')&&
     (1)

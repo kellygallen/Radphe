@@ -89,7 +89,7 @@
 					break;
 				default:
 					$var=($var=="") ? "[empty string]" : $var;
-					echo "<table cellspacing=0><tr>\n<td><pre><code>".htmlspecialchars($var)."</code></pre></td>\n</tr>\n</table>\n";
+					echo "<table cellspacing=0><tr>\n<td><code><pre>"./*htmlspecialchars($var)*/$var."</pre></code></td>\n</tr>\n</table>\n";
 					break;
 			}
 		}
@@ -137,7 +137,7 @@
 						$this->checkType($value);
 					else {
 						$value=(@trim($value)=="") ? "[empty string]" : $value;
-						echo '<code><pre>'.htmlspecialchars($value).'</pre></code>';
+						echo '<code><pre>'./*htmlspecialchars($value)*/$value.'</pre></code>';
 					}
 					echo $this->closeTDRow();
 				}

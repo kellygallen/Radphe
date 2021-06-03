@@ -18,7 +18,6 @@ $_INTIN['KERNEL']['BEFOREs']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL
 foreach($_INTIN['KERNEL']['BEFOREs'] as $Before_Orden => $Kernel_Level) {
     $_INTIN['KERNEL']['BEFORE'][$Before_Orden] = realpath($Kernel_Level);
     preg_match('/_LVL_(?<LVL>\d{1,4})(_before_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['BEFORE'][$Before_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$Before_Orden]);
-    //make path relative site root or site engine | which is right or full... as is. or include path option.
     $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$Before_Orden]['LEVEL']][]=realpath($Kernel_Level);
 }
 
@@ -35,17 +34,13 @@ $_INTIN['KERNEL']['AFTERs']=glob($_SERVER['DOCUMENT_ROOT'].'/_system/mod/*/_LVL_
 foreach($_INTIN['KERNEL']['AFTERs'] as $After_Orden => $Kernel_Level) {
     $_INTIN['KERNEL']['AFTER'][$After_Orden] = realpath($Kernel_Level);
     preg_match('/_LVL_(?<LVL>\d{1,4})(_after_){1}(?<LEVEL>.*).php$/i', $_INTIN['KERNEL']['AFTER'][$After_Orden], $_INTIN['KERNEL']['EVENTSdetected'][$After_Orden]);
-//TODO: LATER MAYBE make path relative site root or site engine | which is right or full... as is. or include path option.
     $_INTIN['KERNEL']['EVENTS'][$_INTIN['KERNEL']['EVENTSdetected'][$After_Orden]['LEVEL']][]=realpath($Kernel_Level);
 }
 $_INTIN['KERNEL'] = array('EVENTS'=>$_INTIN['KERNEL']['EVENTS'],'MANAGERS'=>$_INTIN['KERNEL']['MANAGERS']);
-$_INTIN['Dump'][]=$_INTIN['KERNEL'];
 
 bench('CORE');
 
-$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array();//=$GLOBALS;  needs filter limits as or after. perhaps my php4.3 array diff function from back somewhere.
-
-//$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][] = 'Every Kernel Include is wrapped for output, throwables, and changes
+$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array();
 foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['KERNEL']['EVENTlevel']) {
     bench(strtoupper(''.$_INTIN['KERNEL']['EVENT'].''));
     foreach ($_INTIN['KERNEL']['EVENTlevel'] as $_INTIN['KERNEL']['EVENTlevelORDEN'] => $_INTIN['KERNEL']['EVENTlevelFILE']) {
@@ -54,11 +49,12 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                 bench(strtolower(''.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelFILE']));
                 try {
                     $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
-                } catch (Exception $e) {
+                } catch (exception $eMOD) {
                     $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = 1; //1 whole problem; ah, ;ah; ah. 0 or "" is prefered.
                     do {
-                        @$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']][array_key_last($_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n%s", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e),$e->getTraceAsString());
-                    } while($e = $e->getPrevious());
+                        @$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]['_ERRORS'][count($_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]['_ERRORS'])] .= "\n\n".sprintf('INSTANCE '.count($eMOD)."\n %s:%d %s (%d) [%s]\n%s", $eMOD->getFile(), $eMOD->getLine(), $eMOD->getMessage(), $eMOD->getCode(), get_class($eMOD),$eMOD->getTraceAsString());
+                    } while ($eMOD = $eMOD->getPrevious());
+                    $eMOD=null;
                 }
                 if (!isset($_INTIN['MOD']['CMS']['Blocks']))
                     $_INTIN['MOD']['CMS']['Blocks']=array();

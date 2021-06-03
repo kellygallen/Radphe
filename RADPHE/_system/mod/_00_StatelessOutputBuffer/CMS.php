@@ -124,11 +124,12 @@ class CMS_Blocks{
 							include_once(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php'));
 					if (!empty($MatchArr[3])) try {
 							$buffer = (string) str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
-						} catch (Exception $e) {
+						} catch (throwable $CMSe) {
 							$buffer = str_replace($MatchArr[0], '', $buffer);
-							do {
-								$_INTIN['Dump']['_ERRORS'][array_key_last($_INTIN['Dump']['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n%s", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e), $e->getTraceAsString());
-							} while($e = $e->getPrevious());
+//							do {
+//								@$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]['_ERRORS'][count($_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]['_ERRORS'])] .= "\n\n".sprintf("%s:%d %s (%d) [%s]\n%s", $CMSe->getFile(), $CMSe->getLine(), $CMSe->getMessage(), $CMSe->getCode(), get_class($CMSe), $CMSe->getTraceAsString());
+//							} while($CMSe = $CMSe->getPrevious());
+							$CMSe=null;
 						}
 					break;
 				default:
@@ -353,8 +354,9 @@ class CMS_Blocks{
 		global $_INTIN;
 		foreach ($_INTIN['MOD']['CMS']['Blocks'] as $BlockName => $BlockContent) {
 			if (is_string($BlockContent)) {
-				//$BlockContent = str_replace("<","&lt;", $BlockContent);
-				//$BlockContent = str_replace(">","&gt;", $BlockContent);
+				$BlockContent = str_replace("<","&lt;", $BlockContent);
+				$BlockContent = str_replace("<","&lt;", $BlockContent);
+				$BlockContent = str_replace("#","#\n", $BlockContent);
 				$_INTIN['MOD']['CMS']['Blocks'][$BlockName] = ''.$BlockContent.'';
 			}
 		}

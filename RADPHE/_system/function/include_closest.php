@@ -55,18 +55,6 @@ function include_closest($Filename, $IncludeFn=NULL, $Direction='<',$Steps=10) {
 			return TRUE;
 		}
 	}
-
-/*
-echo "<pre>";
-echo var_dump($RequestPath);
-echo var_dump($ScriptPath);
-echo var_dump($FilenamePath);
-echo var_dump($TargetPath);
-echo var_dump($Levels);
-echo var_dump($LevelCount);
-echo var_dump($TryPath);
-echo var_dump($TryPatha);
-echo "</pre>";*/
 	return FALSE;
 }
 

@@ -19,7 +19,4 @@ if ($_SERVER['PHP_SELF']=='/Paypal-Instant-Payment-Notification.php') {
 	die();
 }
 
-//var_dump($_POST);
-//die();
-
 ?>

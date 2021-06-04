@@ -1,12 +1,13 @@
-<?php define('RadpheFallBackHook', ' global $_INTIN; ');//Fallback Hook Line. NOT a C++ defined macro, must be eval()'ed.
-@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
-
-
+<?php
+//ob_start();//force silent mode.
 date_default_timezone_set('America/Los_Angeles');
-ob_start();
-//TODO: Namespace and Namespace browsing enabled dump.
 //Init Core Variables
 $_QUERY=array();
+$_INTIN=array();
+define('RadpheFallBackHook', ' global $_INTIN; ');//Fallback Hook Line. NOT a C++ defined macro, must be eval()'ed.
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+//TODO: Namespace and Namespace browsing enabled dump.
+
 //PreCore
 @include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/-_Bench/bench.function.php');
 

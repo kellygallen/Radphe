@@ -8,7 +8,7 @@
 		$_INTIN['MOD']['ResourceFinder']['search']['filename'] = $_POST['Resource'];
 	} else $_INTIN['MOD']['ResourceFinder']['search']['filename'] = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	if (is_dir($_SERVER['DOCUMENT_ROOT'].'/'.$_INTIN['MOD']['ResourceFinder']['search']['filename'])) {
-		$_INTIN['MOD']['ResourceFinder']['search']['filename'].='/index.php';
+		$_INTIN['MOD']['ResourceFinder']['search']['filename'].='index.php';
 		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_INTIN['MOD']['ResourceFinder']['search']['filename'])) {
 			return;
 		} else {

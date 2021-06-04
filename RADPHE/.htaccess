@@ -79,7 +79,7 @@
 #	RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
 
 #No using the _system folder
-	RewriteRule ^_system/.*$ /Error404.php [NC]
+	RewriteRule ^/_system/.*$ /-RADPHError500.php [NC,F,L]
 
 #Skins and protected resources and virtual resources.
 	RewriteCond     %{REQUEST_FILENAME}     !-f

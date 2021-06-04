@@ -1,4 +1,4 @@
-<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); RadpheFallBackHook;
+<?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 $_INTIN['bannedIP'] = array(
 );
 $_INTIN['Login']['IdleOut'] = '300';
@@ -114,5 +114,7 @@ $_INTIN['Error 404'] = <<<ENDOFSTRING
 <div>The requested URL was not found on this server.</div>
 <hr>
 ENDOFSTRING;
+
+$_INTIN['StealthFirewallErrors'] = 1; //1|0 1=Show only 404 and fake 404 messages.
 
 ?>

@@ -1,102 +1,102 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 	ini_set('open_basedir', $_SERVER['DOCUMENT_ROOT']);
 	ini_set('html_errors', false);
-	$foundInMod = 0;
+	$_INTIN['MOD']['ResourceFinder']['found']['foundInMod'] = 0;
 	if (!empty($_GET['Resource'])) {
-		$filename = $_GET['Resource'];
+		$_INTIN['MOD']['ResourceFinder']['search']['filename'] = $_GET['Resource'];
 	} elseif (!empty($_POST['Resource'])) {
-		$filename = $_POST['Resource'];
-	} else $filename = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-	if (is_dir($_SERVER['DOCUMENT_ROOT'].'/'.$filename)) {
-		$filename.='/index.php';
-		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$filename)) {
+		$_INTIN['MOD']['ResourceFinder']['search']['filename'] = $_POST['Resource'];
+	} else $_INTIN['MOD']['ResourceFinder']['search']['filename'] = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+	if (is_dir($_SERVER['DOCUMENT_ROOT'].'/'.$_INTIN['MOD']['ResourceFinder']['search']['filename'])) {
+		$_INTIN['MOD']['ResourceFinder']['search']['filename'].='/index.php';
+		if (file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$_INTIN['MOD']['ResourceFinder']['search']['filename'])) {
 			return;
 		} else {
 		}
 	}
-	if (!empty($filename)){
-		$file_extension = strtolower(substr(strrchr($filename,"."),1));
-		$Deny = 0;
-		$DisallowedFiles = array();
-//		$DisallowedFiles[] = '.php';
-//		$DisallowedFiles[] = '.htm';
-//		$DisallowedFiles[] = '.html';
-		$DisallowedFiles[] = '.inc';
-		$DisallowedFiles[] = '.user.ini';
-		$DisallowedFiles[] = 'php.ini';
-		$DisallowedFiles[] = '.ini';
-		$DisallowedFiles[] = '.htaccess';
-		$DisallowedFiles[] = '..';
-		$DisallowedFiles[] = '%';
-		$DisallowedFiles[] = '&#';
-		foreach ($DisallowedFiles as $FileNum => $FileType) {
-			if (stripos($filename,$FileType) !== FALSE) $Deny =1;
-		}
-		$ModResourceLocations = array();
-		$ModResourceLocationsPub = array();
-		$ModuleInstances = array();
-		$ModResourceLocations[] = '_system/mod/_00_StatelessOutputBuffer/Layouts';
-		$ModResourceLocations[] = '_system/class';
-		$ModResourceLocations[] = '_system/function';
-		$ModResourceLocations[] = '_system/mod';
-		$ModResourceLocations[] = '_system/mod/example';
-		foreach ($ModResourceLocations as $MRLsI => $MRLSearch) {
-			$ModuleInstances = glob($_SERVER['DOCUMENT_ROOT'].'/'.$MRLSearch.'/*/_Resources/'.$filename);
-			if ($ModuleInstances === FALSE) {
-			} else foreach ($ModuleInstances as $MRLfI => $MRLfound) {
-				$ModResourceLocationsPub[] = $MRLfound;
+	if (!empty($_INTIN['MOD']['ResourceFinder']['search']['filename'])){
+		$_INTIN['MOD']['ResourceFinder']['search']['file_extension'] = strtolower(substr(strrchr($_INTIN['MOD']['ResourceFinder']['search']['filename'],"."),1));
+		$_INTIN['MOD']['ResourceFinder']['Deny'] = 0;
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'] = array();
+//		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.php';
+//		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.htm';
+//		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.html';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.inc';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.user.ini';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = 'php.ini';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.ini';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.htaccess';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '..';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '%';
+		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '&#';
+		foreach ($_INTIN['MOD']['ResourceFinder']['DisallowedFiles'] as $FileNum => $FileType) {
+			if (stripos($_INTIN['MOD']['ResourceFinder']['search']['filename'],$FileType) !== FALSE) $_INTIN['MOD']['ResourceFinder']['Deny'] =1;
+		} unset($FileNum,$FileType);
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'] = array();
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocationsPub'] = array();
+		$_INTIN['MOD']['ResourceFinder']['ModuleInstances'] = array();
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod/_00_StatelessOutputBuffer/Layouts';
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/class';
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/function';
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod';
+		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod/example';
+		foreach ($_INTIN['MOD']['ResourceFinder']['ModResourceLocations'] as $MRLsI => $MRLSearch) {
+			$_INTIN['MOD']['ResourceFinder']['ModuleInstances'] = glob($_SERVER['DOCUMENT_ROOT'].'/'.$MRLSearch.'/*/_Resources/'.$_INTIN['MOD']['ResourceFinder']['search']['filename']);
+			if ($_INTIN['MOD']['ResourceFinder']['ModuleInstances'] === FALSE) {
+			} else foreach ($_INTIN['MOD']['ResourceFinder']['ModuleInstances'] as $MRLfI => $MRLfound) {
+				$_INTIN['MOD']['ResourceFinder']['ModResourceLocationsPub'][] = $MRLfound;
 			}
-		}
-		$foundInMod = 0;
-		if (!isset($ModResourceLocationsPub[0])) return;
-		$LayoutsPath = $ModResourceLocationsPub[0];
-		$LayoutsPath = preg_replace('/(\.){2,}/', '', $LayoutsPath);
-		$LayoutsPath = preg_replace('/(\/){2,}/', '/', $LayoutsPath);
-		$LayoutsPath = preg_replace('/(\.\/){2,}/', '/', $LayoutsPath);
-		$LayoutsPath = preg_replace('/(\/){2,}/', '/', $LayoutsPath);
-		if (( $filename == "" ) || ( ! file_exists( realpath($LayoutsPath) ) ) || ($Deny==1)) {
+		} unset($MRLsI,$MRLSearch,$MRLfound,$MRLfI);
+		$_INTIN['MOD']['ResourceFinder']['found']['foundInMod'] = 0;
+		if (!isset($_INTIN['MOD']['ResourceFinder']['ModResourceLocationsPub'][0])) return;
+		$_INTIN['MOD']['ResourceFinder']['LayoutsPath'] = $_INTIN['MOD']['ResourceFinder']['ModResourceLocationsPub'][0];
+		$_INTIN['MOD']['ResourceFinder']['LayoutsPath'] = preg_replace('/(\.){2,}/', '', $_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
+		$_INTIN['MOD']['ResourceFinder']['LayoutsPath'] = preg_replace('/(\/){2,}/', '/', $_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
+		$_INTIN['MOD']['ResourceFinder']['LayoutsPath'] = preg_replace('/(\.\/){2,}/', '/', $_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
+		$_INTIN['MOD']['ResourceFinder']['LayoutsPath'] = preg_replace('/(\/){2,}/', '/', $_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
+		if (( $_INTIN['MOD']['ResourceFinder']['search']['filename'] == "" ) || ( ! file_exists( realpath($_INTIN['MOD']['ResourceFinder']['LayoutsPath']) ) ) || ($_INTIN['MOD']['ResourceFinder']['Deny']==1)) {
 			return;
-		} else $foundInMod = 1;
+		} else $_INTIN['MOD']['ResourceFinder']['found']['foundInMod'] = 1;
 
 	} else {
 		return;
 	}
-if($foundInMod){
-	switch( $file_extension ) {
-		case "pdf": $ctype="application/pdf"; break;
-		case "exe": $ctype="application/octet-stream"; break;
-		case "zip": $ctype="application/zip"; break;
-		case "doc": $ctype="application/msword"; break;
-		case "xls": $ctype="application/vnd.ms-excel"; break;
-		case "ppt": $ctype="application/vnd.ms-powerpoint"; break;
+if($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']){
+	switch( $_INTIN['MOD']['ResourceFinder']['search']['file_extension'] ) {
+		case "pdf": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/pdf"; break;
+		case "exe": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/octet-stream"; break;
+		case "zip": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/zip"; break;
+		case "doc": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/msword"; break;
+		case "xls": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/vnd.ms-excel"; break;
+		case "ppt": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/vnd.ms-powerpoint"; break;
 		case  "shtml":
 		case  "txt":
 		case  "php":
 		case  "xml":
 		case  "htm":
-		case  "html": $ctype="text/html;"; break;
-		case  "js": $ctype="application/x-javascript"; break;
-		case "css": $ctype="text/css"; break;
-		case "gif": $ctype="image/gif"; break;
-		case "png": $ctype="image/png"; break;
+		case  "html": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="text/html;"; break;
+		case  "js": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/x-javascript"; break;
+		case "css": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="text/css"; break;
+		case "gif": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="image/gif"; break;
+		case "png": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="image/png"; break;
 		case "jpeg":
-		case "jpg": $ctype="image/jpg"; break;
-		default: $ctype="application/force-download";
+		case "jpg": $_INTIN['MOD']['ResourceFinder']['found']['ctype']="image/jpg"; break;
+		default: $_INTIN['MOD']['ResourceFinder']['found']['ctype']="application/force-download";
 	}
-	$file_last_mod_time = filemtime(__FILE__);
-	$content_last_mod_time = filemtime($LayoutsPath);
-	$ModuleRelativeLocation = str_replace($_SERVER["DOCUMENT_ROOT"].'_system/','',$LayoutsPath);
-	$etag = '"' . $file_last_mod_time . '.' .$ModuleRelativeLocation. '.' . $content_last_mod_time . '.'.filesize($LayoutsPath).hash_file('md5',$LayoutsPath).'"';
+	$_INTIN['MOD']['ResourceFinder']['FINDER_last_mod_time'] = filemtime(__FILE__);
+	$_INTIN['MOD']['ResourceFinder']['found']['content_last_mod_time'] = filemtime($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
+	$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = str_replace($_SERVER["DOCUMENT_ROOT"].'_system/','',$_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
+	$_INTIN['MOD']['ResourceFinder']['response']['etag'] = '"' . $_INTIN['MOD']['ResourceFinder']['FINDER_last_mod_time'] . '.' .$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']. '.' . $_INTIN['MOD']['ResourceFinder']['found']['content_last_mod_time'] . '.'.filesize($_INTIN['MOD']['ResourceFinder']['LayoutsPath']).hash_file('md5',$_INTIN['MOD']['ResourceFinder']['LayoutsPath']).'"';
 	header_remove();
-	switch( $file_extension ) {
+	switch( $_INTIN['MOD']['ResourceFinder']['search']['file_extension'] ) {
 		case  "php":
 			header('HTTP/1.1 200 OK',true,200);
 			if (0) {
 				@ob_clean();
-				include($LayoutsPath);
+				include($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 				die();
 			} else {
-				include($LayoutsPath);
+				include($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 				return;
 			}
 		case  "htm":
@@ -104,10 +104,10 @@ if($foundInMod){
 			header('HTTP/1.1 200 OK',true,200);
 			if (0) {
 				@ob_clean();
-				echo file_get_contents ( $LayoutsPath , false);
+				echo file_get_contents ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath'] , false);
 				die();
 			} else {
-				echo file_get_contents ( $LayoutsPath , false);
+				echo file_get_contents ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath'] , false);
 				return;
 			}
 			break;
@@ -115,18 +115,18 @@ if($foundInMod){
 	}
 	bench('REQUEST LOADED');
 	header('Cache-Control: max-age=86400');
-	header('ETag: ' . $etag);
+	header('ETag: ' . $_INTIN['MOD']['ResourceFinder']['response']['etag']);
 	if(isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
-		if($_SERVER['HTTP_IF_NONE_MATCH'] == $etag) {
+		if($_SERVER['HTTP_IF_NONE_MATCH'] == $_INTIN['MOD']['ResourceFinder']['response']['etag']) {
 			header('HTTP/1.1 304 Not Modified', true, 304);
 			exit();
 		}
 	}
 	header("Pragma: public");
 	header("Expires: 0");
-	header("Content-Type: $ctype");
-	header("Content-Length: ".filesize($LayoutsPath));
-	readfile($LayoutsPath);
+	header("Content-Type: ".$_INTIN['MOD']['ResourceFinder']['found']['ctype']);
+	header("Content-Length: ".filesize($_INTIN['MOD']['ResourceFinder']['LayoutsPath']));
+	readfile($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 	exit();
 }
 ?>

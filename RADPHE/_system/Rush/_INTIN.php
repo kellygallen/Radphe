@@ -104,4 +104,15 @@ $_INTIN['MOD']['SEO']['Defaults']['SupplementalContent'] = '';
 PageNavigation1;
 @$_INTIN['MOD']['CMS']['Blocks']['PageNavigation3'] .= '#mem:PageNavigation1;#';
 
+
+
+
+
+$_INTIN['Error 404'] = <<<ENDOFSTRING
+<hr>
+<center><h1 style="background: rgb(255, 255, 255) none repeat scroll 0%; margin-top: 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: rgb(0, 0, 0);">Not Found</h1>
+<div>The requested URL was not found on this server.</div>
+<hr>
+ENDOFSTRING;
+
 ?>

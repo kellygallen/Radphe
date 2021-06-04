@@ -3,7 +3,7 @@ if (
     ($_SERVER['PHP_SELF']==='/-RADPHError404.php')&&
     (1)
     ) {
-        if (!empty($_SERVER['REDIRECT_QUERY_STRING'])) parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
+        if ((!empty($_SERVER['REDIRECT_QUERY_STRING']))&&(empty($_GET))) parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
         if (!empty($_SERVER['REDIRECT_URL'])) {
 
             $_GET['Resource'] = $_SERVER['REDIRECT_URL'];
@@ -14,10 +14,10 @@ if (
 	//Error Hook to recover mis-routed or un-routable module resources.
 	//To optimize one could just copy resources to be accessible as a regular request.
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_ResourceFinder/_ModuleResourceFinder.php');
-	if(!isset($foundInMod)) $foundInMod=0;
-	$code = ($foundInMod) ? 200 : 404;
+	if(!isset($_INTIN['MOD']['ResourceFinder']['found']['foundInMod'])) $_INTIN['MOD']['ResourceFinder']['found']['foundInMod']=0;
+	$_INTIN['MOD']['ResourceFinder']['code'] = ($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']) ? 200 : 404;
 //	$code = http_response_code();
-    if (($code==200)) {
+    if (($_INTIN['MOD']['ResourceFinder']['code']==200)) {
         return;
     } else {
     }
@@ -26,24 +26,12 @@ if (
     		(!empty($_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent']))||
     		(!empty($_INTIN['MOD']['CMS']['Blocks']['SEOSupplementaryContent']))
     ) {
-        if (($code!==200)) {
+        if (($_INTIN['MOD']['ResourceFinder']['code']!==200)) {
 //            http_response_code(200);
         	header('HTTP/1.1 200 OK',true,200);
         	return;
         } else header('HTTP/1.1 404 Not Found',true,404);
     }
-
-	//Error Message Construction
-	$Err404 = <<<ENDOFSTRING
-<hr>
-<center><h1 style="background: rgb(255, 255, 255) none repeat scroll 0%; margin-top: 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: rgb(0, 0, 0);">Not Found</h1>
-<div>The requested URL was not found on this server.</div>
-<hr>
-<address><b>Apache</b> Server</address><br>
-Nothing agaist NGINX, its great at all it does, but if you want php done great you best use nginx to front an actual Apache+MOD_PHP stack.
-</center>
-<hr>
-ENDOFSTRING;
 
 //what it should be.
 //	http_response_code(404);
@@ -52,6 +40,6 @@ ENDOFSTRING;
 //if your host hijacks your error pages.
 //	header ("HTTP/1.0 200 Not Found",true,200);
 
-	echo $Err404;
+	echo $_INTIN['Error 404'];
 	return;
 ?>

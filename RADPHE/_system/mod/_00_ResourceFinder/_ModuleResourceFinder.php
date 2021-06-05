@@ -123,16 +123,13 @@ if($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']){
 			exit();
 		}
 	}
-	/*header("Pragma: public");
-	header("Expires: 0");
 	header("Content-Type: ".$_INTIN['MOD']['ResourceFinder']['found']['ctype']);
 	header("Content-Length: ".filesize($_INTIN['MOD']['ResourceFinder']['LayoutsPath']));
-	*/
+	header("Pragma: public");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s", time()-10) . " GMT");
 	header("Expires: " . gmdate("D, d M Y H:i:s", time() + 500) . " GMT");
-	header("Pragma: no-cache");
-	header("Cache-Control: max-age=5, s-maxage=5, no-cache, must-revalidate");
-	session_cache_limiter("nocache");
+	header("Cache-Control: max-age=5, s-maxage=5, cache, must-revalidate");
+
 	readfile($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 	exit();
 }

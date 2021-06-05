@@ -120,7 +120,7 @@
 								$var_ser = serialize($value);
 								if(in_array($var_ser, $this->arrHistory, TRUE))
 									$value = "*Array*RECURSION*";
-							} catch (\Exception $e) {
+							} catch (Exception $e) {
 								$var_ser = '*CLOSURE*ERROR*';
 								$valueS=array();
 								$ClosureInstance=0;
@@ -150,7 +150,7 @@
 			try {
 				$var_ser = serialize($var);
 				array_push($this->arrHistory, $var_ser);
-			} catch (\Exception $e) {
+			} catch (Exception $e) {
 				$var_ser = '*CLOSURE*ERROR*';
 				$valueS=array();
 				$ClosureInstance=0;
@@ -160,7 +160,7 @@
 					if (!is_string($subvalue)&&!is_bool($subvalue)) echo key($subvalue).'</h3>';
 					$this->checkType($subvalue);
 				}
-				error_log($value.':'.$e,0);
+//				error_log($value.':'.$e,0);
 			}
 			$this->makeTableHeader("object","object");
 			if(is_object($var)) {

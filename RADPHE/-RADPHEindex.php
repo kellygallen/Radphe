@@ -15,8 +15,9 @@ Click the hidden footer toggle link below as linked to Alt + Shift + K key combo
 <center><h2>This is a Module Block call with a mistake :: <u>#<b>mod</b>:<sup>example/mJSterm</sup>;<sub>CMSInitiatorTestMistake</sub>#</u></h2><br>#mod:example/mJSterm;CMSInitiatorTestMistake#</center>
 <hr>
 <br><hr><h2>Let Me Show you globals</h2> but it will use a lot of ram to pre buffer it if it was much bigger you would need to run it with Stateless Render Close Flattened or bypassed.<br>
+Also if you don't run it through the debug event then you are responsible for what is being outputted and when and to whom. the debug event will apply a unset mask to certain areas of leak. You can do the same by including the dumpThat Public Mask php file after including the dbug class and before using it.
 <?php
-	echo '<h1>Globals Dump Exception</h1><h2>Example of how to get your globals.</h2>Be Careful with this method becasue it will likely display on output unhidden<br>';
+	echo '<h1>Globals Dump Exception</h1><h2>Example of how to get your globals.</h2>Be Careful with this method because it will likely display on output unhidden<br>';
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');
 	echo '<h3>PreShrunk with dBugM($GLOBALS)</h3><hr>';
 	echo 'BELOW is intended to show to user on ths page; though present however <a href="#DevDebugPreKurser">This OTHER is not intended to show</a><br>CLICK TO EXPLORE MEMORY!';

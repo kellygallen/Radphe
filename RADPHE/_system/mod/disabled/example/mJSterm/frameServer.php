@@ -9,12 +9,12 @@ header("Pragma: no-cache");
 header("Content-type: multipart/x-mixed-replace; boundary=$boundary");
 print "--$boundary\n";
 @set_time_limit(20);
-@setenv('no-gzip', 1);
+if (function_exists('setenv')) { setenv('no-gzip', 1); } else if (function_exists('apache_setenv')) { apache_setenv('no-gzip', 1); }
 @ini_set('zlib.output_compression', 0);
 @ini_set('implicit_flush', 1);
+ob_implicit_flush(1);
 for ($i = 0; $i < ob_get_level(); $i++)
 	ob_end_flush();
-ob_implicit_flush(1);
 include(__DIR__.'/TerminalSessionFunction.php');// and get_one_jpeg function.
 	$count=1;
 while (true) {

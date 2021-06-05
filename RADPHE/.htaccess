@@ -96,5 +96,5 @@
 </IfModule>
 
 #Sneaky and possibly dangerous. ONLY used for side project mJSterm in this project.
-SetEnvIf Host ^example\.com$ term=645mie
-SetEnvIf Host ^(dev\.)?example\.com$ mJS=PujtRX
+SetEnvIf Host ^example\.com$ term=Some
+SetEnvIf Host ^(dev\.)?example\.com$ mJS=Thing

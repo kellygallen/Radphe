@@ -25,5 +25,5 @@ Click the hidden footer toggle link below as linked to Alt + Shift + K key combo
 //	echo '<h3>Expanded with dBug($GLOBALS)</h3><hr>';
 //	new dBug($GLOBALS);//PreExpand.
 	echo '<hr>';
-	throw new Exception("Error Processing Request TESTING OUTSIDE ON-PURPOSE !");
+//	throw new Exception("Error Processing Request TESTING OUTSIDE ON-PURPOSE !");
 ?>

@@ -1,4 +1,4 @@
-Suggestion: read wiki file from example mod resources
+Suggestion: read wiki file from example mod resources https://github.com/kellygallen/Radphe/blob/main/RADPHE/_system/mod/disabled/example/_Resources/Wiki-Single-Doc.php
 
 Turnkey LAMP on VM in VMWare or VirtualBox BUT bare metal doesn't suffer CLICK.
 

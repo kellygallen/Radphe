@@ -1,8 +1,12 @@
 <?php @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 	$_INTIN['Load Status']['Request']['Show Bench'] = '1';
 	$_INTIN['Load Status']['Request']['Show Debug'] = '1';
-	$_INTIN['Load Status']['Request']['Micro Debug'] = '';
+	$_INTIN['Load Status']['Request']['Micro Debug'] = '0';
 	$_INTIN['StealthFirewallErrors'] = 0; //1|0 1=Show only 404 and fake 404 messages.
+	//allow test VIRTUAL files in disabled module space.
+	$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod/disabled';
+	$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod/disabled/example';
+
 
 //FOR DEV ONLY - TO HELP YOU IN BEGINNING.
 ini_set('display_errors', 1);

@@ -10,8 +10,6 @@ define('RadpheFallBackHook', ' global $_INTIN; ');//Fallback Hook Line. NOT a C+
 
 //PreCore
 @include($_SERVER['DOCUMENT_ROOT'].'/_system/mod/-_Bench/bench.function.php');
-
-
 bench('BEGIN'); //bench('MAJOR'); bench('Minor');
 
 bench('BEGIN compatibility');

@@ -17,7 +17,7 @@
 	if (!empty($_INTIN['MOD']['ResourceFinder']['search']['filename'])){
 		$_INTIN['MOD']['ResourceFinder']['search']['file_extension'] = strtolower(substr(strrchr($_INTIN['MOD']['ResourceFinder']['search']['filename'],"."),1));
 		$_INTIN['MOD']['ResourceFinder']['Deny'] = 0;
-		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'] = array();
+		if (!empty($_INTIN['MOD']['ResourceFinder']['DisallowedFiles'])) $_INTIN['MOD']['ResourceFinder']['DisallowedFiles'] = array();
 //		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.php';
 //		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.htm';
 //		$_INTIN['MOD']['ResourceFinder']['DisallowedFiles'][] = '.html';
@@ -32,7 +32,7 @@
 		foreach ($_INTIN['MOD']['ResourceFinder']['DisallowedFiles'] as $FileNum => $FileType) {
 			if (stripos($_INTIN['MOD']['ResourceFinder']['search']['filename'],$FileType) !== FALSE) $_INTIN['MOD']['ResourceFinder']['Deny'] =1;
 		} unset($FileNum,$FileType);
-		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'] = array();
+		if (empty($_INTIN['MOD']['ResourceFinder']['ModResourceLocations'])) $_INTIN['MOD']['ResourceFinder']['ModResourceLocations'] = array();
 		$_INTIN['MOD']['ResourceFinder']['ModResourceLocationsPub'] = array();
 		$_INTIN['MOD']['ResourceFinder']['ModuleInstances'] = array();
 		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod/_00_StatelessOutputBuffer/Layouts';
@@ -40,6 +40,7 @@
 		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/function';
 		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod';
 		$_INTIN['MOD']['ResourceFinder']['ModResourceLocations'][] = '_system/mod/example';
+	
 		foreach ($_INTIN['MOD']['ResourceFinder']['ModResourceLocations'] as $MRLsI => $MRLSearch) {
 			$_INTIN['MOD']['ResourceFinder']['ModuleInstances'] = glob($_SERVER['DOCUMENT_ROOT'].'/'.$MRLSearch.'/*/_Resources/'.$_INTIN['MOD']['ResourceFinder']['search']['filename']);
 			if ($_INTIN['MOD']['ResourceFinder']['ModuleInstances'] === FALSE) {

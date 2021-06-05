@@ -117,7 +117,7 @@ if($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']){
 	bench('REQUEST LOADED');
 	header('Cache-Control: max-age=86400');
 	header('ETag: ' . $_INTIN['MOD']['ResourceFinder']['response']['etag']);
-	if(isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
+	if(isset($_SERVER['HTTP_IF_NONE_MATCH'])&&1) {//was maybe to aggressive; usually i dev with browser cache off
 		if($_SERVER['HTTP_IF_NONE_MATCH'] == $_INTIN['MOD']['ResourceFinder']['response']['etag']) {
 			header('HTTP/1.1 304 Not Modified', true, 304);
 			exit();

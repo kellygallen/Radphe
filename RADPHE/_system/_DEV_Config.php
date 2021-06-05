@@ -6,7 +6,7 @@ error_reporting(1);
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 $_INTIN['DB']['Profiles']['Pro']['Host']='sql204.epizy.com';
 $_INTIN['DB']['Profiles']['Pro']['User']='epiz_27737017';
-$_INTIN['DB']['Profiles']['Pro']['Pass']=getenv('term').chr(rand(32,126)).getenv('mJS');
+//$_INTIN['DB']['Profiles']['Pro']['Pass']=getenv('term').chr(rand(32,126)).getenv('mJS');//.ht-pass-pipe functions not on every system. "getting cli environment variables from where web service was executed"
 $_INTIN['DB']['Profiles']['Pro']['Schema']='epiz_27737017_mjsterm';
 //$_INTIN['DB']['Profiles']['Pro']['Pass']=();
 //other nested obfuscation methods.might make it try the md5 of a file outside webroot.

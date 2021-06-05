@@ -115,6 +115,7 @@ $_INTIN['Error 404'] = <<<ENDOFSTRING
 <hr>
 ENDOFSTRING;
 
+//this one will be dominant at low levels. unless you mater the output stream entirely stateless cms blocks will need INTIN. By and by manual refactoring will have everything self contained and organized module bound.
 $_INTIN['StealthFirewallErrors'] = 1; //1|0 1=Show only 404 and fake 404 messages.
 
 ?>

@@ -121,8 +121,10 @@ class CMS_Blocks{
 					break;
 				case 'mod':
 					if (file_exists(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php')))
+						if (strpbrk($MatchArr[2],'();_:{[}]|\\*$%&?^~`\'".')==false)
 							include_once(realpath($_SERVER['DOCUMENT_ROOT'].'/_system/mod/'.$MatchArr[2].'/_MODE_SELF_INITIATE.php'));
 					if (!empty($MatchArr[3])) try {
+						if (strpbrk($MatchArr[3],'();{[}]|\\*$%&?^~`\'"/.@')==false)
 							$buffer = (string) str_replace($MatchArr[0], eval('return '.$MatchArr[3].'();'), $buffer);	
 						} catch (throwable $CMSe) {
 							$buffer = str_replace($MatchArr[0], '', $buffer);

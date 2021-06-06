@@ -90,12 +90,12 @@ THEREuGO;
 ?>
 <script src="/js/mJStermFunct.js"></script>
 <link rel="stylesheet" href="/css/mJStermStyle.css" type="text/css" />
-
-<h3>For now limited to QUOTA! YEAH GO FOR IT! 'production demo' remote link hosting dictates these messages.</h3>
-<pre>I am setting to run for 20 seconds max. it might go longer it is time duffy. be nice and disconnect it when done.
-So you may need to press connect to get it going even though it shows connected.
-and on shared free hosting without time... since i am misbehaving yo many need to wait either for quota 5-15 min, or you may need to refresh page alt+shift+f5 then connect, maybe repeat. it got that way... after i started minimal abusing it.
-whats weird is the timing revs up in that scenario and then becomes super fast lock step in other process even though time is screwed.</pre>
+<h1>proof of concept for something later</h1>
+<h2>input injected into php generated graphic stream</h2> with sleep rates to control fps in animation bursts. the bandwidth you will use will be according to the frames you want to send. then the frame is rendered, and if a user clicks on it the coordinates are send back over ajax and injected back into the already and ongoing php stream process with their session id into a database along with weather it was a stream received and handled click for the session; the session is immediately aborted to prevent session hang across tabs and pages and only provides a system deep uuid with the mastery that sessions already has.
+<h3>Needs a flushed stream on php fcgi or xampp.</h3> if image doesn't load on connect and you open the image into a new tab, then open the source of the image url'page' into yet another tab to see the raw stream. if you dont see an error (site engine in dev setup), and you dont see some cms block fragment, then your problem is that your output is likely being buffered or nginx is chunking, or apache has a interfering module. 
+<pre>I am setting to run for 20 seconds max be nice and disconnect it when done just incase.
+if you find your way to my free hosting test server, notice that the server has fake microtime and disallowed sleep at the os and php levels.</pre>
+The point is that you could run a server side gui or slide survey or terminal at http3 jpeg fps on http 1.1; bandwidth aside, you might get higher frames with a mjpeg stream than of mpeg on weak systems and due to connection latency.
 <form id="Term" target="TermResponse" action="mJSterm.php" method="post" name="mJSterm" enctype="multipart/form-data"  onsubmit="formSubmit(event);return false">
 	<fieldset>
 		<legend>

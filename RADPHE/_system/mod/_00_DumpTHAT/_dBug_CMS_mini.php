@@ -348,17 +348,35 @@
 			if( class_exists('CMS_Blocks')&&(1)) {
 				if (!CMS_Blocks::$Rendered) {
 			CMS_Blocks::startAppendBlock('PageHead');
-	?>
-			<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
-			<script type='text/javascript' src='/js/dBug.js'></script>
-	<?php
+?>
+<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
+<script type='text/javascript' src='/js/dBug.js'></script>
+<?php
 			CMS_Blocks::endAppendBlock();
 				} else {
-	?>
-			<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
-			<script type='text/javascript' src='/js/dBug.js'></script>
-	<?php
+?>
+<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
+<script type='text/javascript' src='/js/dBug.js'></script>
+<?php
 				}
+			} else {
+				if(1){
+?>
+<style>
+<?php include ($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_Resources/css/dBug.css'); ?>
+</style>
+<script>
+<?php include ($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_Resources/js/dBug.js'); ?>
+</script>
+<?php
+				} else {
+?>
+<link rel="stylesheet" href="/css/dBug.css" type="text/css" media="screen" charset="utf-8" />
+<script type='text/javascript' src='/js/dBug.js'></script>
+<?php
+								
+				}
+					
 			}
 		}
 	}

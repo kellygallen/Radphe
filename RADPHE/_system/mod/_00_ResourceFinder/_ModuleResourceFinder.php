@@ -87,7 +87,7 @@ if($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']){
 	$_INTIN['MOD']['ResourceFinder']['FINDER_last_mod_time'] = filemtime(__FILE__);
 	$_INTIN['MOD']['ResourceFinder']['found']['content_last_mod_time'] = filemtime($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 	$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = str_replace($_SERVER["DOCUMENT_ROOT"].'_system/','',$_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
-	$_INTIN['MOD']['ResourceFinder']['response']['etag'] = '"' . $_INTIN['MOD']['ResourceFinder']['FINDER_last_mod_time'] . '.' .$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']. '.' . $_INTIN['MOD']['ResourceFinder']['found']['content_last_mod_time'] . '.'.filesize($_INTIN['MOD']['ResourceFinder']['LayoutsPath']).'.'.hash_file('md5',$_INTIN['MOD']['ResourceFinder']['LayoutsPath']).'.'.hash('md5',serialize(array($_POST,$_GET,$_SERVER['HTTP_REFERER'],$_SERVER['HTTP_COOKIE'],$_SERVER['REQUEST_URI']))).'"';
+	$_INTIN['MOD']['ResourceFinder']['response']['etag'] = '"' . $_INTIN['MOD']['ResourceFinder']['FINDER_last_mod_time'] . '.' .$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']. '.' . $_INTIN['MOD']['ResourceFinder']['found']['content_last_mod_time'] . '.'.filesize($_INTIN['MOD']['ResourceFinder']['LayoutsPath']).'.'.hash_file('md5',$_INTIN['MOD']['ResourceFinder']['LayoutsPath']).'.'.hash('md5',serialize(array($_POST,$_GET,@$_SERVER['HTTP_REFERER'],@$_SERVER['HTTP_COOKIE'],$_SERVER['REQUEST_URI']))).'"';
 	header_remove();
 	switch( $_INTIN['MOD']['ResourceFinder']['search']['file_extension'] ) {
 		case  "php":

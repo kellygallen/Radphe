@@ -21,7 +21,7 @@ Also if you don't run it through the debug event then you are responsible for wh
 	include_once($_SERVER['DOCUMENT_ROOT'].'/_system/mod/_00_DumpTHAT/_dBug_CMS_mini.php');
 	echo '<h3>PreShrunk with dBugM($GLOBALS)</h3><hr>';
 	echo 'BELOW is intended to show to user on ths page; though present however <a href="#DevDebugPreKurser">This OTHER is not intended to show</a><br>CLICK TO EXPLORE MEMORY!';
-	new dBugM($GLOBALS);//PreShrink
+	new dBugM($var = array_merge_recursive(get_defined_vars(),array('GLOBALS'=>array(),array('_INTIN'=>array()))));//PreShrink
 //Commented out because it is big and ugly. yet diligent in it's recessiveness and going beyond the array/obj/function null.
 //	echo '<h3>Expanded with dBug($GLOBALS)</h3><hr>';
 //	new dBug($GLOBALS);//PreExpand.

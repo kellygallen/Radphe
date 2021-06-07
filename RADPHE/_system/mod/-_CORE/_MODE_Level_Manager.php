@@ -51,9 +51,9 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
             if (!in_array($_INTIN['KERNEL']['EVENTlevelFILE'],get_included_files())) {
                 bench(strtolower(''.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelFILE']));
                 try {
-                    $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
+                    $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = include_once($_INTIN['KERNEL']['EVENTlevelFILE']);
                 } catch (exception $eMOD) {
-                    $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = 1; //1 whole problem; ah, ;ah; ah. 0 or "" is prefered.
+                    $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]		['ACL'] = 1; //1 whole problem; ah, ;ah; ah. 0 or "" is prefered.
                     do {
                         @$_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]['_ERRORS'][count($_INTIN['Dump'][$_INTIN['KERNEL']['EVENTlevelFILE']]['_ERRORS'])] .= "\n\n".sprintf('INSTANCE '.count($eMOD)."\n %s:%d %s (%d) [%s]\n%s", $eMOD->getFile(), $eMOD->getLine(), $eMOD->getMessage(), $eMOD->getCode(), get_class($eMOD),$eMOD->getTraceAsString());
                     } while ($eMOD = $eMOD->getPrevious());
@@ -82,7 +82,13 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
     }
     bench(strtoupper(''.$_INTIN['KERNEL']['EVENT'].''));
 }
-unset($_INTIN['KERNEL']['Tracking']['Memory'],$_INTIN['KERNEL']['EVENTlevelORDEN'],$_INTIN['KERNEL']['EVENTlevel'],$_INTIN['KERNEL']['EVENTlevelFILE']);
+unset(
+    $_INTIN['KERNEL']['Tracking']['Memory'],
+    $_INTIN['KERNEL']['EVENTlevelORDEN'],
+    $_INTIN['KERNEL']['EVENTlevel'],
+    $_INTIN['KERNEL']['EVENTlevelFILE'],
+    $_INTIN['KERNEL']['Tracking']['Blocks']
+);
 /*
             case 'overload':
                 //new level manager

@@ -30,12 +30,15 @@ if (
 //            http_response_code(200);
         	header('HTTP/1.1 200 OK',true,200);
         	return;
-        } else header('HTTP/1.1 404 Not Found',true,404);
+        } else {
+            header('HTTP/1.1 404 Not Found',true,404);
+            header("Cache-Control: max-age=5, s-maxage=5, cache, must-revalidate");    
+        }
     }
-
 //what it should be.
 //	http_response_code(404);
 	header('HTTP/1.1 404 Not Found',true,404);
+    header("Cache-Control: max-age=5, s-maxage=5, cache, must-revalidate");    
 
 //if your host hijacks your error pages.
 //	header ("HTTP/1.0 200 Not Found",true,200);

@@ -92,24 +92,28 @@ if($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']){
 	switch( $_INTIN['MOD']['ResourceFinder']['search']['file_extension'] ) {
 		case  "php":
 			header('HTTP/1.1 200 OK',true,200);
-			if (0) {
+			if (0) {//bypass engine response
 				@ob_clean();
 				include($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 				die();
-			} else {
+			} else if (1) {//within template possibly
 				include($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 				return;
+			} else {
+				//you can read your own files, why this?
 			}
 		case  "htm":
 		case  "html":
 			header('HTTP/1.1 200 OK',true,200);
-			if (0) {
+			if (0) {//execute outside exclusive stream control.
 				@ob_clean();
-				echo file_get_contents ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath'] , false);
+				include ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 				die();
-			} else {
-				echo file_get_contents ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath'] , false);
+			} else if (1) {//execute inside
+				include ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
 				return;
+			} else {//dont execute
+				echo file_get_contents ( $_INTIN['MOD']['ResourceFinder']['LayoutsPath'] , false);
 			}
 			break;
 		default: break;
@@ -128,9 +132,9 @@ if($_INTIN['MOD']['ResourceFinder']['found']['foundInMod']){
 	header("Pragma: public");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s", time()-10) . " GMT");
 	header("Expires: " . gmdate("D, d M Y H:i:s", time() + 500) . " GMT");
-	header("Cache-Control: max-age=5, s-maxage=5, cache, must-revalidate");
+	header("Cache-Control: max-age=5, s-maxage=5, cache");//, must-revalidate");
 
 	readfile($_INTIN['MOD']['ResourceFinder']['LayoutsPath']);
-	exit();
+	die();
 }
 ?>

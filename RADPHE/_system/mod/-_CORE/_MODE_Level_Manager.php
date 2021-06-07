@@ -43,6 +43,7 @@ $_INTIN['KERNEL'] = array('EVENTS'=>$_INTIN['KERNEL']['EVENTS'],'MANAGERS'=>$_IN
 bench('CORE');
 
 $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array();
+$_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']=array();
 foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['KERNEL']['EVENTlevel']) {
     bench(strtoupper(''.$_INTIN['KERNEL']['EVENT'].''));
     foreach ($_INTIN['KERNEL']['EVENTlevel'] as $_INTIN['KERNEL']['EVENTlevelORDEN'] => $_INTIN['KERNEL']['EVENTlevelFILE']) {
@@ -59,12 +60,23 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                     $eMOD=null;
                 }
                 if (!isset($_INTIN['MOD']['CMS']['Blocks']))
-                    $_INTIN['MOD']['CMS']['Blocks']=array();
-                if (!isset($_INTIN['KERNEL']['Tracking']['Memory']['AllTime']))
-                $_INTIN['KERNEL']['Tracking']['Memory']['AllTime']=array();//=$GLOBALS;
-                $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]['BLOCK-Changes'] = @array_diff($_INTIN['MOD']['CMS']['Blocks'] /* $GLOBALS */,$_INTIN['KERNEL']['Tracking']['Memory']['AllTime']);
-                $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=@array_diff($_INTIN['MOD']['CMS']['Blocks'] /* $GLOBALS */,$_INTIN['KERNEL']['Tracking']['Memory']['AllTime']);
-                $_INTIN['KERNEL']['Tracking']['Memory']['AllTime']=$_INTIN['MOD']['CMS']['Blocks'];
+                   $_INTIN['MOD']['CMS']['Blocks']=array();
+                if (!isset($_INTIN['KERNEL']['Tracking']['Blocks']['AllTime']))
+                    $_INTIN['KERNEL']['Tracking']['Blocks']['AllTime']=&$_INTIN['MOD']['CMS']['Blocks'];
+               // if (!isset($_INTIN['KERNEL']['Tracking']['Memory']['AllTime']))
+               //     $_INTIN['KERNEL']['Tracking']['Blocks']['AllTime']=array_merge_recursive(get_defined_vars(),array('GLOBALS'=>'NO','_INTIN'=>'No'));
+                
+               //if empty $_INTIN['Dump'] 
+                $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]=@array_diff_assoc(array_merge_recursive(get_defined_vars(),array('_INTIN'=>array('KERNEL'=>array('Tracking'=>array('No'))))),$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']);
+                //else dont track. //AND CLEAN THIS UP! (in memory structure and organization how you want the click through to be.)
+
+                $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]['BLOCK-Changes'] = @array_diff_assoc($_INTIN['MOD']['CMS']['Blocks'],$_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']);
+
+                $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE'].'Blocks']=&$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelORDEN']][$_INTIN['KERNEL']['EVENTlevelFILE']]['BLOCK-Changes'];
+
+                $_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']=$_INTIN['MOD']['CMS']['Blocks'];
+                $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array_merge_recursive(get_defined_vars(),array('GLOBALS'=>'','_INTIN'=>NULL));
+                
                 bench(strtolower('END '.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelORDEN']));
             }
         }

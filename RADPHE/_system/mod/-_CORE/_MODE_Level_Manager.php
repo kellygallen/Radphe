@@ -39,6 +39,7 @@ foreach($_INTIN['KERNEL']['AFTERs'] as $_INTIN['KERNEL']['LEVEL']['Kernel_Level_
 $_INTIN['KERNEL'] = array('EVENTS'=>$_INTIN['KERNEL']['EVENTS'],'MANAGERS'=>$_INTIN['KERNEL']['MANAGERS']);
 
 //do each level manager and let it prune its own events or add in non core events with the parallel module as the core in loop. TO REDUCE EVENTS and ADD DYNAMIC ONES. the non demo will have nothing near "the long route"... i could use just the site engine merged from the first commit as the stages flat.
+include_once($_SERVER['DOCUMENT_ROOT'].'/_system/function/array_filter_by_key.php'); define('TRACKING_FILTER',['GLOBALS','_INTIN','KERNEL','Dump']);
 
 bench('CORE');
 
@@ -66,15 +67,15 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                // if (!isset($_INTIN['KERNEL']['Tracking']['Memory']['AllTime']))
                //     $_INTIN['KERNEL']['Tracking']['Blocks']['AllTime']=array_merge_recursive(get_defined_vars(),array('GLOBALS'=>'NO','_INTIN'=>'No'));
                 
-                if (!empty($_INTIN['Dump']))
-                    if (memory_get_usage(TRUE)<50000000) $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['GlObAlS']=@array_diff_assoc(array_merge_recursive(get_defined_vars(),array('_INTIN'=>array('MOD'=>'NOPE','Dump'=>'NOPE', 'KERNEL'=>array('Tracking'=>array('No'))))),$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']);
+                if ((!empty($_INTIN['Dump']))||0)
+                    if (memory_get_usage(TRUE)<50000000) $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['GlObAlS']=@array_diff_assoc(request_filter(get_defined_vars(), TRACKING_FILTER),$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']);
                 
                 $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['Blocks'] = @array_diff_assoc($_INTIN['MOD']['CMS']['Blocks'],$_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']);
 
                 $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['Blocks']=&$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['Blocks'];
 
                 $_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']=$_INTIN['MOD']['CMS']['Blocks'];
-                if (memory_get_usage(TRUE)<10000000) $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array_merge_recursive(get_defined_vars(),array('_INTIN'=>array('MOD'=>'NOPE','Dump'=>'NOPE', 'KERNEL'=>array('Tracking'=>array('No')))));
+                if ((memory_get_usage(TRUE)<10000000)||0) $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=@request_filter(get_defined_vars(), TRACKING_FILTER);
                 
                 bench(strtolower('END '.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelORDEN']));
             }

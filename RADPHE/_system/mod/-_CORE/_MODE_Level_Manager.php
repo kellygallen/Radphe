@@ -67,14 +67,14 @@ foreach ($_INTIN['KERNEL']['EVENTS'] as $_INTIN['KERNEL']['EVENT'] => $_INTIN['K
                //     $_INTIN['KERNEL']['Tracking']['Blocks']['AllTime']=array_merge_recursive(get_defined_vars(),array('GLOBALS'=>'NO','_INTIN'=>'No'));
                 
                 if (!empty($_INTIN['Dump']))
-                $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['GlObAlS']=@array_diff_assoc(array_merge_recursive(get_defined_vars(),array('_INTIN'=>array('KERNEL'=>array('Tracking'=>array('No'))))),$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']);
+                    if (memory_get_usage(TRUE)<250000000) $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['GlObAlS']=@array_diff_assoc(array_merge_recursive(get_defined_vars(),array('_INTIN'=>array('MOD'=>'NOPE', 'KERNEL'=>array('Tracking'=>array('No'))))),$_INTIN['KERNEL']['Tracking']['Memory']['LastTime']);
                 
                 $_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['Blocks'] = @array_diff_assoc($_INTIN['MOD']['CMS']['Blocks'],$_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']);
 
                 $_INTIN['KERNEL']['Tracking']['Memory'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['Blocks']=&$_INTIN['MOD']['']['AWARENESS']['Mods'][$_INTIN['KERNEL']['EVENT']][$_INTIN['KERNEL']['EVENTlevelFILE']]['Blocks'];
 
                 $_INTIN['KERNEL']['Tracking']['Blocks']['LastTime']=$_INTIN['MOD']['CMS']['Blocks'];
-                $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array_merge_recursive(get_defined_vars(),array('GLOBALS'=>'','_INTIN'=>NULL));
+                if (memory_get_usage(TRUE)<100000000) $_INTIN['KERNEL']['Tracking']['Memory']['LastTime']=array_merge_recursive(get_defined_vars(),array('GLOBALS'=>'','_INTIN'=>NULL));
                 
                 bench(strtolower('END '.$_INTIN['KERNEL']['EVENT'].''.$_INTIN['KERNEL']['EVENTlevelORDEN']));
             }

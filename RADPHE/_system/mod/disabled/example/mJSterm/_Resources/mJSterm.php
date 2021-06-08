@@ -10,11 +10,12 @@ if (session_status() == PHP_SESSION_NONE) {
 	// if history diffs change write. might be an anywhere login of a stream. this should be managed better as a blanket.
 	// also disabled to maximize timing on shared hosting with kernel microtime hack.
 	session_abort();
-}// else @session_abort();
+} else @session_abort();
 
 //needs a session id.... or a sticky unique cookie.
-$link = @mysqli_connect("localhost","mod_mJSterm","","radphe");
-if (!$link) $link = @mysqli_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
+$ConnIndex='mJSterm';
+$_INTIN['DB']['Connections'][$ConnIndex] = @mysqli_connect("localhost","mod_mJSterm","","radphe");
+if (!$_INTIN['DB']['Connections'][$ConnIndex]) $_INTIN['DB']['Connections'][$ConnIndex] = @mysqli_connect($_INTIN['DB']['Profiles']['Pro']['Host'],$_INTIN['DB']['Profiles']['Pro']['User'],$_INTIN['DB']['Profiles']['Pro']['Pass'],$_INTIN['DB']['Profiles']['Pro']['Schema']);
 CMS_Skinner::$Page['LayoutFile']='Wide';
 //$_INTIN['Design']['Layout']
 include(__DIR__.'/../functions.php');
@@ -46,7 +47,7 @@ if (!empty($_POST)) {
 	$_SESSIONthread['mJSterm']['TermClicks'][] = array('Click'=>$_POST['Term'],'TS'=>time(),'HandledTS'=>0,'FrameSerial'=>'');
 		$DateTime = date('Y-m-d H:i:s');
 		$NewDateTime = date('Y-m-d H:i:s',strtotime($DateTime.' + 1 hour'));
-		$result = mysqli_query($link,"REPLACE INTO Session SET Session_Id = '".session_id()."', Session_Expires = '".$NewDateTime."', Session_Data = '".serialize($_SESSIONthread)."'");
+		$result = mysqli_query($_INTIN['DB']['Connections'][$ConnIndex],"REPLACE INTO Session SET Session_Id = '".session_id()."', Session_Expires = '".$NewDateTime."', Session_Data = '".serialize($_SESSIONthread)."'");
 
 //	session_write_close();
 die();
@@ -54,7 +55,7 @@ die();
 
 //$_POST['LINK']=1;
 $schema = (!empty($_INTIN['DB']['Profiles']['Pro']['Schema'])) ? $_INTIN['DB']['Profiles']['Pro']['Schema'] : 'DB';
-if ((0)||(!$link)) {
+if ((0)||(!$_INTIN['DB']['Connections'][$ConnIndex])) {
 	@$_INTIN['MOD']['CMS']['Blocks']['SupplementaryContent'] .= <<<THEREuGO
 <h2>How to set up database.</h2>
 Database Example DB SCHEMA.table currently set in config as {$schema}.Session<hr>
@@ -125,3 +126,6 @@ The point is that you could run a server side gui or slide survey or terminal at
 	</fieldset>
 </form>
 <script src="/js/mJStermPostLoad.js"></script>
+<h3>Issue</h3> notice that the further down you scroll or click on image the capture point goes wrong. I am working on it but dont have internet for research. perhaps it is a browser engine change. mysterious breakage. it used to work despite scroll/zoom/and css resize.
+<h2>SO...</h2> close browser, re open, go back to this page. Ctrl+R hard refresh maybe with dev tools on and network/cache disabled. Use reset link on this page. or some combination of such.
+<

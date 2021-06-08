@@ -1,7 +1,8 @@
 <?php
 @require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php');//Fallback Hook.
 function get_one_jpeg (){
-	global $link;
+	global $_INTIN;
+	$ConnIndex='mJSterm';
 	$colorArray[]='black';
 	$colorArray[]='red';
 	$colorArray[]='white';
@@ -21,7 +22,7 @@ function get_one_jpeg (){
     $c = imagecreatefrompng(__DIR__.'/3.png');
 	$controlledx = rand(0,$width);
 	$controlledy = rand(0,$height);
-	$result = mysqli_query($link,"SELECT Session_Data FROM Session WHERE Session_Id = '".session_id()."' AND Session_Expires > '".date('Y-m-d H:i:s')."'");
+	$result = mysqli_query($_INTIN['DB']['Connections'][$ConnIndex],"SELECT Session_Data FROM Session WHERE Session_Id = '".session_id()."' AND Session_Expires > '".date('Y-m-d H:i:s')."'");
 	if($row = mysqli_fetch_assoc($result)) $_SESSIONthread = @unserialize($row['Session_Data']);
 		if (!empty($_SESSIONthread['mJSterm']['TermClicks'])) {
 			//$handler->read(session_id());
@@ -43,7 +44,7 @@ function get_one_jpeg (){
 				$_SESSIONthread['mJSterm']['TermClicks'][$ClickOrden]['HandledTS']=time();
 				$DateTime = date('Y-m-d H:i:s');
 				$NewDateTime = date('Y-m-d H:i:s',strtotime($DateTime.' + 1 hour'));
-				$result = mysqli_query($link,"REPLACE INTO Session SET Session_Id = '".session_id()."', Session_Expires = '".$NewDateTime."', Session_Data = '".serialize($_SESSIONthread)."'");
+				$result = mysqli_query($_INTIN['DB']['Connections'][$ConnIndex],"REPLACE INTO Session SET Session_Id = '".session_id()."', Session_Expires = '".$NewDateTime."', Session_Data = '".serialize($_SESSIONthread)."'");
 				if (isset($_SESSIONthread['mJSterm']['Running'])) if ($_SESSIONthread['mJSterm']['Running']==0) die();
 			}
 			if (!isset($Click['Click']['_x'])) {

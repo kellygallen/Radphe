@@ -39,7 +39,8 @@ foreach($_INTIN['KERNEL']['AFTERs'] as $_INTIN['KERNEL']['LEVEL']['Kernel_Level_
 $_INTIN['KERNEL'] = array('EVENTS'=>$_INTIN['KERNEL']['EVENTS'],'MANAGERS'=>$_INTIN['KERNEL']['MANAGERS']);
 
 //do each level manager and let it prune its own events or add in non core events with the parallel module as the core in loop. TO REDUCE EVENTS and ADD DYNAMIC ONES. the non demo will have nothing near "the long route"... i could use just the site engine merged from the first commit as the stages flat.
-include_once($_SERVER['DOCUMENT_ROOT'].'/_system/function/array_filter_by_key.php'); define('TRACKING_FILTER',['GLOBALS','_INTIN','KERNEL','Dump']);
+include_once($_SERVER['DOCUMENT_ROOT'].'/_system/function/array_filter_by_key.php');
+define('TRACKING_FILTER',['GLOBALS','_INTIN','KERNEL','Dump']);
 
 bench('CORE');
 

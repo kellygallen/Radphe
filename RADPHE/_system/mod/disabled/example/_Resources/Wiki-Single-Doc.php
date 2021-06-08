@@ -35,6 +35,10 @@
 			</p>
 		<h3></h3>
 	<hr>
+
+<h1>Problems</h1>
+<h3>Put mysql links in a place in _INTIN</h3> or one of the filtered memory locations or turn it off memory tracking with the config paramiter (soon to come) or with toggleing code boolean. RADPHE\_system\mod\-_CORE\_MODE_Level_Manager.php:71
+
 <h1>Features</h1>
 	<h2>Output Buffer Blocking</h2>
 		<h3>OBB HASH-URL Markup Language: <sup>#type#uri:param;command;...#</sup></h3> This is a server side url which becomes evaluated and replaced or is an event's output so it becomes and can take a payload. These are recursively solved from the output of the request. I might refer to these as [building] BLOCKS (of output, or information).
@@ -52,7 +56,7 @@
 			<sup>Process</sup>
 			<sub>Oriented</sub>
 			<sup>Object</sup>
-			Programming
+			Programming - or hash (#) pipes, like a system pipe ;->
 		</h3> Its the thing that cant and should be; you should really try it out; as it is everything from every camp. OOP vs POP. Events!, POP and OOP. All at the same time, like they are the same thing.
 		<h3>Request Response Result Production</h3> Tracking.
 		<h3>Tracks changes between events <sup>Saves Work</sup></h3>

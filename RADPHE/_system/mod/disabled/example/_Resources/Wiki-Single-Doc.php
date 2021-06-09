@@ -1,6 +1,18 @@
 <center><h1>RADPhE</h1></center><hr>
 	<h1>Table Of Contents.</h1>
+<!-- e.poop #\mem:PageTOC;#
+								 Added slash to mem so you could see it without replacement. -->
+<!-- e.poop #mem\:PageTOC;# BEGIN
+		 Replacement Needle BEGIN
+			 the following UnOrdered Table Of Contents List
+			 is generated and replaces the fragment/block handle i leave behind here
+			 which looks something like this "# mem : PageTOC ;  # without the spaces."-->
 #mem:PageTOC;#
+<!-- e.poop #mem:\PageTOC;# END
+		 Replacement Needle END
+			 the previous is not actually there
+			 there is only a memory block e.poop or hashpipe there...
+					 I haven't decided the name yet but I might have a use for both. -->
 	<hr>
 	<h1>About</h1>
 		<h3>The Bad Demo</h3>
@@ -126,7 +138,7 @@ if (!empty($TOC)) {
 		if (is_numeric($indents)) $indents--;
 		$indented = '';
 		for ($i = 1; $i <= $indents; $i++) {
-    		$indented .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    		$indented .= "-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;";
 		}
 		switch($title){
 			case 'RADPhE':

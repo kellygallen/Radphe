@@ -1,8 +1,8 @@
-<h1>RADPhE</h1>
+<center><h1>RADPhE</h1></center><hr>
 	<h1>Table Of Contents.</h1>
 #mem:PageTOC;#
 	<hr>
-	<h2>About</h2>
+	<h1>About</h1>
 		<h3>The Bad Demo</h3>
 			<p>Currently this is a bad demo to show you the basics of how radphe works and what it does.
 				Soon the download release will not have the demo, it will be completely transparent and minimalist as it should be.
@@ -108,7 +108,8 @@
 	<h2>Light Bench Performance Report <sup>with its own secondary application firewall<sup> </h2> May need to press ALT+SHIFT+K and you will see there is the potential for time awareness. Here is how the output currently works. All CAPS events are major, and mixed case is minor. It will try to consolidate Major and Minor Events if they are less than a few percent of the total report so you may not see all your major events. Bench snapshots will be made around the php kernel events with snapshots of memory changes if enabled.
 <h1>Kelly<sup>702-900-5355</sup><sub>702-748-7764‬</sub></h1> Should mostly be a working phone. Google Voice should forward the call txt or v-mail to me.
 <h2>I now have a phone and some data in San Diego and I am in a shelter; maybe a bank soon... so for now don't get scammed on a donation.</h2> There is no donate route that I know at the moment that is actually for me or obtainable. I need to get a bank for my paypal or something.‬
-<h1>notice</h1> this page has html meta keywords for present and possibly forces serps if it is in the content of the code. the serps are in RUSH\_INTIN.php but you may change them at any time programmatically. 
+<h1>Auto w/Manual SEO Notice</h1>
+<h2>View Source - HTML>HEAD>META</h2> this page has html meta keywords for present and possibly forces serps if it is in the content of the code. the serps are in RUSH\_INTIN.php but you may change them at any time programmatically. 
 <?php
 $lines = file(__FILE__, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 foreach ($lines as $line_num => $line) {
@@ -121,13 +122,19 @@ if (!empty($TOC)) {
 	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<ul style="">'."\n";
 	foreach($TOC as $itemParts) {
 		list($title,$tag) = $itemParts;
+		$indents = substr($tag, 1,1);
+		if (is_numeric($indents)) $indents--;
+		$indented = '';
+		for ($i = 1; $i <= $indents; $i++) {
+    		$indented .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		}
 		switch($title){
 			case 'RADPhE':
 			case 'Table Of Contents.':
 			case '...':
 				break;
 			default:
-				if (!empty($title)) $_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<li>'.$title.'</li>'."\n";
+				if (!empty($title)) $_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<li>'.$indented.$title.'</li>'."\n";
 //				$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<'.$tag.'>'.$title.'</'.$tag.'>'."\n";
 				break;
 		}

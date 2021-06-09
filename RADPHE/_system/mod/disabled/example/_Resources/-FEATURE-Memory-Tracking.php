@@ -1,4 +1,6 @@
-<?php //@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
+<?php
+
+@require_once($_SERVER['DOCUMENT_ROOT'].'/_system/_SiteEngine.php'); eval(RadpheFallBackHook);
 global $_INTIN;
 //test link.
 $link = @mysqli_connect("localhost","mod_mJSterm","","radphe");

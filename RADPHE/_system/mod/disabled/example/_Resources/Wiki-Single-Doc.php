@@ -37,7 +37,18 @@
 	<hr>
 
 <h1>Problems</h1>
-<h3>Put mysql links in a place in _INTIN</h3> or one of the filtered memory locations or turn it off memory tracking with the config paramiter (soon to come) or with toggleing code boolean. RADPHE\_system\mod\-_CORE\_MODE_Level_Manager.php:71
+<h3>Put mysql links in a place in _INTIN</h3> or one of the filtered memory locations or turn it off memory tracking with the config parameter (soon to come) or with toggling code boolean. RADPHE\_system\mod\-_CORE\_MODE_Level_Manager.php:71
+
+<h1>TODO</h1>
+<h3>SELF Testing <sub>With test files, limit it to the host</sub><sup>and CURL</sup></h3>For all my currently manual test scenarios stored in _INTIN awareness and cashed otherwise triggered by a cronjob or an algorithm for writing that cache.
+<h3>HOSTING Probe</h3> again to awareness as it is for all on the server.
+<h3>DEFINES<sub>Primary Required Defaults and Detected</sub></h3> Reducing Memory and CODE footprint and setting non changeables. Also for things like _system folder, and sit engine naming convention or namespace and #HASH:PIPE# code execution bridges and CMS Block e(b)POOP. For example the hashpipe and e.poop langrage format and regex patterns are currently defines, so you may change the language structure by altering them once.
+<h3>Bench SLEEP overload to include bench</h3> ;-) and bench triggering an optional environment change snapshot. because you want to wait around anyway. Making debugging auto magic when it is rest-full AND WITH ZERO MOD OR LINES IN YOUR CODE from the outside as the prepend hook wrapper.
+<h3>Learning Firewall Mode<h3> To learn the access patterns and subsequent posts and their structure to make a filter for what is let through to the wrapped un-integrated app. Possibly a low bandwidth hunnypot with a js alert window to escape it when a thret level tolerance has been reached. running on the history quota of previous dynamic responses as a submitted support or threat ticket to support. IP Blocking if it is determined to be automated or a bot net. where as the response is broken and silent completely with no response headers early in code, and further escalation to netblocks added and removed to FailToBan for an hour duration at the worst counteraction. automated, and undoable by support.
+<h3>obfu(scation)-cription</h3>obfu-cription. which is layering levels of encryption and obfuscation in a recipe that can be done forwards and back if you have all the ingredients and the recipe of library functions and version used.
+<h3>FS FileTree and array include structure</3h3> as a alternate db bridge. possibly with obfu-cription.
+<h3>...</h3> theres already a lot i said here and there. thats why i need a single doc with a TOC.
+<h3>and also make it simpler and cleaner</h3> if that is not enough complex work.
 
 <h1>Features</h1>
 	<h2>Output Buffer Blocking</h2>

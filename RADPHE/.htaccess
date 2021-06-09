@@ -60,7 +60,8 @@
 
 #	No Underscore Requests.
 #	RewriteRule /?_.*/$ - [F]
-	RewriteRule /?_.*/$ /
+	RewriteRule ^/?_.*$ /-RADPHError404.php [NC,F,L]
+	RewriteRule ^.*/_.*$ /-RADPHError404.php [NC,F,L]
 
 #	Make Site Map findable. not case sensitive except for the second argument.
 #	RewriteRule   ^sitemap\.xml$  Sitemap.xml [NC]
@@ -79,7 +80,7 @@
 #	RewriteRule ^Resources/(.*?)/(PHP[0-9]{1,6})\-\_\-(.*?)\.(.*)$ /Resources/Resource.php?UID=$1 [L]
 
 #No using the _system folder
-	RewriteRule ^/?_system/.*$ /-RADPHError500.php [NC,F,L]
+	RewriteRule ^/?_system/.*$ /-RADPHError404.php [NC,F,L]
 
 #Skins and protected resources and virtual resources.
 	RewriteCond     %{REQUEST_FILENAME}     !-f

@@ -1,4 +1,6 @@
 <h1>RADPhE</h1>
+	<h1>Table Of Contents.</h1>
+#mem:PageTOC;#
 	<hr>
 	<h2>About</h2>
 		<h3>The Bad Demo</h3>
@@ -107,3 +109,29 @@
 <h1>Kelly<sup>702-900-5355</sup><sub>702-748-7764‬</sub></h1> Should mostly be a working phone. Google Voice should forward the call txt or v-mail to me.
 <h2>I now have a phone and some data in San Diego and I am in a shelter; maybe a bank soon... so for now don't get scammed on a donation.</h2> There is no donate route that I know at the moment that is actually for me or obtainable. I need to get a bank for my paypal or something.‬
 <h1>notice</h1> this page has html meta keywords for present and possibly forces serps if it is in the content of the code. the serps are in RUSH\_INTIN.php but you may change them at any time programmatically. 
+<?php
+$lines = file(__FILE__, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+foreach ($lines as $line_num => $line) {
+	preg_match('/^[\t ]{0,5}(<(h1|h2|h3)\>)(.*?)(\<\/?(sub|sup|h1|h2|h3|h4|b|u|i)\>).*$/i',$line,$matches,);
+//    echo "Line #<b>{$line_num}</b> : " . htmlspecialchars($line) . "<br />\n";
+	if (!empty($matches[2])&&(!empty($matches[3]))) $TOC[]=array($matches[3],$matches[2]);
+}
+if (!empty($TOC)) {
+	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] = '';
+	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<ul style="">'."\n";
+	foreach($TOC as $itemParts) {
+		list($title,$tag) = $itemParts;
+		switch($title){
+			case 'RADPhE':
+			case 'Table Of Contents.':
+			case '...':
+				break;
+			default:
+				if (!empty($title)) $_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<li>'.$title.'</li>'."\n";
+//				$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<'.$tag.'>'.$title.'</'.$tag.'>'."\n";
+				break;
+		}
+	}
+	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '</ul>'."\n";
+}
+?>

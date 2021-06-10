@@ -1,3 +1,10 @@
+<?php
+global $INTIN;
+$_INTIN['Dump']=$GLOBALS;
+
+//now i am being silly... i am saying here... show this other file instead of the virtual that was called.
+$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = dirname($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']).'/Wiki-From-Heading-TOC.php';
+?>
 <center><h1>RADPhE</h1></center><hr>
 	<h1>Table Of Contents.</h1>
 <!-- e.poop #\mem:PageTOC;#
@@ -7,7 +14,7 @@
 			 the following UnOrdered Table Of Contents List
 			 is generated and replaces the fragment/block handle i leave behind here
 			 which looks something like this "# mem : PageTOC ;  # without the spaces."-->
-#mem:PageTOC;#
+#mod:example;WiKi_TOC#
 <!-- e.poop #mem:\PageTOC;# END
 		 Replacement Needle END
 			 the previous is not actually there
@@ -122,35 +129,13 @@
 <h2>I now have a phone and some data in San Diego and I am in a shelter; maybe a bank soon... so for now don't get scammed on a donation.</h2> There is no donate route that I know at the moment that is actually for me or obtainable. I need to get a bank for my paypal or something.‬
 <h1>Auto w/Manual SEO Notice</h1>
 <h2>View Source - HTML>HEAD>META</h2> this page has html meta keywords for present and possibly forces serps if it is in the content of the code. the serps are in RUSH\_INTIN.php but you may change them at any time programmatically. 
+<h1>Interesting Test Case.</h1>
+<h3>Included MODE_SELF_INITIATE CMS BLOCKS</h3>
+#mod:example;WiKi_TOC#
+<h3>Included afterBY Virtual</h3>
+#mem:PageTOC;#
+<h1>The Code that made this if this is development <sub>below</sub>.</h1>
 <?php
-$lines = file(__FILE__, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-foreach ($lines as $line_num => $line) {
-	preg_match('/^[\t ]{0,5}(<(h1|h2|h3)\>)(.*?)(\<\/?(sub|sup|h1|h2|h3|h4|b|u|i)\>).*$/i',$line,$matches,);
-//    echo "Line #<b>{$line_num}</b> : " . htmlspecialchars($line) . "<br />\n";
-	if (!empty($matches[2])&&(!empty($matches[3]))) $TOC[]=array($matches[3],$matches[2]);
-}
-if (!empty($TOC)) {
-	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] = '';
-	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<ul style="">'."\n";
-	foreach($TOC as $itemParts) {
-		list($title,$tag) = $itemParts;
-		$indents = substr($tag, 1,1);
-		if (is_numeric($indents)) $indents--;
-		$indented = '';
-		for ($i = 1; $i <= $indents; $i++) {
-    		$indented .= "-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;";
-		}
-		switch($title){
-			case 'RADPhE':
-			case 'Table Of Contents.':
-			case '...':
-				break;
-			default:
-				if (!empty($title)) $_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<li>'.$indented.$title.'</li>'."\n";
-//				$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '<'.$tag.'>'.$title.'</'.$tag.'>'."\n";
-				break;
-		}
-	}
-	$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '</ul>'."\n";
-}
+require_once('Wiki-From-Heading-TOC.php'); //NOTICED THIS DOES NOT WORK AS EXPECTED. 2nddary include from virtual doesn't run till post debug or not at all.
+
 ?>

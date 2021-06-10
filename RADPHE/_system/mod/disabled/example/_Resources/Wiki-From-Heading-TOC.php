@@ -1,10 +1,10 @@
 <?php
 global $_INTIN;
 
-//now i am being silly... i am saying here... (if running in site engine) show this other file instead of the virtual that was called.
-//$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = dirname($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']).'/Wiki-From-Heading-TOC.php';
-
+//now i am being silly... This is called from WikiSingleDoc and also CMBS BLOCLKS. and it works all ways?
 require_once('Wiki-Single-Doc.php');
+//Which Stack way does what and when even if no php-pre system wide config or .user.ini or .htaccess hook.
+
 function WiKi_TOC(){
 	global $_INTIN;
 	$lines = file(dirname(__FILE__).'/Wiki-Single-Doc.php', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

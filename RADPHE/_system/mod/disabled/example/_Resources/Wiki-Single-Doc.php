@@ -137,5 +137,5 @@ if (empty($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']))
 <h1>The Code that made this if this is development <sub>below</sub>.</h1>
 <?php
 require_once('Wiki-From-Heading-TOC.php'); //NOTICED THIS DOES NOT WORK AS EXPECTED. 2nddary include from virtual doesn't run till post debug or not at all.
-
+require_once(dirname(__FILE__).'/Wiki-From-Heading-TOC.php');
 ?>

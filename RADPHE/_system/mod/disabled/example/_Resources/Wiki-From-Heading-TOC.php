@@ -1,12 +1,12 @@
 <?php
-global $INTIN;
+global $_INTIN;
 
 //now i am being silly... i am saying here... (if running in site engine) show this other file instead of the virtual that was called.
 //$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = dirname($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']).'/Wiki-From-Heading-TOC.php';
 
 require_once('Wiki-Single-Doc.php');
 function WiKi_TOC(){
-	global $INTIN;
+	global $_INTIN;
 	$lines = file(dirname(__FILE__).'/Wiki-Single-Doc.php', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 	foreach ($lines as $line_num => $line) {
 		preg_match('/^[\t ]{0,5}(<(h1|h2|h3)\>)(.*?)(\<\/?(sub|sup|h1|h2|h3|h4|b|u|i)\>).*$/i',$line,$matches,);

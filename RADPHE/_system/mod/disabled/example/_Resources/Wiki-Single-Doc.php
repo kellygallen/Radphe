@@ -2,8 +2,9 @@
 global $INTIN;
 //$_INTIN['Dump']=$GLOBALS;
 //now i am being silly... i am saying here... show this other file instead of the virtual that was called.
-if (empty($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']))
-	$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = dirname($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']).'/Wiki-From-Heading-TOC.php';
+if (empty($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'])) $_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = '';
+if (($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']))
+	$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = dirname($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']).'Wiki-From-Heading-TOC.php';
 ?>
 <center><h1>RADPhE</h1></center><hr>
 	<h1>Table Of Contents.</h1>

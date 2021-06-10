@@ -1,9 +1,12 @@
 <?php
 global $_INTIN;
 
-//now i am being silly... This is called from WikiSingleDoc and also CMBS BLOCLKS. and it works all ways?
 require_once('Wiki-Single-Doc.php');
 //Which Stack way does what and when even if no php-pre system wide config or .user.ini or .htaccess hook.
+//now i am being really silly...
+if (($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']))
+	$_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation'] = dirname($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']).'/Wiki-Single-Doc.php';
+// This is called from WikiSingleDoc and also CMS BLOCLKS. and it works all ways?
 
 function WiKi_TOC(){
 	global $_INTIN;
@@ -35,7 +38,7 @@ function WiKi_TOC(){
 					break;
 			}
 		}
-		$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '</ul>'."\n";
+		$_INTIN['MOD']['CMS']['Blocks']['PageTOC'] .= '</ul>'."\n".var_export(debug_backtrace());
 	}
 	return $_INTIN['MOD']['CMS']['Blocks']['PageTOC'];
 }

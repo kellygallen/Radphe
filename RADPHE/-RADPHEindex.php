@@ -13,6 +13,8 @@ The ERROR file at site root is NOT OPTIONAL; it is used as a auto alternate path
 Click the hidden footer toggle link below as linked to Alt + Shift + K key combo.
 <h1>>>> <a href="#DevDebugPreKurser">Hidden Footer</a> <<<</h1>
 <hr></center>
+<br>
+These #blocks are provided by example which if in disabled will not work. There is a grey area i have set up where some things work from disabled if you are in dev configuration mode.
 <center><h2>This is a Module Block call :: <u>#<b>mod</b>:<sup>example/mJSterm</sup>;<sub>CMSInitiatorTest</sub>#</u></h2><br>#mod:example/mJSterm;CMSInitiatorTest#</center>
 <hr>
 <center><h2>This is a Module Block call with a mistake :: <u>#<b>mod</b>:<sup>example/mJSterm</sup>;<sub>CMSInitiatorTestMistake</sub>#</u></h2><br>#mod:example/mJSterm;CMSInitiatorTestMistake#</center>

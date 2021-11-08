@@ -126,8 +126,21 @@ if (($_INTIN['MOD']['ResourceFinder']['found']['ModuleRelativeLocation']))
 	<h2>Server Side Terminal Rendering <sup>In high JPEG fps as a stream</sup></h2> and that is just me tinkering with any ol thing to have something in this project to run as I master the environment it runs in. It should be noted that if you want a php form submitted during an ongoing php generated stream or output or even into an already running process... you might want to take a loot at what I am doing. I am making a mjpeg stream as a sort fo server side image map where as the touch/click, gestures, and keys will be sent over post with slight Javascript (basic and common to browsers on any device). This is just a proof of concept. You can touch the screen and a dot's location will be chosen as it fly's through random. That is all it does besides this nifty trick of inserting information into a running process (With a database because sessions don't have an update or merge event built into php).
 	<hr>
 	<h2>Light Bench Performance Report <sup>with its own secondary application firewall<sup> </h2> May need to press ALT+SHIFT+K and you will see there is the potential for time awareness. Here is how the output currently works. All CAPS events are major, and mixed case is minor. It will try to consolidate Major and Minor Events if they are less than a few percent of the total report so you may not see all your major events. Bench snapshots will be made around the php kernel events with snapshots of memory changes if enabled.
-<h1>Kelly<sup>702-900-5355</sup><sub>702-748-7764‬</sub></h1> Should mostly be a working phone. Google Voice should forward the call txt or v-mail to me.
-<h2>I now have a phone and some data in San Diego and I am in a shelter; maybe a bank soon... so for now don't get scammed on a donation.</h2> There is no donate route that I know at the moment that is actually for me or obtainable. I need to get a bank for my paypal or something.‬
+
+<h1>Developer Status></h1>702-900-5355 Should mostly be a working phone. Google Voice should get forward the call txt or v-mail to me but note it might be hard to get a charge (phone) without in-curing [trouble|legal] charges.
+<h2>OLD<h2>I now have a phone and some data in San Diego and I am in a shelter; maybe a bank soon... so for now don't get scammed on a donation. There is no donate route that I know at the moment that is actually for me or obtainable. I need to get a bank for my paypal or something.‬
+<h2>NEW</h2>My identity was stolden and reissued to other people signing up for lifeline phones. I have no chance at voice or data. Only Wifi. I cannot get a charge for phone or laptop anywhere, but I may have a plug s of now. Its convaluted and complicated. Have not found good wifi. May still spoof widi mac a few more thousand times once a day built into windows as a way to get more Cox/Cable Hotspots but its easy and probable to disconnect even from that and then the mac is used for the day so I usualy only get enough connectivity to push github.
+Include [RADPHE] in emails or sms txt for despam and classification.
+Still no bank. Hardly anything really.
+Was natural selection of bad innerds occult bleeding gi for the last decade. But now the coupted excon agents, shelter employes of the citys homeless progrms, and gangstalking in general means now I have wounds on the outside and they are rolling infction complicated into a rarity of micro excosysem and occurance. I think the wounds and what sttarted as MRSA is beat and it just persists as something new difficult to heal on my arms and legs due to the hardship it takes to heal diabetes wounds.
+Visison is deffinitly not good. No spelling today.
+Everyone overcharges and runs tab on EBT and cash and skipmts on the food, and I go to sleep at night and people grab bag, and put more problems on my skin.
+Its not looking good, but maybe I can start to make this work just to pass the day.
+No promices but there is a plug right now.
+I will be trying.
+But time will be limitied and i forgot where i was, besides a weird sort of mental diagram which is everything the way I want it. But that is too large to just take on and be afflicted with distraction that requires survival level maintenance.
+This update is primarily to test my mobile development setup and ability to post on phone usb tether becasue tracphone dosent allow hotspot.
+
 <h1>Auto w/Manual SEO Notice</h1>
 <h2>View Source - HTML>HEAD>META</h2> this page has html meta keywords for present and possibly forces serps if it is in the content of the code. the serps are in RUSH\_INTIN.php but you may change them at any time programmatically. 
 <h1>Interesting Test Case.</h1>

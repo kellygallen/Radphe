@@ -1,3 +1,8 @@
+homeless, outlook bleek for updates any time soon. or community to organize manage modules. if you like though you can donate some 'beer' money to me on cashapp $RADPHE
+
+would be less beer and more like boost nutrition drinks unless I get going with enough or a situation to try with.
+........ 2024 ........
+
 Suggestion: read wiki file from example mod resources https://github.com/kellygallen/Radphe/blob/main/RADPHE/_system/mod/disabled/example/_Resources/Wiki-Single-Doc.php
 
 Turnkey LAMP on VM in VMWare or VirtualBox BUT bare metal doesn't suffer CLICK.
